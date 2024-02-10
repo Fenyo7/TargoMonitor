@@ -1,20 +1,24 @@
 # TargoMonitor
 
-# English version below ⬇
+**English version below ⬇**
 
-## Összefoglaló
-TargoMonitor egy adatbáziskezelő webes applikáció olyan cégeknek, akik munkavédelmi ellenőrzéseket végeznek nagy számban emelő- és egyéb gépeken.
+## Projekt Specifikációk
 
-## Technológia
-Az applikáció .Net Core, EF Core-t használ a backenden, SQL szervert az adatbázishoz, Angulart a frontendhez, Azure-on kerül telepítésre (deploy), és Gittel valamint Githubbal van verziókövetve.
+### Összefoglaló
+A TargoMonitor egy adatbázis-kezelő webes alkalmazás azon cégek számára, amelyek nagy számú emelő- és egyéb gépek munkavédelmi ellenőrzését végzik.
 
-## Feladatok
-### Adatbázis
-Egy nagy méretű adatbázis a következő táblákkal:
-- Partnercégek: a felhasználó partnercégei, a cégek adatai és ezen cégek kapcsolattartói. Itt tároljuk a gépeket amik a céghez tartoznak.
-- Kontaktok: A partnercégek kapcsolattartói, minden adatukkal és elérhetőségeikkel.
-- Gépek: minden cég összes gépe, a gépek adatai és vizsgálataik.
-- Vizsgálatok: minden vizsgálat típusát (IBF, Fővizsgálat, Szerkezeti), idejét, és egy megjegyzést ahova a vizsgálat eredményét lehet írni.
+### Technológia
+Az alkalmazás a .Net Core-t és az EF Core-t használja a backenden, SQL szervert az adatbázis számára, Angulart a frontendre, Azure-on kerül telepítésre, és Git valamint Githubbal van verziókövetve.
+
+Az adattároláshoz az alkalmazás egy adatbázist és minden felhasználó számára több sémát fog használni.
+
+### Feladatok
+#### Adatbázis
+Egy nagy adatbázis a következő táblákkal:
+- Partnercégek: a felhasználó partnercégei, a cégek adatai és ezen cégek kapcsolattartói. Itt tároljuk a cégekhez tartozó gépeket.
+- Kapcsolattartók: A partnercégek kapcsolattartói, minden adatukkal és elérhetőségeikkel.
+- Gépek: minden cég összes gépe, a gépek adatai és vizsgálatai.
+- Vizsgálatok: minden vizsgálat típusát (IBF, Fővizsgálat, Szerkezeti), időpontját, és egy megjegyzést, ahova a vizsgálat eredményét lehet írni.
 
 Az adatbázis kapcsolatai:
 
@@ -27,30 +31,29 @@ Cégek
  └─ Kapcsolattartók
 ```
 
-### Megjelenítés
-Az applikáció jelenítsen meg 3 fület, amelyek mindegyike egy-egy táblához visz:
+#### Megjelenítés
+Az alkalmazásnak meg kell jelenítenie 3 fület, mindegyik egy-egy táblához vezet:
 - Cégek
 - Gépek
 - Idő szerint szűrt vizsgálatok
 
-Ezek minden sorát ki lehessen nyitni, hogy több információhoz jussunk hozzá (pl. ha egy céget kinyitunk, jelenjenek meg a gépei, ha egy gépet, jelenjenek meg a vizsgálatai).
+Minden sor kibontható legyen a további információk eléréséhez (pl. ha egy céget bontunk ki, jelenjenek meg a hozzá tartozó gépek; ha egy gépet, jelenjenek meg a vizsgálatai).
 
-### Szerkesztés, hozzáadás
-Bármikor, bármelyik cellát lehessen szerkeszteni, illetve új sorokat hozzáadni az adatbázishoz.
-### Szűrés
-Minden táblában mindenre lehessen szűrni. 
+#### Szerkesztés és Hozzáadás
+Bármikor szerkeszthető bármelyik cella, és új sorok adhatók hozzá az adatbázishoz.
+#### Szűrés
+Minden táblázatban mindenre legyen lehetőség a szűrésre.
 
-### Idő szerinti szűrés
-A harmadik ablakban jelenjenek meg a havonta leszűrt gépek amik vizsgálatra szorulnak, utolsó fővizsgálat időpontja és vizsgálati csoportszám szerint.
+#### Idő szerinti Szűrés
+A harmadik ablakban jelenjenek meg azok a gépek, amelyek havonta vizsgálatra szorulnak, az utolsó fővizsgálat időpontja és a vizsgálati csoportszám szerint rendezve.
 
-Ezen az oldalon legyen indikáció azokon a sorokon ahol a vizsgálat már megtörtént.
+Ezen az oldalon jelezni kell azokat a sorokat, ahol a vizsgálat már megtörtént.
 
-### Fájlkezelés és generálás
-El kell tudnia tárolni minta fájlokat ami alapján pdf vagy word dokumentumok generálhatóak.
+#### Fájlkezelés és Generálás
+Képesnek kell lennie mintafájlok tárolására, amelyek alapján PDF vagy Word dokumentumok generálhatóak.
 
-### Email szerviz
-Képesnek kell lennie emaileket küldenie.
-
+#### Email Szolgáltatás
+Képesnek kell lennie emailek küldésére.
 
 # ==============================
 
@@ -59,6 +62,8 @@ TargoMonitor is a database management web application for companies that perform
 
 ### Technology
 The application uses .Net Core, EF Core for the backend, SQL server for the database, Angular for the frontend, is deployed on Azure, and version-controlled with Git and Github.
+
+For data storage, the application will use one database and multiple scemas for each user.
 
 ### Tasks
 #### Database
