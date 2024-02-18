@@ -10,12 +10,12 @@ namespace TargoMonitor.Data.Models
         public int ClientId { get; set; }
         public Client Client { get; set; } // Navigation Property to Client
         public List<Inspection> Inspections { get; set; } = new List<Inspection>();
-        public string Place { get; set; } // Üzemeltetési hely
+        public string Place { get; set; } // Telephely / Üzemeltetés telephelye (Város)
+        public string UsePlace { get; set; } // Üzemelés helye (Raktár pl.)
         public bool IsLifting { get; set; } // Emelőgép-e
         public int? InventoryNumber { get; set; } // Leltári szám
-        public string Kind { get; set; } // Besorolás (Legördülős menü, rendszámként lesz eltárolva)
+        public string Kind { get; set; } // Besorolás (Legördülős menü, kódként lesz eltárolva)
         public string Name { get; set; } // Név
-        public string Propulsion { get; set; } // Meghajtás
         public string Brand { get; set; } // Gyártmány
         public string Type { get; set; } // Típus
         public string FactoryNumber { get; set; } // Gyári szám
