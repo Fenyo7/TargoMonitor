@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using TargoMonitor.Data; // Adjust this using directive based on the actual namespace of your TargoMonitorContext
-// Other using directives...
+using TargoMonitor.Data;
+using Microsoft.AspNetCore.Identity; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configure EF Core with your DbContext
+// Configure EF Core with the DbContext
 var connectionString = builder.Configuration.GetConnectionString("TargoMonitorDb");
 builder.Services.AddDbContext<TargoMonitorContext>(options =>
     options.UseSqlServer(connectionString));
