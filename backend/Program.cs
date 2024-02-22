@@ -17,11 +17,6 @@ var connectionString = builder.Configuration.GetConnectionString("TargoMonitor")
 builder.Services.AddDbContext<TargoMonitorContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Configure ASP.NET Core Identity
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<TargoMonitorContext>()
-    .AddDefaultTokenProviders();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
