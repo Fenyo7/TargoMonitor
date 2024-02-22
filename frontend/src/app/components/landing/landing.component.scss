@@ -1,0 +1,63 @@
+/* Customizing the card background and text color */
+mat-card {
+  width: 100%; // Make the card fill the auth area width
+  max-width: 500px; // Maximum width of the card to ensure it doesn't get too wide on larger screens
+  height: auto; // Let the card height be determined by its content
+  margin: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid rgb(150, 150, 150);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  padding: 20px; /* Optional: Adjust padding */
+}
+
+/* Optionally, ensure input and button text is also styled appropriately */
+mat-card input,
+mat-card button {
+  color: white; /* White text for better contrast */
+}
+
+.auth-area mat-card {
+  max-width: 400px; // Adjust based on your preference
+  margin: auto; // Center the card if the auth-area takes up more space
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; // Ensures that children (inputs) stretch to fit the container
+
+  div {
+    margin-bottom: 10px;
+  }
+
+  input,
+  button {
+    width: 100%; // Ensure inputs and buttons take the full width
+  }
+}
+
+.landing-page-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  .content-area {
+    flex: 0 1 60%;
+  }
+
+  .auth-area {
+    width: 40vw; // 40% of the viewport width
+    height: 100vh; // 100% of the viewport height
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Center the content vertically within the auth area
+    align-items: center; // Center the content horizontally
+    a {
+      cursor: pointer;
+      &:hover {
+        color: #0056b3;
+      }
+    }
+  }
+}

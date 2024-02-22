@@ -1,0 +1,23 @@
+<div class="landing-page-container">
+  <div class="content-area">
+    <h1>Targo Monitor</h1>
+  <div>Ez itt a Targomonitor, ide lehet majd rakni valami szép bemutatkozást</div>
+  </div>
+  <div class="auth-area">
+    <mat-card>
+      <mat-card-content>
+        <app-login *ngIf="showLogin"></app-login>
+        <app-register *ngIf="!showLogin"></app-register>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button (click)="toggleForm()">
+          {{
+            showLogin
+              ? "Nincs még fiókja? Regisztráljon!"
+              : "Van már fiókja? Jelentkezzen be!"
+          }}
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
