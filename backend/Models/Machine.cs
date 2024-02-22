@@ -4,7 +4,7 @@ namespace TargoMonitor.Data.Models
 {
     public class Machine
     {
-        public int Id { get; set; }
+        public int MachineId { get; set; }
 
         [ForeignKey("Client")]
         public int ClientId { get; set; }

@@ -5,7 +5,7 @@ namespace TargoMonitor.Data.Models
 {
     public class User
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         [EmailAddress]
@@ -21,5 +21,7 @@ namespace TargoMonitor.Data.Models
             ErrorMessage = "Password must be between 6 and 100 characters long."
         )]
         public string Password { get; set; }
+
+        public List<Client> Clients { get; set; }
     }
 }

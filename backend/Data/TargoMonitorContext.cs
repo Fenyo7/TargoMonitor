@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TargoMonitor.Data.Models;
 
@@ -8,15 +9,21 @@ namespace TargoMonitor.Data
         public TargoMonitorContext(DbContextOptions<TargoMonitorContext> options)
             : base(options) { }
 
+        public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Machine> Machines { get; set; }
         public DbSet<Inspection> Inspections { get; set; }
-        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder
+                .Entity<User>()
+                .HasMany(u => u.Clients)
+                .WithOne(c => c.User)
+                .HasForeignKey(c => c.UserId);
 
             modelBuilder
                 .Entity<Client>()

@@ -13,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Configure EF Core with the DbContext
-var connectionString = builder.Configuration.GetConnectionString("TargoMonitorDb");
+var connectionString = builder.Configuration.GetConnectionString("TargoMonitor");
 builder.Services.AddDbContext<TargoMonitorContext>(options =>
     options.UseSqlServer(connectionString));
 

@@ -4,7 +4,7 @@ namespace TargoMonitor.Data.Models
 {
     public class Inspection
     {
-        public int Id { get; set; }
+        public int InspectionId { get; set; }
 
         [ForeignKey("Machine")]
         public int MachineId { get; set; }
