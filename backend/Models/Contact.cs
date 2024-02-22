@@ -4,7 +4,7 @@ namespace TargoMonitor.Data.Models
 {
     public class Contact
     {
-        public int ContactId { get; set; }
+        public int Id { get; set; }
 
         [ForeignKey("Client")]
         public int ClientId { get; set; }

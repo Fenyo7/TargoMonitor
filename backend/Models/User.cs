@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace TargoMonitor.Data.Models
 {
     public class User
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [EmailAddress]
