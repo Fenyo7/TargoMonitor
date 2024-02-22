@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using TargoMonitor.Data;
 using TargoMonitor.Data.Dtos;
 using TargoMonitor.Data.Models;
-using BCrypt;
 
 [Authorize]
 [Route("api/[controller]")]
@@ -19,7 +18,7 @@ public class UserController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost]
+    [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto registerDto)
     {
         try
@@ -38,7 +37,7 @@ public class UserController : ControllerBase
             {
                 Username = registerDto.Username,
                 Email = registerDto.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password)
+                Password = BC.HashPassword(registerDto.Password)
             };
 
             _context.Users.Add(user);
@@ -50,6 +49,32 @@ public class UserController : ControllerBase
         {
             return BadRequest(
                 new { Message = "An error occurred during registration.", Details = ex.Message }
+            );
+        }
+    }
+
+    [AllowAnonymous]
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginDto loginDto)
+    {
+        try
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(
+                u => u.Email == loginDto.Email
+            );
+            if (user == null)
+                return NotFound("User not found");
+            if (!BC.Verify(loginDto.Password, user.Password))
+                return Unauthorized("Wrong password");
+
+            // Generate JWT and return it
+            //var token = _tokenService.GenerateJwtToken(user);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(
+                new { Message = "An error occurred during login.", Details = ex.Message }
             );
         }
     }
