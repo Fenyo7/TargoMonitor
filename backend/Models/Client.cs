@@ -11,6 +11,6 @@ namespace TargoMonitor.Data.Models
         public required bool HasContract { get; set; } = false;
         public List<int> Pricing { get; set; }
         public required List<Machine> Machines { get; set; } = new List<Machine>();
-        public required Boolean DoNotify { get; set; } = true; // Küldjön emailt a cégnek amikor esedékes egy vizsgálat a hónap elején
+        public required bool DoNotify { get; set; } = true; // Küldjön emailt a cégnek amikor esedékes egy vizsgálat a hónap elején
     }
 }

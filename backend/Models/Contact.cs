@@ -8,7 +8,7 @@ namespace TargoMonitor.Data.Models
 
         [ForeignKey("Client")]
         public int ClientId { get; set; }
-        public Client Client { get; set; } // Navigation property to Client
+        public virtual Client Client { get; set; } // Navigation property to Client
         public string Name { get; set; }
         public string Position { get; set; }
         public string Phone { get; set; }

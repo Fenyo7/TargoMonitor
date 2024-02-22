@@ -1,11 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TargoMonitor.Data.Models
+namespace TargoMonitor.Data.Dtos
 {
-    public class User
+    public class RegisterDto
     {
-        public int UserId { get; set; }
-
         [Required]
         [EmailAddress]
         public string Email { get; set; }
@@ -14,11 +12,7 @@ namespace TargoMonitor.Data.Models
         public string Username { get; set; }
 
         [Required]
-        [StringLength(
-            100,
-            MinimumLength = 6,
-            ErrorMessage = "Password must be between 6 and 100 characters long."
-        )]
+        [StringLength(100, MinimumLength = 6)]
         public string Password { get; set; }
     }
 }

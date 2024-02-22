@@ -8,7 +8,7 @@ namespace TargoMonitor.Data.Models
 
         [ForeignKey("Client")]
         public int ClientId { get; set; }
-        public Client Client { get; set; } // Navigation Property to Client
+        public virtual Client Client { get; set; } // Navigation Property to Client
         public List<Inspection> Inspections { get; set; } = new List<Inspection>();
         public string Place { get; set; } // Telephely / Üzemeltetés telephelye (Város)
         public string UsePlace { get; set; } // Üzemelés helye (Raktár pl.)
