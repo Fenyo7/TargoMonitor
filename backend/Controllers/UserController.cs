@@ -1,3 +1,4 @@
+using TargoMonitor.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +12,15 @@ using TargoMonitor.Data.Models;
 public class UserController : ControllerBase
 {
     private readonly TargoMonitorContext _context;
+    private readonly TokenService _tokenService;
 
-    public UserController(TargoMonitorContext context)
+    public UserController(
+        TargoMonitorContext context,
+        TokenService tokenService
+        )
     {
         _context = context;
+        _tokenService = tokenService;
     }
 
     [AllowAnonymous]
@@ -67,9 +73,8 @@ public class UserController : ControllerBase
             if (!BC.Verify(loginDto.Password, user.Password))
                 return Unauthorized("Wrong password");
 
-            // Generate JWT and return it
-            //var token = _tokenService.GenerateJwtToken(user);
-            return Ok();
+            var token = _tokenService.GenerateJwtToken(user);
+            return Ok(new { Token = token });
         }
         catch (Exception ex)
         {
@@ -77,5 +82,16 @@ public class UserController : ControllerBase
                 new { Message = "An error occurred during login.", Details = ex.Message }
             );
         }
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetUserById(int id)
+    {
+        var user = await _context.Users.FindAsync(id);
+        if (user == null)
+        {
+            return NotFound("User not found");
+        }
+        return Ok(user);
     }
 }
