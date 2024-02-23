@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { loginDTO } from 'src/app/models/DTOs/login.dto';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,10 @@ export class LoginComponent implements OnInit {
     { label: 'Jelszó', controlName: 'password', type: 'password' }
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+    ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -31,7 +36,19 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    
+    const user: loginDTO = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password,
+    }
+
+    this.authService.login(user).subscribe(
+      (response: any) => {
+        console.log('success!\n');
+      },
+      (error: any) => {
+        console.log('error!\n' + error.message);
+      }
+    )
   }
   
   isFieldInvalid(controlName: string): boolean {

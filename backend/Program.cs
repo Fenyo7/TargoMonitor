@@ -7,7 +7,6 @@ using TargoMonitor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 string jwtKey = Environment.GetEnvironmentVariable("JwtSettings:Key") ?? jwtSettings["Key"];
 builder.Services
@@ -29,7 +28,6 @@ builder.Services
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
         };
 
-        // Handle authentication failures
         options.Events = new JwtBearerEvents
         {
             OnAuthenticationFailed = context =>
@@ -51,13 +49,19 @@ builder.Services
         };
     });
 
-// Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "AllowAllOrigins",
+        builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+    );
+});
+
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configure EF Core with the DbContext
 var connectionString = builder.Configuration.GetConnectionString("TargoMonitor");
 builder.Services.AddDbContext<TargoMonitorContext>(
     options => options.UseSqlServer(connectionString)
@@ -65,16 +69,16 @@ builder.Services.AddDbContext<TargoMonitorContext>(
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
-// Add authentication and authorization middleware
+app.UseCors("AllowAllOrigins");
+
 app.UseAuthentication();
 app.UseAuthorization();
 
