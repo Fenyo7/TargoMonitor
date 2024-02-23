@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { registerDTO } from 'src/app/models/DTOs/register.dto';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,10 @@ export class RegisterComponent implements OnInit {
     { label: 'Jelszó megerősítés', controlName: 'confirmPassword', type: 'password' },
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+    ) {}
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -38,7 +43,20 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    
+    const user: registerDTO = {
+      Username: this.registerForm.value.username,
+      Email: this.registerForm.value.email,
+      Password: this.registerForm.value.password,
+    };
+
+    this.authService.register(user).subscribe(
+      (response: any) => {
+        console.log('success!\n' + response);
+      },
+      (error: any) => {
+        console.log('error!\n' + error);
+      }
+    )
   }
 
   getFieldLabel(controlName: string): string {
