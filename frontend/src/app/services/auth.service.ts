@@ -27,7 +27,7 @@ export class AuthService {
     return this.http.post<AuthResponse>(url, user).pipe(
       tap((response: any) => {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('email', user.Email);
+        localStorage.setItem('email', user.email);
         if (this.getIdFromToken(response.token) != '') {
           localStorage.setItem('id', this.getIdFromToken(response.token));
         }

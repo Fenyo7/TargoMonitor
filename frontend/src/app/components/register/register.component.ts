@@ -44,17 +44,19 @@ export class RegisterComponent implements OnInit {
     }
 
     const user: registerDTO = {
-      Username: this.registerForm.value.username,
-      Email: this.registerForm.value.email,
-      Password: this.registerForm.value.password,
+      email: this.registerForm.value.email,
+      username: this.registerForm.value.name,
+      password: this.registerForm.value.password,
     };
+
+    console.log(user);
 
     this.authService.register(user).subscribe(
       (response: any) => {
-        console.log('success!\n' + response);
+        console.log('success!\n' + response.message);
       },
       (error: any) => {
-        console.log('error!\n' + error);
+        console.log('error!\n' + error.message);
       }
     )
   }
