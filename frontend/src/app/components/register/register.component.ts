@@ -11,6 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
+  failedLogin = false;
+  errorMessage = "";
+
   formFields = [
     { label: 'Email cím', controlName: 'email', type: 'email' },
     { label: 'Felhasználónév', controlName: 'name', type: 'text' },
@@ -34,6 +37,8 @@ export class RegisterComponent implements OnInit {
 
   onRegister(): void {
     this.submitted = true;
+    this.failedLogin = false;
+    this.errorMessage = "";
 
     if (!this.isPasswordMatching()) {
       this.registerForm.get('confirmPassword')?.setErrors({ 'notMatching': true });
@@ -43,18 +48,23 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    const user: registerDTO = {
+    const userData: registerDTO = {
       email: this.registerForm.value.email,
       username: this.registerForm.value.name,
       password: this.registerForm.value.password,
     };
 
-    this.authService.register(user).subscribe(
+    this.authService.register(userData).subscribe(
       (response: any) => {
         console.log('success!\n' + response.message);
       },
       (error: any) => {
-        console.log('error!\n' + error.message);
+        this.failedLogin = true;
+
+        if (error.status === 400) {
+          this.errorMessage = "Ez az email cím vagy felhasználónév már foglalt.";
+          console.log(error.message);
+        }
       }
     )
   }

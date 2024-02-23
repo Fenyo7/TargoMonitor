@@ -1,4 +1,5 @@
 <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+  <div *ngIf="failedLogin" class="error">{{errorMessage}}</div>
   <div *ngFor="let field of formFields">
     <label [for]="field.controlName" [class.error]="isFieldInvalid(field.controlName)">
       {{ getFieldLabel(field.controlName) }}

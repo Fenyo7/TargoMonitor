@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
+  failedLogin = false;
+  errorMessage = "";
 
   formFields = [
     { label: 'Email cím', controlName: 'email', type: 'email' },
@@ -31,22 +33,35 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.submitted = true;
+    this.failedLogin = false;
+    this.errorMessage = "";
   
     if (!this.loginForm.valid) {
       return;
     }
 
-    const user: loginDTO = {
+    const userData: loginDTO = {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     }
 
-    this.authService.login(user).subscribe(
+    this.authService.login(userData).subscribe(
       (response: any) => {
         console.log('success!\n');
       },
       (error: any) => {
-        console.log('error!\n' + error.message);
+        this.failedLogin = true;
+        
+        if(error.status === 404) {
+          this.errorMessage = "Ehhez az email címhez nem tartozik felhasználó.";
+        } else if (error.status === 401) {
+          this.errorMessage = "Hibás jelszó.";
+        } else if (error.status === 400) {
+          this.errorMessage = "Hiba történt bejelentkezéskor, kérjük próbálja meg később.";
+        } else {
+          this.errorMessage = "Váratlan hiba történt, kérjük próbálja meg később.";
+        }
+        console.error(error.message);
       }
     )
   }
