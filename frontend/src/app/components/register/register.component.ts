@@ -32,14 +32,13 @@ export class RegisterComponent implements OnInit {
 
     if (!this.isPasswordMatching()) {
       this.registerForm.get('confirmPassword')?.setErrors({ 'notMatching': true });
+      return;
+    }
+    if (!this.registerForm.valid) {
+      return;
     }
 
-    if (this.registerForm.valid && this.isPasswordMatching()) {
-      console.log('Form is valid and passwords match. Proceed with registration.');
-      // Registration logic here
-    } else {
-      console.log('Form is invalid. Please check your input.');
-    }
+    
   }
 
   getFieldLabel(controlName: string): string {

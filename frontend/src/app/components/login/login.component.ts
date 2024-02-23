@@ -27,21 +27,30 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.submitted = true;
   
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      // Handle login logic here
-    } 
+    if (!this.loginForm.valid) {
+      return;
+    }
+
+    
   }
   
-
   isFieldInvalid(controlName: string): boolean {
     const control = this.loginForm.get(controlName);
-    return Boolean(control?.invalid && (control?.dirty || control?.touched));
+    return this.submitted && control?.invalid ? true : false;
   }
 
   getFieldLabel(controlName: string): string {
-    if (this.isFieldInvalid(controlName) && this.submitted) {
-      return `${this.formFields.find(field => field.controlName === controlName)?.label} kitöltése kötelező!`;
+    if (!this.submitted) return this.formFields.find(field => field.controlName === controlName)?.label || '';
+
+    const control = this.loginForm.get(controlName);
+    
+    if (control?.errors) {
+      if (control.errors['required']) {
+        return `${this.formFields.find(field => field.controlName === controlName)?.label} kitöltése kötelező`;
+      }
+      if (control.errors['email']) {
+        return 'Érvénytelen email formátum';
+      }
     }
     return this.formFields.find(field => field.controlName === controlName)?.label || '';
   }
