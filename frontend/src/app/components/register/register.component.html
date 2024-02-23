@@ -1,19 +1,9 @@
 <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-  <div>
-    <label for="email">Email cím:</label>
-    <input type="email" id="email" formControlName="email" />
-  </div>
-  <div>
-    <label for="name">Felhasználónév:</label>
-    <input type="text" id="name" formControlName="name" />
-  </div>
-  <div>
-    <label for="password">Jelszó:</label>
-    <input type="password" id="password" formControlName="password" />
-  </div>
-  <div>
-    <label for="password">Jelszó megerősítése:</label>
-    <input type="password" id="password" formControlName="password" />
+  <div *ngFor="let field of formFields">
+    <label [for]="field.controlName" [class.error]="isFieldInvalid(field.controlName)">
+      {{ getFieldLabel(field.controlName) }}
+    </label>
+    <input [type]="field.type" [id]="field.controlName" [formControlName]="field.controlName" />
   </div>
   <button type="submit">Regisztráció</button>
 </form>
