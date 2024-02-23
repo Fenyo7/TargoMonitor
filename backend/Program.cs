@@ -75,6 +75,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5007";
+builder.WebHost.UseUrls($"http://*:{port}");
+
 //app.UseHttpsRedirection();
 
 app.UseCors("AllowAllOrigins");
