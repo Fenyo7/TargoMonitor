@@ -33,11 +33,11 @@ public class UserController : ControllerBase
                 u => u.Username == registerDto.Username
             );
             if (usernameExists)
-                return BadRequest(new { Message = "This username is already in use." });
+                return BadRequest("Username is taken");
 
             var emailExists = await _context.Users.AnyAsync(u => u.Email == registerDto.Email);
             if (emailExists)
-                return BadRequest(new { Message = "This email is already in use." });
+                return BadRequest("Email is already registered");
 
             var user = new User
             {
