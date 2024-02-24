@@ -26,7 +26,9 @@ public class ClientController : ControllerBase
             string userIdFromToken = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userIdFromToken == null)
                 return Unauthorized("Invalid user ID");
-            int userId = int.Parse(userIdFromToken);
+
+            if (!int.TryParse(userIdFromToken, out int userId))
+                return BadRequest("User ID is not in the correct format.");
 
             var clientNameExists = await _context.Clients.AnyAsync(
                 c => c.Name == addClientDto.Name
@@ -58,5 +60,37 @@ public class ClientController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllClients()
+    {
+        string userIdFromToken = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userIdFromToken == null)
+            return Unauthorized("Invalid user ID");
+
+        if (!int.TryParse(userIdFromToken, out int userId))
+            return BadRequest("User ID is not in the correct format.");
+
+        var clients = await _context.Clients.Where(c => c.UserId == userId).ToListAsync();
+        return Ok(clients);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetClientById(int id)
+    {
+        string userIdFromToken = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userIdFromToken == null)
+            return Unauthorized("Invalid user ID");
+
+        if (!int.TryParse(userIdFromToken, out int userId))
+            return BadRequest("User ID is not in the correct format.");
+
+        var client = await _context.Clients
+                               .Where(c => c.ClientId == id && c.UserId == userId)
+                               .FirstOrDefaultAsync();
+        
+        if (client == null) return NotFound(new { message = "Client not found"});
+        return Ok(client);
     }
 }
