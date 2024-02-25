@@ -30,15 +30,16 @@ public class ClientController : ControllerBase
             if (!int.TryParse(userIdFromToken, out int userId))
                 return BadRequest("User ID is not in the correct format.");
 
-            var clientNameExists = await _context.Clients.AnyAsync(
-                c => c.Name == addClientDto.Name
-            );
-            if (clientNameExists)
-                return BadRequest("Client name is taken");
-
             var userExists = await _context.Users.AnyAsync(u => u.UserId == userId);
             if (!userExists)
                 return BadRequest("User error");
+
+            var clientExists = await _context.Clients
+                .Where(c => c.Name == addClientDto.Name && c.UserId == userId)
+                .FirstOrDefaultAsync();
+            
+            if (clientExists != null)
+                return BadRequest("Client already exists");
 
             var client = new Client
             {
@@ -87,10 +88,11 @@ public class ClientController : ControllerBase
             return BadRequest("User ID is not in the correct format.");
 
         var client = await _context.Clients
-                               .Where(c => c.ClientId == id && c.UserId == userId)
-                               .FirstOrDefaultAsync();
-        
-        if (client == null) return NotFound(new { message = "Client not found"});
+            .Where(c => c.ClientId == id && c.UserId == userId)
+            .FirstOrDefaultAsync();
+
+        if (client == null)
+            return NotFound(new { message = "Client not found" });
         return Ok(client);
     }
 }
