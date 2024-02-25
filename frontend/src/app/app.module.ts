@@ -5,18 +5,22 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { LandingComponent } from './components/landing/landing.component';
+import { LoginComponent } from './components/front/login/login.component';
+import { RegisterComponent } from './components/front/register/register.component';
+import { LandingComponent } from './components/front/landing/landing.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { TableComponent } from './components/table/table.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    LandingComponent
+    LandingComponent,
+    TableComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

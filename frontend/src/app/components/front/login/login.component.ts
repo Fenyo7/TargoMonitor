@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { loginDTO } from 'src/app/models/DTOs/login.dto';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
     ) {}
 
   ngOnInit() {
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(userData).subscribe(
       (response: any) => {
         console.log('success!\n');
+        this.router.navigate(['/dashboard']);
       },
       (error: any) => {
         this.failedLogin = true;
