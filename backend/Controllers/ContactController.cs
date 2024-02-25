@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TargoMonitor.Data;
 using TargoMonitor.Data.Dtos;
 using TargoMonitor.Data.Models;
@@ -29,10 +30,11 @@ public class ContactController : ControllerBase
             if (!int.TryParse(userIdFromToken, out int userId))
                 return BadRequest("User ID is not in the correct format.");
 
-            var client = await _context.Clients.FindAsync(addContactDto.ClientId);
-            if(client == null) return BadRequest("Corresponding client does not exist.");
-
-            if(client.UserId != userId) return Unauthorized("Invalid token");
+            var clientExists = await _context.Clients.AnyAsync(
+                c => c.ClientId == addContactDto.ClientId && c.UserId == userId
+            );
+            if (!clientExists)
+                return BadRequest("Client does not exist or does not belong to the user.");
 
             var contact = new Contact
             {
@@ -46,7 +48,7 @@ public class ContactController : ControllerBase
             _context.Contacts.Add(contact);
             await _context.SaveChangesAsync();
 
-            return Ok(new {Message = "Contact added succesfully."});
+            return Ok(new { Message = "Contact added succesfully." });
         }
         catch (Exception ex)
         {
