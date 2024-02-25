@@ -19,7 +19,7 @@ public class MachineController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddContact(AddMachineDto addMachineDto)
+    public async Task<IActionResult> AddMachine(AddMachineDto addMachineDto)
     {
         try
         {
