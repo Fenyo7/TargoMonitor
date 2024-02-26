@@ -1,0 +1,41 @@
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #4c8baf;
+    color: rgb(255, 255, 255);
+  }
+
+  tr:nth-child(even) {
+    background-color: #f7fcff;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #eef8ff;
+  }
+
+  .icon {
+    width: 24px;
+  }
+
+  .icon-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+}

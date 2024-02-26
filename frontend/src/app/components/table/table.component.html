@@ -1,1 +1,39 @@
-<p>table works!</p>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let col of clientColumns">{{ col.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of clientData">
+        <td *ngFor="let col of clientColumns">
+          <!-- Use ngSwitch to handle different types of data -->
+          <ng-container [ngSwitch]="col.type">
+            <!-- Handling for bool type -->
+            <ng-container *ngSwitchCase="'bool'">
+              <div class="icon-cell">
+                <img
+                *ngIf="row[col.key]"
+                src="../../../assets/icons/check-circle.svg"
+                alt="True"
+                class="icon"
+              />
+              <img
+                *ngIf="!row[col.key]"
+                src="../../../assets/icons/blocked.svg"
+                alt="False"
+                class="icon"
+              />
+              </div>
+            </ng-container>
+            <!-- Default case -->
+            <ng-container *ngSwitchDefault>
+              {{ row[col.key] }}
+            </ng-container>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
