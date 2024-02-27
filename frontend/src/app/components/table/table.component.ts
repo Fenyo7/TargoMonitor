@@ -1,16 +1,13 @@
 import { Component, Input } from '@angular/core';
 
-// Interface for column definitions
 export interface TableColumn {
-  key: string; // key of the data object
-  label: string; // display name for the column header
-  type?: 'text' | 'number' | 'date' | 'bool'; // additional types can be added as needed
-  // Add more properties for customization (e.g., format, width)
+  key: string;
+  label: string;
+  type?: 'text' | 'number' | 'date' | 'bool';
 }
 
-// Interface for table data
 export interface TableRow {
-  [key: string]: any; // key-value pairs matching the column definitions
+  [key: string]: any;
 }
 
 @Component({
@@ -19,6 +16,25 @@ export interface TableRow {
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent {
+  expandedRowId: number | null = null;
+
   @Input() clientColumns: TableColumn[] = [];
   @Input() clientData: TableRow[] = [];
+
+  machineColumns: TableColumn[] = [
+    {key: 'data', label: 'Adat', type: 'text'},
+    {key: 'num', label: 'Szám', type: 'number'},
+  ];
+  machineData: TableRow[] = [
+    {data: 'Valami adat', num: 3},
+    {data: 'még egy kis adat', num: 9},
+    {data: 'csak hogy biztosra menjünk', num: 11}
+  ];
+
+  toggleRow(rowId: number | null): void {
+    this.expandedRowId = this.expandedRowId === rowId ? null : rowId;
+    console.log("toggled row: " + this.expandedRowId);
+
+    // Update machineData here
+  }
 }

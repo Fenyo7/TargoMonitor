@@ -6,34 +6,76 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of clientData">
-        <td *ngFor="let col of clientColumns">
-          <!-- Use ngSwitch to handle different types of data -->
-          <ng-container [ngSwitch]="col.type">
-            <!-- Handling for bool type -->
-            <ng-container *ngSwitchCase="'bool'">
-              <div class="icon-cell">
-                <img
-                *ngIf="row[col.key]"
-                src="../../../assets/icons/check-circle.svg"
-                alt="True"
-                class="icon"
-              />
-              <img
-                *ngIf="!row[col.key]"
-                src="../../../assets/icons/blocked.svg"
-                alt="False"
-                class="icon"
-              />
-              </div>
+      <ng-container *ngFor="let row of clientData; let i = index">
+        <tr (click)="toggleRow(i)" class="clickableRow">
+          <td *ngFor="let col of clientColumns">
+            <ng-container [ngSwitch]="col.type">
+    
+              <ng-container *ngSwitchCase="'bool'">
+                <div class="icon-cell">
+                  <img
+                    *ngIf="row[col.key]"
+                    src="../../../assets/icons/check-circle.svg"
+                    alt="True"
+                    class="icon"
+                  />
+                  <img
+                    *ngIf="!row[col.key]"
+                    src="../../../assets/icons/blocked.svg"
+                    alt="False"
+                    class="icon"
+                  />
+                </div>
+              </ng-container>
+              
+              <ng-container *ngSwitchDefault>
+                {{ row[col.key] }}
+              </ng-container>
             </ng-container>
-            <!-- Default case -->
-            <ng-container *ngSwitchDefault>
-              {{ row[col.key] }}
-            </ng-container>
-          </ng-container>
-        </td>
-      </tr>
+          </td>
+        </tr>
+        <tr *ngIf="expandedRowId === i" class="expanded-content">
+          <td [attr.colspan]="clientColumns.length">
+            <table class="full-width">
+              <thead>
+                <tr>
+                  <th *ngFor="let mCol of machineColumns">{{ mCol.label }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let mRow of machineData">
+                  <td *ngFor="let mCol of machineColumns">
+                    <ng-container [ngSwitch]="mCol.type">
+    
+                      <ng-container *ngSwitchCase="'bool'">
+                        <div class="icon-cell">
+                          <img
+                            *ngIf="row[mCol.key]"
+                            src="../../../assets/icons/check-circle.svg"
+                            alt="True"
+                            class="icon"
+                          />
+                          <img
+                            *ngIf="!row[mCol.key]"
+                            src="../../../assets/icons/blocked.svg"
+                            alt="False"
+                            class="icon"
+                          />
+                        </div>
+                      </ng-container>
+                      
+                      <ng-container *ngSwitchDefault>
+                        {{ row[mCol.key] }}
+                      </ng-container>
+                    </ng-container>
+                    {{ mRow[mCol.key] }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>
