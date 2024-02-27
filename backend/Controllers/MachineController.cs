@@ -99,4 +99,30 @@ public class MachineController : ControllerBase
 
         return Ok(machines);
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetMachineById(int id)
+    {
+        string userIdFromToken = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userIdFromToken == null)
+        {
+            return Unauthorized("Invalid user ID");
+        }
+
+        if (!int.TryParse(userIdFromToken, out int userId))
+        {
+            return BadRequest("User ID is not in the correct format.");
+        }
+
+        var machine = await _context.Machines
+            .Include(m => m.Client)
+            .SingleOrDefaultAsync(m => m.MachineId == id && m.Client.UserId == userId);
+
+        if (machine == null)
+        {
+            return NotFound("Machine not found or access is not permitted.");
+        }
+
+        return Ok(machine);
+    }
 }
