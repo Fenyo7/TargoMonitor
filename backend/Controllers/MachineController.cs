@@ -71,4 +71,32 @@ public class MachineController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllMachines()
+    {
+        string userIdFromToken = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userIdFromToken == null)
+        {
+            return Unauthorized("Invalid user ID");
+        }
+
+        if (!int.TryParse(userIdFromToken, out int userId))
+        {
+            return BadRequest("User ID is not in the correct format.");
+        }
+
+        var clientExists = await _context.Clients.AnyAsync(c => c.UserId == userId);
+        if (!clientExists)
+        {
+            return BadRequest("Client does not exist or does not belong to the user.");
+        }
+
+        var machines = await _context.Machines
+            .Include(m => m.Client)
+            .Where(m => m.Client.UserId == userId)
+            .ToListAsync();
+
+        return Ok(machines);
+    }
 }
