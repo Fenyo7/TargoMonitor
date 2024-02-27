@@ -1,1 +1,37 @@
-<p>navbar works!</p>
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="nav-item">
+      <a class="nav-link" (click)="toggleMenuDropdown()">
+        <img src="../../../assets/icons/menu.svg" alt="Menu" />
+      </a>
+      <div
+        class="menu-dropdown"
+        *ngIf="menuDropdownOpen"
+        [class.show]="menuDropdownOpen"
+      >
+        <a class="dropdown-item" href="#">Hozzáadás</a>
+        <a class="dropdown-item" href="#">PDF Beállítások</a>
+        <a class="dropdown-item" href="#">Adatbázis Beállítások</a>
+      </div>
+    </div>
+    <input
+      class="search-input"
+      type="search"
+      placeholder="Keresés"
+    />
+    <div class="nav-item">
+      <a class="nav-link" (click)="toggleAccountDropdown()">
+        <img src="../../../assets/icons/user.svg" alt="Account" />
+      </a>
+      <div
+        class="account-dropdown"
+        *ngIf="accountDropdownOpen"
+        [class.show]="accountDropdownOpen"
+      >
+        <a class="dropdown-item" href="#">Felhasználó Részletek</a>
+        <a class="dropdown-item" href="#">Személyes Adatok</a>
+        <a class="dropdown-item" href="#">Vásárlás</a>
+      </div>
+    </div>
+  </div>
+</nav>

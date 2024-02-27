@@ -14,7 +14,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
     let token = localStorage.getItem('token');
     if(token) {
-      //this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard']);
     }
   }
   showLogin: boolean = true;
