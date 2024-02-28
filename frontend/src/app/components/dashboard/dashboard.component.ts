@@ -7,6 +7,8 @@ import { TableColumn, TableRow } from '../data-display/client-table/client-table
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  selectedTab = 1;
+
   columns: TableColumn[] = [
     { key: 'name', label: 'Név', type: 'text' },
     { key: 'address', label: 'Cím', type: 'text' },
@@ -247,4 +249,10 @@ export class DashboardComponent {
       doNotify: false,
     },
   ];
+
+  selectTab(tabIndex: number): void {
+    this.selectedTab = tabIndex;
+    // Update your data based on selected tab
+    // This could involve fetching new data or filtering existing data
+  }
 }

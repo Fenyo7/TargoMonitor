@@ -1,7 +1,6 @@
 .table-container {
   overflow-x: auto;
   max-width: 100%;
-  padding-top: 75px;
 }
 
 table {
@@ -18,7 +17,7 @@ table {
 
   th {
     background-color: #4c8baf;
-    color: rgb(255, 255, 255);
+    color: white;
   }
 
   tr:nth-child(even) {
