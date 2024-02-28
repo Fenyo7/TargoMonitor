@@ -28,9 +28,30 @@ export class ClientTableComponent {
   ];
 
   machineData: TableRow[] = [
-    {data: 'Valami adat', num: 3},
-    {data: 'még egy kis adat', num: 9},
-    {data: 'csak hogy biztosra menjünk', num: 11}
+    {
+      place: 'Tatabánya',
+      usePlace: 'Üzemhely nemtom',
+      isLifting: true,
+      inventoryNum: 465542,
+      name: 'Autódaru',
+      brand: 'Pinguely TLM586',
+      type: 'Tgk: MOL',
+      factoryNum: 3031,
+      manufactureYear: 2007,
+      commissionDate: '2011.05.27.',
+    },
+    {
+      place: 'Mucsaröcsöge',
+      usePlace: 'Mucsaröcsöge alsó',
+      isLifting: false,
+      inventoryNum: 45682,
+      name: 'Targonca',
+      brand: 'Szép fajta',
+      type: 'Cecse tipusu',
+      factoryNum: 4592,
+      manufactureYear: 2018,
+      commissionDate: '2018.09.34.',
+    },
   ];
 
   toggleRow(rowId: number | null): void {
