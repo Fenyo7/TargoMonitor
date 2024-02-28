@@ -10,12 +10,13 @@ import { RegisterComponent } from './components/front/register/register.componen
 import { LandingComponent } from './components/front/landing/landing.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { TableComponent } from './components/table/table.component';
+import { ClientTableComponent } from './components/data-display/client-table/client-table.component';
+import { MachineTableComponent } from './components/data-display/machine-table/machine-table.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { AddDataComponent } from './components/add/add-data/add-data.component';
-import { AddClientComponent } from './components/add/add-client/add-client.component';
-import { AddMachineComponent } from './components/add/add-machine/add-machine.component';
+import { AddDataComponent } from './components/data-add/add-data/add-data.component';
+import { AddClientComponent } from './components/data-add/add-client/add-client.component';
+import { AddMachineComponent } from './components/data-add/add-machine/add-machine.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +24,13 @@ import { AddMachineComponent } from './components/add/add-machine/add-machine.co
     LoginComponent,
     RegisterComponent,
     LandingComponent,
-    TableComponent,
+    ClientTableComponent,
     DashboardComponent,
     NavbarComponent,
     AddDataComponent,
     AddClientComponent,
-    AddMachineComponent
+    AddMachineComponent,
+    MachineTableComponent
   ],
   imports: [
     BrowserModule,

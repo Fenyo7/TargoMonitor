@@ -11,11 +11,11 @@ export interface TableRow {
 }
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  selector: 'app-client-table',
+  templateUrl: './client-table.component.html',
+  styleUrls: ['./client-table.component.scss']
 })
-export class TableComponent {
+export class ClientTableComponent {
   expandedRowId: number | null = null;
 
   @Input() clientColumns: TableColumn[] = [];

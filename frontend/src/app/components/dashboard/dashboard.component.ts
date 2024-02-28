@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TableColumn, TableRow } from '../table/table.component';
+import { TableColumn, TableRow } from '../data-display/client-table/client-table.component';
 
 @Component({
   selector: 'app-dashboard',
