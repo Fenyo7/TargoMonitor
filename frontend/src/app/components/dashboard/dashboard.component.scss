@@ -23,8 +23,8 @@
 }
 
 .selected {
-    background-color: #4c8baf;
-    color: white;
+  background-color: #4c8baf;
+  color: white;
 }
 
 .client-table-container {
@@ -33,4 +33,36 @@
   margin-right: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.date-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+
+  span {
+    margin: 0 10px;
+    font-weight: bold;
+  }
+
+  .date {
+    width: 15%;
+  }
+
+  .icon {
+    width: 24px;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+  }
 }

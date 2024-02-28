@@ -1,13 +1,65 @@
 <app-navbar></app-navbar>
 
 <div class="tabs-container">
-  <button class="tab" [ngClass]="{'selected': selectedTab==1}" (click)="selectTab(1)">Havi kimutatások</button>
-  <button class="tab" [ngClass]="{'selected': selectedTab==2}" (click)="selectTab(2)">Kliensek</button>
-  <button class="tab" [ngClass]="{'selected': selectedTab==3}" (click)="selectTab(3)">Gépek</button>
+  <button
+    class="tab"
+    [ngClass]="{ selected: selectedTab == 1 }"
+    (click)="selectTab(1)"
+  >
+    Partnerek
+  </button>
+  <button
+    class="tab"
+    [ngClass]="{ selected: selectedTab == 2 }"
+    (click)="selectTab(2)"
+  >
+    Gépek
+  </button>
+  <button
+    class="tab"
+    [ngClass]="{ selected: selectedTab == 3 }"
+    (click)="selectTab(3)"
+  >
+    Havi Kimutatások
+  </button>
+  <button
+    class="tab"
+    [ngClass]="{ selected: selectedTab == 4 }"
+    (click)="selectTab(4)"
+  >
+    Kiállított Jegyzőkönyvek
+  </button>
 </div>
 
 <div class="client-table-container" [ngSwitch]="selectedTab">
-    <div *ngSwitchCase="1"><app-machine-table [machineData]="monthlyMachinesData"></app-machine-table></div>
-    <div *ngSwitchCase="2"><app-client-table [clientData]="clientsData"></app-client-table></div>
-    <div *ngSwitchCase="3"><app-machine-table [machineData]="machinesData"></app-machine-table></div>
+  
+  <div *ngSwitchCase="1">
+    <app-client-table [clientData]="clientsData"></app-client-table>
+  </div>
+  <div *ngSwitchCase="2">
+    <app-machine-table [machineData]="machinesData"></app-machine-table>
+  </div>
+  <div *ngSwitchCase="3">
+    <div class="date-selector">
+      <button (click)="previousMonth()">
+        <img
+          src="../../../assets/icons/arrow-left.svg"
+          alt="Previous Month"
+          class="icon"
+        />
+      </button>
+      <span class="date">{{ formattedDate }}</span>
+      <button (click)="nextMonth()">
+        <img
+          src="../../../assets/icons/arrow-right.svg"
+          alt="Next Month"
+          class="icon"
+        />
+      </button>
+    </div>
+    <app-machine-table [machineData]="monthlyMachinesData"></app-machine-table>
+  </div>
+  <div *ngSwitchCase="4">
+    jegyzőkönyvek
+  </div>
 </div>

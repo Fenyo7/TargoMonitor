@@ -11,8 +11,7 @@ export class MachineTableComponent {
   
   machineColumns: TableColumn[] = [
     {key: 'place', label: 'Telephely', type: 'text'},
-    {key: 'usePlace', label: 'Üzemhely', type: 'text'},
-    {key: 'isLifting', label: 'Emelőgép?', type: 'bool'},
+    {key: 'usePlace', label: 'Üzemeltetés helye', type: 'text'},
     {key: 'inventoryNum', label: 'Leltári Szám', type: 'text'},
     {key: 'name', label: 'Név', type: 'text'},
     {key: 'brand', label: 'Gyártmány', type: 'text'},
@@ -20,5 +19,6 @@ export class MachineTableComponent {
     {key: 'factoryNum', label: 'Gyári szám', type: 'text'},
     {key: 'manufactureYear', label: 'Gyártás éve', type: 'text'},
     {key: 'commissionDate', label: 'Üzembehelyezés ideje', type: 'text'},
+    {key: 'isLifting', label: 'Emelőgép?', type: 'bool'},
   ];
 }

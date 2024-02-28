@@ -22,7 +22,8 @@ export class ClientTableComponent {
 
   clientColumns: TableColumn[] = [
     { key: 'name', label: 'Név', type: 'text' },
-    { key: 'address', label: 'Cím', type: 'text' },
+    { key: 'address', label: 'Székhely', type: 'text' },
+    { key: 'numberOfMachines', label: 'Gépek száma', type: 'number'},
     { key: 'hasContract', label: 'Szerződés', type: 'bool' },
     { key: 'doNotify', label: 'Értesítés', type: 'bool' },
   ];
