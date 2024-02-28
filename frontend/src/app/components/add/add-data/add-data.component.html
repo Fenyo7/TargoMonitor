@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<div class="add-data">
+  <mat-card>
+    <mat-card-content>
+      <app-add-client *ngIf="addClient"></app-add-client>
+      <app-add-machine *ngIf="!addClient"></app-add-machine>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-button (click)="toggleForm()">
+        {{ addClient ? "Gép hozzáadása" : "Kliens hozzáadása" }}
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</div>

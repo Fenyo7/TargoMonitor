@@ -13,7 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './components/table/table.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { AddDataComponent } from './components/add-data/add-data.component';
+import { AddDataComponent } from './components/add/add-data/add-data.component';
+import { AddClientComponent } from './components/add/add-client/add-client.component';
+import { AddMachineComponent } from './components/add/add-machine/add-machine.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AddDataComponent } from './components/add-data/add-data.component';
     TableComponent,
     DashboardComponent,
     NavbarComponent,
-    AddDataComponent
+    AddDataComponent,
+    AddClientComponent,
+    AddMachineComponent
   ],
   imports: [
     BrowserModule,

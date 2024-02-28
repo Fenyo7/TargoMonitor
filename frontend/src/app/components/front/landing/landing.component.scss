@@ -1,30 +1,28 @@
-/* Customizing the card background and text color */
 mat-card {
-  width: 100%; // Make the card fill the auth area width
-  max-width: 500px; // Maximum width of the card to ensure it doesn't get too wide on larger screens
-  height: auto; // Let the card height be determined by its content
+  width: 100%;
+  max-width: 500px;
+  height: auto;
   margin: 20px;
   background-color: #f7f7f7;
   border: 1px solid rgb(150, 150, 150);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-  padding: 20px; /* Optional: Adjust padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-/* Optionally, ensure input and button text is also styled appropriately */
 mat-card input,
 mat-card button {
-  color: white; /* White text for better contrast */
+  color: white;
 }
 
 .auth-area mat-card {
-  max-width: 400px; // Adjust based on your preference
-  margin: auto; // Center the card if the auth-area takes up more space
+  max-width: 400px;
+  margin: auto;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  align-items: stretch; // Ensures that children (inputs) stretch to fit the container
+  align-items: stretch;
 
   div {
     margin-bottom: 10px;
@@ -32,7 +30,7 @@ form {
 
   input,
   button {
-    width: 100%; // Ensure inputs and buttons take the full width
+    width: 100%;
   }
 }
 
@@ -47,12 +45,12 @@ form {
   }
 
   .auth-area {
-    width: 40vw; // 40% of the viewport width
-    height: 100vh; // 100% of the viewport height
+    width: 40vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center; // Center the content vertically within the auth area
-    align-items: center; // Center the content horizontally
+    justify-content: center;
+    align-items: center;
     a {
       cursor: pointer;
       &:hover {

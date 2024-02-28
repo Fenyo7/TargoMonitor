@@ -1,0 +1,65 @@
+.add-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  mat-card {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #f7f7f7;
+    border: 1px solid rgb(150, 150, 150);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+
+    mat-card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      app-add-client,
+      app-add-machine {
+        width: 100%;
+      }
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+
+      a {
+        cursor: pointer;
+        &:hover {
+          color: #0056b3;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  div {
+    margin-bottom: 10px;
+  }
+
+  input,
+  button {
+    width: 100%;
+  }
+}
+
+.add-data mat-card input,
+.add-data mat-card button {
+  color: white;
+}
+
+body {
+  padding-top: 70px;
+}

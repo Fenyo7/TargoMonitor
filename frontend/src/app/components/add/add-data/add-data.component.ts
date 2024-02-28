@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-data.component.scss']
 })
 export class AddDataComponent {
+  addClient: boolean = true;
 
+  toggleForm() {
+    this.addClient = !this.addClient;
+  }
 }
