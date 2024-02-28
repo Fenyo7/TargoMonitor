@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ClientService } from 'src/app/services/client.service';
 
 export interface TableColumn {
   key: string;
@@ -15,10 +16,11 @@ export interface TableRow {
   templateUrl: './client-table.component.html',
   styleUrls: ['./client-table.component.scss']
 })
-export class ClientTableComponent {
+export class ClientTableComponent implements OnInit{
   expandedRowId: number | null = null;
 
   @Input() clientData: TableRow[] = [];
+  machineData: TableRow[] = [];
 
   clientColumns: TableColumn[] = [
     { key: 'name', label: 'Név', type: 'text' },
@@ -28,32 +30,20 @@ export class ClientTableComponent {
     { key: 'doNotify', label: 'Értesítés', type: 'bool' },
   ];
 
-  machineData: TableRow[] = [
-    {
-      place: 'Tatabánya',
-      usePlace: 'Üzemhely nemtom',
-      isLifting: true,
-      inventoryNum: 465542,
-      name: 'Autódaru',
-      brand: 'Pinguely TLM586',
-      type: 'Tgk: MOL',
-      factoryNum: 3031,
-      manufactureYear: 2007,
-      commissionDate: '2011.05.27.',
-    },
-    {
-      place: 'Mucsaröcsöge',
-      usePlace: 'Mucsaröcsöge alsó',
-      isLifting: false,
-      inventoryNum: 45682,
-      name: 'Targonca',
-      brand: 'Szép fajta',
-      type: 'Cecse tipusu',
-      factoryNum: 4592,
-      manufactureYear: 2018,
-      commissionDate: '2018.09.34.',
-    },
-  ];
+  constructor(private clientService: ClientService) { }
+  ngOnInit(): void {
+    this.fetchClients();
+  }
+
+  fetchClients(): void {
+    this.clientService.getAllClients().subscribe({
+      next: (clients) => {
+        this.clientData = clients;
+        console.log(this.clientData);
+      },
+      error: (error) => console.error(error)
+    });
+  }
 
   toggleRow(rowId: number | null): void {
     this.expandedRowId = this.expandedRowId === rowId ? null : rowId;

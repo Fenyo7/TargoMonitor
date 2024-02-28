@@ -15,4 +15,8 @@ export class ClientService {
   addClient(client: addClientDTO): Observable<any> {
     return this.http.post(this.baseUrl, client);
   }
+
+  getAllClients(): Observable<any> {
+    return this.http.get(`${this.baseUrl}`);
+  }
 }
