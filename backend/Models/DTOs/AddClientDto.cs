@@ -10,7 +10,10 @@ namespace TargoMonitor.Data.Dtos
         [Required]
         public string Address { get; set; }
 
-        public bool HasContract = false;
-        public bool DoNotify = true;
+        [Required]
+        public bool HasContract { get; set; }
+
+        [Required]
+        public bool DoNotify { get; set; }
     }
 }

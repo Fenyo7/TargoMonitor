@@ -47,7 +47,7 @@ public class ClientController : ControllerBase
                 Name = addClientDto.Name,
                 Address = addClientDto.Address,
                 HasContract = addClientDto.HasContract,
-                DoNotify = addClientDto.HasContract,
+                DoNotify = addClientDto.DoNotify,
                 Contacts = new List<Contact>(),
                 Machines = new List<Machine>()
             };

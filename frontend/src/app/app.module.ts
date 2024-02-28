@@ -9,7 +9,7 @@ import { LoginComponent } from './components/front/login/login.component';
 import { RegisterComponent } from './components/front/register/register.component';
 import { LandingComponent } from './components/front/landing/landing.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ClientTableComponent } from './components/data-display/client-table/client-table.component';
 import { MachineTableComponent } from './components/data-display/machine-table/machine-table.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -17,6 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddDataComponent } from './components/data-add/add-data/add-data.component';
 import { AddClientComponent } from './components/data-add/add-client/add-client.component';
 import { AddMachineComponent } from './components/data-add/add-machine/add-machine.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { AddMachineComponent } from './components/data-add/add-machine/add-machi
     MatCardModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

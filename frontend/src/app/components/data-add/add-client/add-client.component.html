@@ -1,1 +1,36 @@
-<p>add-client works!</p>
+<h1>Partnercég hozzáadása</h1>
+<form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+  <div class="form-field">
+    <label for="name">Név</label>
+    <input type="text" id="name" formControlName="name" />
+  </div>
+
+  <div class="form-field">
+    <label for="address">Székhely</label>
+    <input type="text" id="address" formControlName="address" />
+  </div>
+
+  <div class="form-field toggle-field">
+    <label for="hasContract">Van szerződése?</label>
+    <img
+      class="icon"
+      src="../../../assets/icons/{{
+        hasContract ? 'check-circle' : 'blocked'
+      }}.svg"
+      (click)="onToggle('hasContract')"
+    />
+  </div>
+
+  <div class="form-field toggle-field">
+    <label for="doNotify">Értesítsük?</label>
+    <img
+      class="icon"
+      src="../../../assets/icons/{{
+        doNotify ? 'check-circle' : 'blocked'
+      }}.svg"
+      (click)="onToggle('doNotify')"
+    />
+  </div>
+
+  <button type="submit">Add Client</button>
+</form>
