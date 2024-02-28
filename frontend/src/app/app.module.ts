@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './components/table/table.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AddDataComponent } from './components/add-data/add-data.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LandingComponent,
     TableComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddDataComponent
   ],
   imports: [
     BrowserModule,
