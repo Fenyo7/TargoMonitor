@@ -1,6 +1,7 @@
 .table-container {
   overflow-x: auto;
   max-width: 100%;
+  padding-top: 75px;
 }
 
 table {
@@ -37,5 +38,20 @@ table {
     justify-content: center;
     align-items: center;
     height: 100%;
+  }
+
+  .sub-table {
+    th {
+      background-color: #6cbe74;
+      color: rgb(255, 255, 255);
+    }
+  
+    tr:nth-child(even) {
+      background-color: #f7fff9;
+    }
+  
+    tr:nth-child(odd) {
+      background-color: #eefff1;
+    }
   }
 }
