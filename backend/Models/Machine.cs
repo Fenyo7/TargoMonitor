@@ -12,6 +12,7 @@ namespace TargoMonitor.Data.Models
         public List<Inspection> Inspections { get; set; } = new List<Inspection>();
         public string Place { get; set; } // Telephely / Üzemeltetés telephelye (Város)
         public string UsePlace { get; set; } // Üzemelés helye (Raktár pl.)
+        public bool isDangerous { get; set; } // Veszélyes gép-e
         public bool IsLifting { get; set; } // Emelőgép-e
         public int? InventoryNumber { get; set; } // Leltári szám
         public string Kind { get; set; } // Besorolás (Legördülős menü, kódként lesz eltárolva)
