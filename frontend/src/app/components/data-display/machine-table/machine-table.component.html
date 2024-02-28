@@ -1,1 +1,41 @@
-<p>machine-table works!</p>
+<div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let col of machineColumns">{{ col.label }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of machineData">
+          <td *ngFor="let col of machineColumns">
+            <ng-container [ngSwitch]="col.type">
+                <ng-container [ngSwitch]="col.type">
+
+                    <ng-container *ngSwitchCase="'bool'">
+                      <div class="icon-cell">
+                        <img
+                          *ngIf="row[col.key]"
+                          src="../../../assets/icons/check-circle.svg"
+                          alt="True"
+                          class="icon"
+                        />
+                        <img
+                          *ngIf="!row[col.key]"
+                          src="../../../assets/icons/blocked.svg"
+                          alt="False"
+                          class="icon"
+                        />
+                      </div>
+                    </ng-container>
+                    
+                    <ng-container *ngSwitchDefault>
+                      {{ row[col.key] }}
+                    </ng-container>
+                  </ng-container>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -36,43 +36,7 @@
         </tr>
         <tr *ngIf="expandedRowId === i" class="expanded-content">
           <td [attr.colspan]="clientColumns.length">
-            <table class="sub-table">
-              <thead>
-                <tr>
-                  <th *ngFor="let mCol of machineColumns">{{ mCol.label }}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let mRow of machineData">
-                  <td *ngFor="let mCol of machineColumns">
-                    <ng-container [ngSwitch]="mCol.type">
-    
-                      <ng-container *ngSwitchCase="'bool'">
-                        <div class="icon-cell">
-                          <img
-                            *ngIf="row[mCol.key]"
-                            src="../../../assets/icons/check-circle.svg"
-                            alt="True"
-                            class="icon"
-                          />
-                          <img
-                            *ngIf="!row[mCol.key]"
-                            src="../../../assets/icons/blocked.svg"
-                            alt="False"
-                            class="icon"
-                          />
-                        </div>
-                      </ng-container>
-                      
-                      <ng-container *ngSwitchDefault>
-                        {{ row[mCol.key] }}
-                      </ng-container>
-                    </ng-container>
-                    {{ mRow[mCol.key] }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <app-machine-table [machineData]="machineData"></app-machine-table>
           </td>
         </tr>
       </ng-container>

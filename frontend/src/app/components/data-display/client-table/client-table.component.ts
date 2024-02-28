@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export interface TableColumn {
   key: string;
@@ -18,13 +18,15 @@ export interface TableRow {
 export class ClientTableComponent {
   expandedRowId: number | null = null;
 
-  @Input() clientColumns: TableColumn[] = [];
   @Input() clientData: TableRow[] = [];
 
-  machineColumns: TableColumn[] = [
-    {key: 'data', label: 'Adat', type: 'text'},
-    {key: 'num', label: 'Szám', type: 'number'},
+  clientColumns: TableColumn[] = [
+    { key: 'name', label: 'Név', type: 'text' },
+    { key: 'address', label: 'Cím', type: 'text' },
+    { key: 'hasContract', label: 'Szerződés', type: 'bool' },
+    { key: 'doNotify', label: 'Értesítés', type: 'bool' },
   ];
+
   machineData: TableRow[] = [
     {data: 'Valami adat', num: 3},
     {data: 'még egy kis adat', num: 9},
