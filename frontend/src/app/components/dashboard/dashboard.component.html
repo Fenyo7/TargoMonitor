@@ -6,6 +6,8 @@
   <button class="tab" [ngClass]="{'selected': selectedTab==3}" (click)="selectTab(3)">Gépek</button>
 </div>
 
-<div class="client-table-container">
-  <app-client-table [clientData]="data"></app-client-table>
+<div class="client-table-container" [ngSwitch]="selectedTab">
+    <div *ngSwitchCase="1"><app-machine-table [machineData]="monthlyMachinesData"></app-machine-table></div>
+    <div *ngSwitchCase="2"><app-client-table [clientData]="clientsData"></app-client-table></div>
+    <div *ngSwitchCase="3"><app-machine-table [machineData]="machinesData"></app-machine-table></div>
 </div>
