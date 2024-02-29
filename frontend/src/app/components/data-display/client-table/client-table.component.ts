@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
-import { ContactService } from 'src/app/services/contact.service';
 
 export interface TableColumn {
   key: string;
@@ -37,8 +36,7 @@ export class ClientTableComponent implements OnInit {
   ];
 
   constructor(
-    private clientService: ClientService,
-    private contactService: ContactService
+    private clientService: ClientService
   ) {}
 
   ngOnInit(): void {
