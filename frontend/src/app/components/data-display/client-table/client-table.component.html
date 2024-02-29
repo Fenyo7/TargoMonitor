@@ -3,13 +3,13 @@
     <thead>
       <tr>
         <ng-container *ngFor="let col of clientColumns">
-          <th *ngIf="col.type !== 'hidden'">{{ col.label }}</th>
+          <th *ngIf="col.type !== 'hidden'" class="table-header">{{ col.label }}</th>
         </ng-container>
       </tr>
     </thead>
     <tbody>
       <ng-container *ngFor="let row of clientData; let i = index">
-        <tr class="clickableRow">
+        <tr>
           <ng-container *ngFor="let col of clientColumns">
             <td *ngIf="col.type !== 'hidden'">
               <ng-container [ngSwitch]="col.type">
@@ -53,7 +53,7 @@
                       alt="Contacts"
                       class="icon"
                       title="Partner kapcsolattartóinak megjelenítése"
-                      (click)="contacts(row); $event.stopPropagation()"
+                      (click)="toggleContacts(row); $event.stopPropagation()"
                     />
                     <img
                       src="../../../assets/icons/edit-1.svg"

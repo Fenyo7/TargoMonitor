@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
+import { ContactService } from 'src/app/services/contact.service';
 
 export interface TableColumn {
   key: string;
@@ -18,6 +19,7 @@ export interface TableRow {
 })
 export class ClientTableComponent implements OnInit {
   expandedRowId: number | null = null;
+  contactRowId: number | null = null;
 
   @Input() clientData: TableRow[] = [];
   machineData: TableRow[] = [];
@@ -36,7 +38,8 @@ export class ClientTableComponent implements OnInit {
   ];
 
   constructor(
-    private clientService: ClientService
+    private clientService: ClientService,
+    private contactService: ContactService
   ) {}
 
   ngOnInit(): void {
@@ -46,28 +49,41 @@ export class ClientTableComponent implements OnInit {
   fetchClients(): void {
     this.clientService.getAllClients().subscribe({
       next: (clients) => {
-        this.clientData = clients.map((client: { clientId: any; name: any; address: any; primaryContact: { name: any; phone: any; email: any; }; hasContract: any; doNotify: any; }) => ({
-          clientId: client.clientId,
-          name: client.name,
-          address: client.address,
-          primaryContact: client.primaryContact?.name || '',
-          contactPhone: client.primaryContact?.phone || '',
-          contactEmail: client.primaryContact?.email || '',
-          hasContract: client.hasContract ? true : false,
-          doNotify: client.doNotify ? true : false,
-        }));
-        console.log(this.clientData);
+        this.clientData = clients.map(
+          (client: {
+            clientId: any;
+            name: any;
+            address: any;
+            primaryContact: { name: any; phone: any; email: any };
+            hasContract: any;
+            doNotify: any;
+          }) => ({
+            clientId: client.clientId,
+            name: client.name,
+            address: client.address,
+            primaryContact: client.primaryContact?.name || '',
+            contactPhone: client.primaryContact?.phone || '',
+            contactEmail: client.primaryContact?.email || '',
+            hasContract: client.hasContract ? true : false,
+            doNotify: client.doNotify ? true : false,
+          })
+        );
       },
       error: (error) => console.error(error),
     });
   }
-  
 
   toggleRow(rowId: number): void {
     this.expandedRowId = this.expandedRowId === rowId ? null : rowId;
     console.log('toggled row: ' + this.expandedRowId);
 
     // Update machineData here
+  }
+
+  toggleContacts(row: TableRow): void {
+    this.contactRowId =
+      this.contactRowId === row['clientId'] ? null : row['clientId'];
+    console.log(this.contactRowId);
   }
 
   contacts(row: TableRow): void {
