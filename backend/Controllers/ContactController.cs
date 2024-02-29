@@ -36,6 +36,18 @@ public class ContactController : ControllerBase
             if (!clientExists)
                 return BadRequest("Client does not exist or does not belong to the user.");
 
+            if (addContactDto.IsPrimary)
+            {
+                var existingContacts = await _context.Contacts
+                    .Where(c => c.ClientId == addContactDto.ClientId)
+                    .ToListAsync();
+
+                foreach (var existingContact in existingContacts)
+                {
+                    existingContact.IsPrimary = false;
+                }
+            }
+
             var contact = new Contact
             {
                 ClientId = addContactDto.ClientId,
