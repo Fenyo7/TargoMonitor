@@ -8,7 +8,7 @@ namespace TargoMonitor.Data.Dtos
         public int ClientId { get; set; }
 
         [Required]
-        public string IsPrimary { get; set; }
+        public bool IsPrimary { get; set; }
 
         [Required]
         public string Name { get; set; }

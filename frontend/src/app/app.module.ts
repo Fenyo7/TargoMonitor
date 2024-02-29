@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
 
 import { LoginComponent } from './components/front/login/login.component';
 import { RegisterComponent } from './components/front/register/register.component';
@@ -18,6 +20,7 @@ import { AddDataComponent } from './components/data-add/add-data/add-data.compon
 import { AddClientComponent } from './components/data-add/add-client/add-client.component';
 import { AddMachineComponent } from './components/data-add/add-machine/add-machine.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { AddContactComponent } from './components/data-add/add-contact/add-contact.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     AddDataComponent,
     AddClientComponent,
     AddMachineComponent,
-    MachineTableComponent
+    MachineTableComponent,
+    AddContactComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,9 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    MatAutocompleteModule,
+    MatInputModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

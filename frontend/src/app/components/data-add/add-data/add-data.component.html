@@ -2,13 +2,17 @@
 <div class="add-data">
   <mat-card>
     <mat-card-content>
-      <app-add-client *ngIf="addClient"></app-add-client>
-      <app-add-machine *ngIf="!addClient"></app-add-machine>
+      <app-add-client></app-add-client>
     </mat-card-content>
-    <mat-card-actions>
-      <a mat-button (click)="toggleForm()">
-        {{ addClient ? "Gép hozzáadása" : "Kliens hozzáadása" }}
-      </a>
-    </mat-card-actions>
+  </mat-card>
+  <mat-card>
+    <mat-card-content>
+      <app-add-contact></app-add-contact>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-content>
+      <app-add-machine></app-add-machine>
+    </mat-card-content>
   </mat-card>
 </div>

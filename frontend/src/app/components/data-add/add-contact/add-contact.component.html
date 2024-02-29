@@ -1,0 +1,50 @@
+<h1>Kapcsolattartó hozzáadása</h1>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div class="form-field">
+    <label>Partnercég</label>
+    <input
+      type="text"
+      id="client"
+      formControlName="client"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayClientName">
+      <mat-option *ngFor="let client of filteredClients$ | async" [value]="client">
+        {{ client.name }}
+      </mat-option>
+    </mat-autocomplete>    
+  </div>
+
+  <div class="form-field">
+    <label for="name">Név</label>
+    <input type="text" id="name" formControlName="name" />
+  </div>
+
+  <div class="form-field">
+    <label for="address">Pozíció</label>
+    <input type="text" id="position" formControlName="position" />
+  </div>
+
+  <div class="form-field">
+    <label for="address">Email cím</label>
+    <input type="text" id="email" formControlName="email" />
+  </div>
+
+  <div class="form-field">
+    <label for="address">Telefonszám</label>
+    <input type="text" id="phone" formControlName="phone" />
+  </div>
+
+  <div class="form-field toggle-field">
+    <label for="hasContract">Elsődleges kapcsolattartó a partnernél?</label>
+    <img
+      class="icon"
+      src="../../../assets/icons/{{
+        isPrimary ? 'check-circle' : 'blocked'
+      }}.svg"
+      (click)="onToggle('isPrimary')"
+    />
+  </div>
+
+  <button type="submit">Kapcsolattartó hozzáadása</button>
+</form>
