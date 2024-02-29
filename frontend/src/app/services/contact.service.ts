@@ -15,4 +15,8 @@ export class ContactService {
   addContact(contact: addContactDTO): Observable<any> {
     return this.http.post(this.baseUrl, contact);
   }
+
+  getContactsOfClient(clientId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${clientId}`);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
+import { ContactService } from 'src/app/services/contact.service';
 
 export interface TableColumn {
   key: string;
@@ -14,28 +15,32 @@ export interface TableRow {
 @Component({
   selector: 'app-client-table',
   templateUrl: './client-table.component.html',
-  styleUrls: ['./client-table.component.scss']
+  styleUrls: ['./client-table.component.scss'],
 })
-export class ClientTableComponent implements OnInit{
+export class ClientTableComponent implements OnInit {
   expandedRowId: number | null = null;
 
   @Input() clientData: TableRow[] = [];
   machineData: TableRow[] = [];
 
   clientColumns: TableColumn[] = [
-    { key: 'clientId', label: 'ClientId', type: 'hidden'},
+    { key: 'clientId', label: 'ClientId', type: 'hidden' },
     { key: 'name', label: 'Név', type: 'text' },
     { key: 'address', label: 'Székhely', type: 'text' },
-    { key: 'primaryContact', label: 'Elsődleges Kontakt Neve', type: 'text'},
-    { key: 'contactPhone', label: 'Kontakt Telefonszáma', type: 'text'},
-    { key: 'contactEmail', label: 'Kontakt Email címe', type: 'text'},
-    { key: 'numberOfMachines', label: 'Gépek száma', type: 'number'},
+    { key: 'primaryContact', label: 'Elsődleges Kontakt Neve', type: 'text' },
+    { key: 'contactPhone', label: 'Kontakt Telefonszáma', type: 'text' },
+    { key: 'contactEmail', label: 'Kontakt Email címe', type: 'text' },
+    { key: 'numberOfMachines', label: 'Gépek száma', type: 'number' },
     { key: 'hasContract', label: 'Szerződés', type: 'bool' },
     { key: 'doNotify', label: 'Értesítés', type: 'bool' },
-    { key: 'actions', label: 'Akciógombok', type: 'actions'},
+    { key: 'actions', label: 'Akciógombok', type: 'actions' },
   ];
 
-  constructor(private clientService: ClientService) { }
+  constructor(
+    private clientService: ClientService,
+    private contactService: ContactService
+  ) {}
+
   ngOnInit(): void {
     this.fetchClients();
   }
@@ -43,15 +48,26 @@ export class ClientTableComponent implements OnInit{
   fetchClients(): void {
     this.clientService.getAllClients().subscribe({
       next: (clients) => {
-        this.clientData = clients;
+        this.clientData = clients.map((client: { clientId: any; name: any; address: any; hasContract: any; doNotify: any; PrimaryContact: { name: any; phone: any; email: any; }; }) => ({
+          clientId: client.clientId,
+          name: client.name,
+          address: client.address,
+          primaryContact: client.PrimaryContact?.name || '',
+          contactPhone: client.PrimaryContact?.phone || '',
+          contactEmail: client.PrimaryContact?.email || '',
+          hasContract: client.hasContract ? true : false,
+          doNotify: client.doNotify ? true : false,
+        }));
+        console.log(this.clientData);
       },
-      error: (error) => console.error(error)
+      error: (error) => console.error(error),
     });
   }
+  
 
   toggleRow(rowId: number): void {
     this.expandedRowId = this.expandedRowId === rowId ? null : rowId;
-    console.log("toggled row: " + this.expandedRowId);
+    console.log('toggled row: ' + this.expandedRowId);
 
     // Update machineData here
   }

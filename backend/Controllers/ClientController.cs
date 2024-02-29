@@ -73,8 +73,25 @@ public class ClientController : ControllerBase
         if (!int.TryParse(userIdFromToken, out int userId))
             return BadRequest("User ID is not in the correct format.");
 
-        var clients = await _context.Clients.Where(c => c.UserId == userId).ToListAsync();
-        return Ok(clients);
+        var clientsWithPrimaryContact = await _context.Clients
+        .Where(c => c.UserId == userId)
+        .Select(client => new
+        {
+            client.ClientId,
+            client.Name,
+            client.Address,
+            client.HasContract,
+            client.DoNotify,
+            PrimaryContact = client.Contacts.Where(contact => contact.IsPrimary).Select(contact => new
+            {
+                contact.Name,
+                contact.Phone,
+                contact.Email
+            }).FirstOrDefault()
+        })
+        .ToListAsync();
+
+    return Ok(clientsWithPrimaryContact);
     }
 
     [HttpGet("{id}")]
