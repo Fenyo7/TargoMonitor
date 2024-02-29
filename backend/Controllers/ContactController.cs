@@ -42,7 +42,8 @@ public class ContactController : ControllerBase
                 Name = addContactDto.Name,
                 Position = addContactDto?.Position,
                 Phone = addContactDto?.Phone,
-                Email = addContactDto?.Email
+                Email = addContactDto?.Email,
+                IsPrimary = addContactDto.IsPrimary
             };
 
             _context.Contacts.Add(contact);

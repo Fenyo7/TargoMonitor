@@ -4,7 +4,7 @@ import { ClientService } from 'src/app/services/client.service';
 export interface TableColumn {
   key: string;
   label: string;
-  type?: 'text' | 'number' | 'date' | 'bool';
+  type?: 'text' | 'number' | 'date' | 'bool' | 'hidden';
 }
 
 export interface TableRow {
@@ -23,8 +23,12 @@ export class ClientTableComponent implements OnInit{
   machineData: TableRow[] = [];
 
   clientColumns: TableColumn[] = [
+    { key: 'clientId', label: 'ClientId', type: 'hidden'},
     { key: 'name', label: 'Név', type: 'text' },
     { key: 'address', label: 'Székhely', type: 'text' },
+    { key: 'primaryContact', label: 'Elsődleges Kontakt Neve', type: 'text'},
+    { key: 'contactPhone', label: 'Kontakt Telefonszáma', type: 'text'},
+    { key: 'contactEmail', label: 'Kontakt Email címe', type: 'text'},
     { key: 'numberOfMachines', label: 'Gépek száma', type: 'number'},
     { key: 'hasContract', label: 'Szerződés', type: 'bool' },
     { key: 'doNotify', label: 'Értesítés', type: 'bool' },
@@ -45,10 +49,18 @@ export class ClientTableComponent implements OnInit{
     });
   }
 
-  toggleRow(rowId: number | null): void {
+  toggleRow(rowId: number): void {
     this.expandedRowId = this.expandedRowId === rowId ? null : rowId;
     console.log("toggled row: " + this.expandedRowId);
 
     // Update machineData here
+  }
+
+  contacts(rowId: number): void {
+    console.log(`Contacts for ${rowId}. row`);
+  }
+
+  editRow(rowId: number): void {
+    console.log(`Edit row ${rowId}`);
   }
 }
