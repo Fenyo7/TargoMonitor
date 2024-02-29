@@ -5,8 +5,6 @@
         <ng-container *ngFor="let col of clientColumns">
           <th *ngIf="col.type !== 'hidden'">{{ col.label }}</th>
         </ng-container>
-        <th>Akciógombok</th>
-        
       </tr>
     </thead>
     <tbody>
@@ -15,7 +13,6 @@
           <ng-container *ngFor="let col of clientColumns">
             <td *ngIf="col.type !== 'hidden'">
               <ng-container [ngSwitch]="col.type">
-
                 <ng-container *ngSwitchCase="'bool'">
                   <div class="icon-cell">
                     <img
@@ -32,37 +29,46 @@
                     />
                   </div>
                 </ng-container>
-  
+
+                <ng-container *ngSwitchCase="'actions'">
+                  <div class="icon-actions">
+                    <img
+                      *ngIf="expandedRowId !== i"
+                      src="../../../assets/icons/arrow-down.svg"
+                      alt="Expand"
+                      class="icon"
+                      (click)="toggleRow(i); $event.stopPropagation()"
+                    />
+                    <img
+                      *ngIf="expandedRowId == i"
+                      src="../../../assets/icons/arrow-up.svg"
+                      alt="Expand"
+                      class="icon"
+                      (click)="toggleRow(i); $event.stopPropagation()"
+                    />
+                    <img
+                      src="../../../assets/icons/phone.svg"
+                      alt="Contacts"
+                      class="icon"
+                      (click)="contacts(i); $event.stopPropagation()"
+                    />
+                    <img
+                      src="../../../assets/icons/edit-1.svg"
+                      alt="Edit"
+                      class="icon"
+                      (click)="editRow(i); $event.stopPropagation()"
+                    />
+                  </div>
+                </ng-container>
+
                 <ng-container *ngSwitchDefault>
                   {{ row[col.key] }}
                 </ng-container>
-  
               </ng-container>
             </td>
           </ng-container>
-          
-          <td class="icon-actions">
-            <img
-              src="../../../assets/icons/arrow-down.svg"
-              alt="Expand"
-              class="icon"
-              (click)="toggleRow(i); $event.stopPropagation()"
-            />
-            <img
-              src="../../../assets/icons/phone.svg"
-              alt="Contacts"
-              class="icon"
-              (click)="contacts(i); $event.stopPropagation()"
-            />
-            <img
-              src="../../../assets/icons/edit-1.svg"
-              alt="Edit"
-              class="icon"
-              (click)="editRow(i); $event.stopPropagation()"
-            />
-          </td>
         </tr>
-        
+
         <tr *ngIf="expandedRowId === i" class="expanded-content">
           <td [attr.colspan]="clientColumns.length + 1">
             <app-machine-table [machineData]="machineData"></app-machine-table>

@@ -4,7 +4,7 @@ import { ClientService } from 'src/app/services/client.service';
 export interface TableColumn {
   key: string;
   label: string;
-  type?: 'text' | 'number' | 'date' | 'bool' | 'hidden';
+  type?: 'text' | 'number' | 'date' | 'bool' | 'hidden' | 'actions';
 }
 
 export interface TableRow {
@@ -32,6 +32,7 @@ export class ClientTableComponent implements OnInit{
     { key: 'numberOfMachines', label: 'Gépek száma', type: 'number'},
     { key: 'hasContract', label: 'Szerződés', type: 'bool' },
     { key: 'doNotify', label: 'Értesítés', type: 'bool' },
+    { key: 'actions', label: 'Akciógombok', type: 'actions'},
   ];
 
   constructor(private clientService: ClientService) { }
