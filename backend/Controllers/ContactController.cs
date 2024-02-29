@@ -56,4 +56,28 @@ public class ContactController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpGet("{clientId}")]
+    public async Task<IActionResult> GetContactsOfClient(int clientId)
+    {
+        string userIdFromToken = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userIdFromToken == null)
+                return Unauthorized("Invalid user ID");
+
+            if (!int.TryParse(userIdFromToken, out int userId))
+                return BadRequest("User ID is not in the correct format.");
+
+            var clientExists = await _context.Clients.AnyAsync(
+                c => c.ClientId == clientId && c.UserId == userId
+            );
+            if (!clientExists)
+                return BadRequest("Client does not exist or does not belong to the user.");
+
+        var contacts = await _context.Contacts
+            .Include(c => c.Client)
+            .Where(c => c.Client.UserId == userId)
+            .ToListAsync();
+
+        return Ok(contacts);
+    }
 }
