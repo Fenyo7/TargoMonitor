@@ -48,13 +48,13 @@ export class ClientTableComponent implements OnInit {
   fetchClients(): void {
     this.clientService.getAllClients().subscribe({
       next: (clients) => {
-        this.clientData = clients.map((client: { clientId: any; name: any; address: any; hasContract: any; doNotify: any; PrimaryContact: { name: any; phone: any; email: any; }; }) => ({
+        this.clientData = clients.map((client: { clientId: any; name: any; address: any; primaryContact: { name: any; phone: any; email: any; }; hasContract: any; doNotify: any; }) => ({
           clientId: client.clientId,
           name: client.name,
           address: client.address,
-          primaryContact: client.PrimaryContact?.name || '',
-          contactPhone: client.PrimaryContact?.phone || '',
-          contactEmail: client.PrimaryContact?.email || '',
+          primaryContact: client.primaryContact?.name || '',
+          contactPhone: client.primaryContact?.phone || '',
+          contactEmail: client.primaryContact?.email || '',
           hasContract: client.hasContract ? true : false,
           doNotify: client.doNotify ? true : false,
         }));
