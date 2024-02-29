@@ -20,6 +20,8 @@ export interface TableRow {
 export class ClientTableComponent implements OnInit {
   expandedRowId: number | null = null;
   contactRowId: number | null = null;
+  contactData: any[] = [];
+  selectedClientForContacts: string = "";
 
   @Input() clientData: TableRow[] = [];
   machineData: TableRow[] = [];
@@ -81,13 +83,21 @@ export class ClientTableComponent implements OnInit {
   }
 
   toggleContacts(row: TableRow): void {
-    this.contactRowId =
-      this.contactRowId === row['clientId'] ? null : row['clientId'];
-    console.log(this.contactRowId);
-  }
-
-  contacts(row: TableRow): void {
-    console.log(`Contacts for ${row['name']}`);
+    if (this.contactRowId === row['clientId']) {
+      this.contactRowId = null;
+      this.contactData = [];
+    } else {
+      this.contactRowId = row['clientId'];
+      this.selectedClientForContacts = row['name'];
+  
+      this.contactService.getContactsOfClient((this.contactRowId) as number).subscribe({
+        next: (contacts) => {
+          this.contactData = contacts;
+          console.log('Contacts fetched:', this.contactData);
+        },
+        error: (error) => console.error('Error fetching contacts:', error),
+      });
+    }
   }
 
   editRow(row: TableRow): void {

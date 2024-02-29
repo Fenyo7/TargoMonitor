@@ -1,0 +1,15 @@
+<div *ngIf="contactData && contactData.length > 0; else noContacts">
+  <h2>{{ clientName }} Kapcsolattartói</h2>
+  <ul>
+    <li *ngFor="let contact of contactData">
+      <p>Név: {{ contact.name }}</p>
+      <p>Pozíció: {{ contact.position }}</p>
+      <p>Email: {{ contact.email }}</p>
+      <p>Telefonszám: {{ contact.phone }}</p>
+      <p>{{ contact.isPrimary ? "Elsődleges kontakt" : "Nem elsődleges kontakt" }}</p>
+    </li>
+  </ul>
+</div>
+<ng-template #noContacts>
+  <p>A partnerhez nem tartozik kontakt.</p>
+</ng-template>

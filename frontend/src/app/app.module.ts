@@ -21,6 +21,7 @@ import { AddClientComponent } from './components/data-add/add-client/add-client.
 import { AddMachineComponent } from './components/data-add/add-machine/add-machine.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AddContactComponent } from './components/data-add/add-contact/add-contact.component';
+import { ContactDisplayComponent } from './components/data-display/contact-display/contact-display.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AddContactComponent } from './components/data-add/add-contact/add-conta
     AddClientComponent,
     AddMachineComponent,
     MachineTableComponent,
-    AddContactComponent
+    AddContactComponent,
+    ContactDisplayComponent
   ],
   imports: [
     BrowserModule,

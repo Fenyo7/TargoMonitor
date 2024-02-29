@@ -89,3 +89,7 @@
     </tbody>
   </table>
 </div>
+
+<mat-card class="contacts" *ngIf="contactRowId != null">
+  <app-contact-display [contactData]="contactData" [clientName]="selectedClientForContacts"></app-contact-display>
+</mat-card>
