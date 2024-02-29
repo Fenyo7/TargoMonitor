@@ -37,6 +37,7 @@
                       src="../../../assets/icons/arrow-down.svg"
                       alt="Expand"
                       class="icon"
+                      title="Partnerhez tartozó gépek megjelenítése"
                       (click)="toggleRow(i); $event.stopPropagation()"
                     />
                     <img
@@ -44,19 +45,29 @@
                       src="../../../assets/icons/arrow-up.svg"
                       alt="Expand"
                       class="icon"
+                      title="Gépek elrejtése"
                       (click)="toggleRow(i); $event.stopPropagation()"
                     />
                     <img
                       src="../../../assets/icons/phone.svg"
                       alt="Contacts"
                       class="icon"
-                      (click)="contacts(i); $event.stopPropagation()"
+                      title="Partner kapcsolattartóinak megjelenítése"
+                      (click)="contacts(row); $event.stopPropagation()"
                     />
                     <img
                       src="../../../assets/icons/edit-1.svg"
                       alt="Edit"
                       class="icon"
-                      (click)="editRow(i); $event.stopPropagation()"
+                      title="Partner szerkesztése"
+                      (click)="editRow(row); $event.stopPropagation()"
+                    />
+                    <img
+                      src="../../../assets/icons/file-plus.svg"
+                      alt="Add"
+                      class="icon"
+                      title="Gép hozzáadása partherhez"
+                      (click)="addMachine(row); $event.stopPropagation()"
                     />
                   </div>
                 </ng-container>

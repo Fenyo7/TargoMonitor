@@ -44,7 +44,6 @@ export class ClientTableComponent implements OnInit{
     this.clientService.getAllClients().subscribe({
       next: (clients) => {
         this.clientData = clients;
-        console.log(this.clientData);
       },
       error: (error) => console.error(error)
     });
@@ -57,11 +56,15 @@ export class ClientTableComponent implements OnInit{
     // Update machineData here
   }
 
-  contacts(rowId: number): void {
-    console.log(`Contacts for ${rowId}. row`);
+  contacts(row: TableRow): void {
+    console.log(`Contacts for ${row['name']}`);
   }
 
-  editRow(rowId: number): void {
-    console.log(`Edit row ${rowId}`);
+  editRow(row: TableRow): void {
+    console.log(`Edit ${row['name']}`);
+  }
+
+  addMachine(row: TableRow): void {
+    console.log(`Add machine to ${row['name']}, id: ${row['clientId']}`);
   }
 }
