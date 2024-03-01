@@ -64,7 +64,7 @@
                       (click)="toggleRow(i); $event.stopPropagation()"
                     />
                     <img
-                      src="../../../assets/icons/phone.svg"
+                      src="../../../assets/icons/phone{{ contactRowId == row['clientId'] ? '-active' : '' }}.svg"
                       alt="Contacts"
                       class="icon-interactable"
                       title="Partner kapcsolattartóinak megjelenítése"
