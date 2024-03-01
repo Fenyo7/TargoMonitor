@@ -6,7 +6,7 @@
           <th *ngIf="col.type !== 'hidden'" class="table-header">
             <div class="header-content">
               {{ col.label }}
-              <div class="icon-cell">
+              <div class="icon-cell" *ngIf="col.type !== 'actions' && col.type !== 'bool'">
                 <img
                   src="../../../assets/icons/filter{{
                     activeFilters[col.key] ? '-active' : ''
