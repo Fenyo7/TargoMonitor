@@ -22,6 +22,7 @@ import { AddMachineComponent } from './components/data-add/add-machine/add-machi
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AddContactComponent } from './components/data-add/add-contact/add-contact.component';
 import { ContactDisplayComponent } from './components/data-display/contact-display/contact-display.component';
+import { FilterComponent } from './components/data-display/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ContactDisplayComponent } from './components/data-display/contact-displ
     AddMachineComponent,
     MachineTableComponent,
     AddContactComponent,
-    ContactDisplayComponent
+    ContactDisplayComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

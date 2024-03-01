@@ -21,7 +21,8 @@ export class ClientTableComponent implements OnInit {
   expandedRowId: number | null = null;
   contactRowId: number | null = null;
   contactData: any[] = [];
-  selectedClientForContacts: string = "";
+  selectedClientForContacts: string = '';
+  filterKey: string | null = null;
 
   @Input() clientData: TableRow[] = [];
   machineData: TableRow[] = [];
@@ -89,14 +90,16 @@ export class ClientTableComponent implements OnInit {
     } else {
       this.contactRowId = row['clientId'];
       this.selectedClientForContacts = row['name'];
-  
-      this.contactService.getContactsOfClient((this.contactRowId) as number).subscribe({
-        next: (contacts) => {
-          this.contactData = contacts;
-          console.log('Contacts fetched:', this.contactData);
-        },
-        error: (error) => console.error('Error fetching contacts:', error),
-      });
+
+      this.contactService
+        .getContactsOfClient(this.contactRowId as number)
+        .subscribe({
+          next: (contacts) => {
+            this.contactData = contacts;
+            console.log('Contacts fetched:', this.contactData);
+          },
+          error: (error) => console.error('Error fetching contacts:', error),
+        });
     }
   }
 
@@ -108,7 +111,9 @@ export class ClientTableComponent implements OnInit {
     console.log(`Add machine to ${row['name']}, id: ${row['clientId']}`);
   }
 
-  openFilterMenu(string: string): void {
-    console.log('filter open for ' + string);
+  openFilterMenu(filterKey: string): void {
+    this.filterKey = this.filterKey === filterKey ? null : filterKey;
+    console.log('toggled row: ' + this.expandedRowId);
+    console.log('filter open for ' + this.filterKey);
   }
 }

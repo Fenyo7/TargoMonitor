@@ -109,3 +109,8 @@
     [clientName]="selectedClientForContacts"
   ></app-contact-display>
 </mat-card>
+
+<mat-card class="filter" *ngIf="filterKey != null">
+  <app-filter
+  ></app-filter>
+</mat-card>
