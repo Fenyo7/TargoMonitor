@@ -1,63 +1,60 @@
 .table-container {
   overflow-x: auto;
   max-width: 100%;
-  margin: 5px
+  margin: 5px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: auto;
+}
 
-  th,
-  td {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 8px;
-    position: relative;
-  }
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
 
-  th {
-    background-color: #4c8baf;
-    color: white;
-  }
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  tr:nth-child(even) {
-    background-color: #f7fcff;
-  }
+th {
+  background-color: #4c8baf;
+  color: white;
+}
 
-  tr:nth-child(odd) {
-    background-color: #eef8ff;
-  }
+tr:nth-child(even) {
+  background-color: #f7fcff;
+}
 
-  .icon {
-    width: 24px;
-  }
+tr:nth-child(odd) {
+  background-color: #eef8ff;
+}
 
-  .icon-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
+.icon,
+.icon-cell img,
+.icon-actions img {
+  cursor: pointer;
+  width: 24px;
+  transition: opacity 0.3s;
+}
 
-  .icon-actions {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
-    .icon {
-      cursor: pointer;
-      height: auto;
-      border: #4c8baf;
-      transition: opacity 0.3s;
-  
-      &:hover {
-        opacity: 0.5;
-      }
-    }
-  }
-  
+.icon:hover,
+.icon-cell img:hover,
+.icon-actions img:hover {
+  opacity: 0.5;
+}
+
+.icon-cell,
+.icon-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 mat-card {
@@ -66,7 +63,6 @@ mat-card {
   left: 40vw;
   width: 80vw;
   max-width: 500px;
-  height: auto;
   margin: 20px;
   background-color: #f7fcff;
   color: #122e3f;

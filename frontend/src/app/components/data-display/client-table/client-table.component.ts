@@ -107,4 +107,8 @@ export class ClientTableComponent implements OnInit {
   addMachine(row: TableRow): void {
     console.log(`Add machine to ${row['name']}, id: ${row['clientId']}`);
   }
+
+  openFilterMenu(string: string): void {
+    console.log('filter open for ' + string);
+  }
 }

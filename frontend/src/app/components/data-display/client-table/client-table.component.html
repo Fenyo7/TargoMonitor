@@ -3,7 +3,20 @@
     <thead>
       <tr>
         <ng-container *ngFor="let col of clientColumns">
-          <th *ngIf="col.type !== 'hidden'" class="table-header">{{ col.label }}</th>
+          <th *ngIf="col.type !== 'hidden'" class="table-header">
+            <div class="header-content">
+              {{ col.label }}
+              <div class="filter-icon">
+                <img
+                  src="../../../assets/icons/filter.svg"
+                  alt="Filter"
+                  class="icon"
+                  title="Szűrő hozzáadása"
+                  (click)="openFilterMenu(col.key)"
+                />
+              </div>
+            </div>
+          </th>
         </ng-container>
       </tr>
     </thead>
@@ -91,5 +104,8 @@
 </div>
 
 <mat-card class="contacts" *ngIf="contactRowId != null">
-  <app-contact-display [contactData]="contactData" [clientName]="selectedClientForContacts"></app-contact-display>
+  <app-contact-display
+    [contactData]="contactData"
+    [clientName]="selectedClientForContacts"
+  ></app-contact-display>
 </mat-card>
