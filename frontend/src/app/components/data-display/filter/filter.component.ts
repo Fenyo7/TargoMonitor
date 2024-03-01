@@ -14,6 +14,7 @@ export interface FilterOptions {
 export class FilterComponent {
   @Input() columnKey: string = "";
   @Output() onFilterChange = new EventEmitter<FilterOptions>();
+  @Output() onClearFilter = new EventEmitter<FilterOptions>();
 
   filterForm: FormGroup;
 
@@ -28,7 +29,7 @@ export class FilterComponent {
     this.onFilterChange.emit(this.filterForm.value);
   }
 
-  deleteFilter(): void {
+  clearFilter(): void {
     this.onFilterChange.emit({ sort: 'none', contains: null});
     this.filterForm = this.fb.group({
       contains: [''],

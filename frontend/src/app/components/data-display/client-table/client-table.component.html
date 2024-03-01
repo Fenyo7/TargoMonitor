@@ -8,7 +8,9 @@
               {{ col.label }}
               <div class="icon-cell">
                 <img
-                  src="../../../assets/icons/filter.svg"
+                  src="../../../assets/icons/filter{{
+                    activeFilters[col.key] ? '-active' : ''
+                  }}.svg"
                   alt="Filter"
                   class="icon-interactable"
                   title="Szűrő hozzáadása"
@@ -112,7 +114,9 @@
 
 <mat-card class="filter" *ngIf="filterKey != null">
   <app-filter
+    *ngIf="filterKey"
     [columnKey]="filterKey"
-    (onFilterChange)="applyFilters($event, filterKey)"
+    (onFilterChange)="applyFilter($event)"
+    (onClearFilter)="clearFilter(filterKey)"
   ></app-filter>
 </mat-card>

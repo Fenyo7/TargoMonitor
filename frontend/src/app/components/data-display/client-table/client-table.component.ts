@@ -28,6 +28,7 @@ export class ClientTableComponent implements OnInit {
   originalClientData: TableRow[] = [];
   clientData: TableRow[] = [];
   machineData: TableRow[] = [];
+  activeFilters: { [key: string]: FilterOptions } = {};
 
   clientColumns: TableColumn[] = [
     { key: 'clientId', label: 'ClientId', type: 'hidden' },
@@ -116,19 +117,41 @@ export class ClientTableComponent implements OnInit {
 
   openFilterMenu(filterKey: string): void {
     this.filterKey = this.filterKey === filterKey ? null : filterKey;
+    const existingFilter = this.activeFilters[filterKey];
   }
 
-  applyFilters(filterCriteria: FilterOptions, filterKey: string): void {
-    let filteredData = [...this.originalClientData];
-  
-    if (filterCriteria.contains) {
-      filteredData = filteredData.filter(row =>
-        row[filterKey]?.toString().toLowerCase().includes(filterCriteria.contains?.toLowerCase())
-      );
+  clearFilter(filterKey: string): void {
+    delete this.activeFilters[filterKey];
+    this.applyAllFilters();
+  }  
+
+  applyFilter(filterCriteria: FilterOptions): void {
+    if (this.filterKey) {
+      if (filterCriteria.contains || filterCriteria.sort !== 'none') {
+        this.activeFilters[this.filterKey] = filterCriteria;
+      } else {
+        delete this.activeFilters[this.filterKey]; // Remove filter if criteria are essentially 'empty'
+      }
+      this.applyAllFilters();
     }
-  
-    // TODO: Add sorting logic here based on filterCriteria.sort
-  
+  }
+
+  applyAllFilters(): void {
+    let filteredData = [...this.originalClientData];
+
+    Object.keys(this.activeFilters).forEach((key) => {
+      const filter = this.activeFilters[key];
+      if (filter.contains) {
+        filteredData = filteredData.filter((row) =>
+          row[key]
+            ?.toString()
+            .toLowerCase()
+            .includes(filter.contains?.toLowerCase())
+        );
+      }
+      // Add more conditions based on other types of filters like 'sort'
+    });
+
     this.clientData = filteredData;
   }
 }
