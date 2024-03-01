@@ -2,6 +2,8 @@
   overflow-x: auto;
   max-width: 100%;
   margin:5px; 
+  overflow-y: auto;
+  max-height: 90vh;
 }
 
 table {
@@ -18,7 +20,10 @@ table {
 
   th {
     background-color: #6cbe74;
-    color: rgb(255, 255, 255);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
 
   tr:nth-child(even) {

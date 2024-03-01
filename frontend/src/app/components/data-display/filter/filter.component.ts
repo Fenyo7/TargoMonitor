@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filter',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent {
-
+  @Input() columnKey = "";
+  @Output() filterCriteria: any = null;
 }
