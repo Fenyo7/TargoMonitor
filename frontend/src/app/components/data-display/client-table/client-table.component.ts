@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
 import { ContactService } from 'src/app/services/contact.service';
+import { FilterOptions } from '../filter/filter.component';
 
 export interface TableColumn {
   key: string;
@@ -23,6 +24,7 @@ export class ClientTableComponent implements OnInit {
   contactData: any[] = [];
   selectedClientForContacts: string = '';
   filterKey: string | null = null;
+  filterColumnData = [];
 
   @Input() clientData: TableRow[] = [];
   machineData: TableRow[] = [];
@@ -113,7 +115,21 @@ export class ClientTableComponent implements OnInit {
 
   openFilterMenu(filterKey: string): void {
     this.filterKey = this.filterKey === filterKey ? null : filterKey;
-    console.log('toggled row: ' + this.expandedRowId);
+    this.filterColumnData = []; // Fill up with data of the selected column 
     console.log('filter open for ' + this.filterKey);
+  }
+
+  applyFilters(filterCriteria: FilterOptions, filterKey: string): void {
+    let filteredData = [...this.clientData];
+  
+    if (filterCriteria.contains) {
+      filteredData = filteredData.filter(row =>
+        row[filterKey]?.toString().toLowerCase().includes(filterCriteria.contains?.toLowerCase())
+      );
+    }
+  
+    // TODO: Add sorting logic here based on filterCriteria.sort
+  
+    this.clientData = filteredData;
   }
 }

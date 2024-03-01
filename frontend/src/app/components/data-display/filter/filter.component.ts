@@ -1,4 +1,10 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+export interface FilterOptions {
+  sort: 'none' | 'asc' | 'desc';
+  contains: string | null;
+  select?: any[];
+}
 
 @Component({
   selector: 'app-filter',
@@ -6,6 +12,17 @@ import { Component, Input, Output } from '@angular/core';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent {
-  @Input() columnKey = "";
-  @Output() filterCriteria: any = null;
+  @Input() columnKey: string = "";
+  @Input() columnData: any[] = [];
+  @Output() onFilterChange = new EventEmitter<FilterOptions>();
+
+  filterCriteria: FilterOptions = {
+    sort: 'none',
+    contains: null,
+    select: []
+  };
+
+  updateFilter(): void {
+    this.onFilterChange.emit(this.filterCriteria);
+  }
 }
