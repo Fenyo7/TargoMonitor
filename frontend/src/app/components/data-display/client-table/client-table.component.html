@@ -6,11 +6,11 @@
           <th *ngIf="col.type !== 'hidden'" class="table-header">
             <div class="header-content">
               {{ col.label }}
-              <div class="filter-icon">
+              <div class="icon-cell">
                 <img
                   src="../../../assets/icons/filter.svg"
                   alt="Filter"
-                  class="icon"
+                  class="icon-interactable"
                   title="Szűrő hozzáadása"
                   (click)="openFilterMenu(col.key)"
                 />
@@ -44,12 +44,12 @@
                 </ng-container>
 
                 <ng-container *ngSwitchCase="'actions'">
-                  <div class="icon-actions">
+                  <div class="icon-cell">
                     <img
                       *ngIf="expandedRowId !== i"
                       src="../../../assets/icons/arrow-down.svg"
                       alt="Expand"
-                      class="icon"
+                      class="icon-interactable"
                       title="Partnerhez tartozó gépek megjelenítése"
                       (click)="toggleRow(i); $event.stopPropagation()"
                     />
@@ -57,28 +57,28 @@
                       *ngIf="expandedRowId == i"
                       src="../../../assets/icons/arrow-up.svg"
                       alt="Expand"
-                      class="icon"
+                      class="icon-interactable"
                       title="Gépek elrejtése"
                       (click)="toggleRow(i); $event.stopPropagation()"
                     />
                     <img
                       src="../../../assets/icons/phone.svg"
                       alt="Contacts"
-                      class="icon"
+                      class="icon-interactable"
                       title="Partner kapcsolattartóinak megjelenítése"
                       (click)="toggleContacts(row); $event.stopPropagation()"
                     />
                     <img
                       src="../../../assets/icons/edit-1.svg"
                       alt="Edit"
-                      class="icon"
+                      class="icon-interactable"
                       title="Partner szerkesztése"
                       (click)="editRow(row); $event.stopPropagation()"
                     />
                     <img
                       src="../../../assets/icons/file-plus.svg"
                       alt="Add"
-                      class="icon"
+                      class="icon-interactable"
                       title="Gép hozzáadása partherhez"
                       (click)="addMachine(row); $event.stopPropagation()"
                     />
@@ -113,7 +113,6 @@
 <mat-card class="filter" *ngIf="filterKey != null">
   <app-filter
     [columnKey]="filterKey"
-    [columnData]="filterColumnData"
     (onFilterChange)="applyFilters($event, filterKey)"
   ></app-filter>
 </mat-card>

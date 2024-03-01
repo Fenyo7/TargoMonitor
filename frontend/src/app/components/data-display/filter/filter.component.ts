@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 export interface FilterOptions {
   sort: 'none' | 'asc' | 'desc';
   contains: string | null;
-  select?: any[];
 }
 
 @Component({
@@ -13,16 +13,26 @@ export interface FilterOptions {
 })
 export class FilterComponent {
   @Input() columnKey: string = "";
-  @Input() columnData: any[] = [];
   @Output() onFilterChange = new EventEmitter<FilterOptions>();
 
-  filterCriteria: FilterOptions = {
-    sort: 'none',
-    contains: null,
-    select: []
-  };
+  filterForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.filterForm = this.fb.group({
+      contains: [''],
+      sort: ['none']
+    });
+  }
 
   updateFilter(): void {
-    this.onFilterChange.emit(this.filterCriteria);
+    this.onFilterChange.emit(this.filterForm.value);
+  }
+
+  deleteFilter(): void {
+    this.onFilterChange.emit({ sort: 'none', contains: null});
+    this.filterForm = this.fb.group({
+      contains: [''],
+      sort: ['none']
+    });
   }
 }

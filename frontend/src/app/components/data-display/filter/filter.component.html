@@ -1,1 +1,25 @@
-<p>{{columnKey}}</p>
+<h2>{{columnKey}} szűrése</h2>
+<form [formGroup]="filterForm">
+  <div>
+    <label for="contains">Tartalmazza: </label>
+    <input id="contains" type="text" formControlName="contains" />
+  </div>
+
+  <div>
+    <label>Rendezés</label>
+    <div>
+      <label>
+        <input type="radio" formControlName="sort" value="none" /> Nincs
+      </label>
+      <label>
+        <input type="radio" formControlName="sort" value="asc" /> Növekvő
+      </label>
+      <label>
+        <input type="radio" formControlName="sort" value="desc" /> Csökkenő
+      </label>
+    </div>
+  </div>
+
+  <button type="button" (click)="updateFilter()">Szűrés</button>
+  <button type="button" (click)="deleteFilter()">Törlés</button>
+</form>

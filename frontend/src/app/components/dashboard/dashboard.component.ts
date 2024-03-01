@@ -10,8 +10,6 @@ export class DashboardComponent {
   selectedTab = 1;
   currentDate = new Date();
 
-  clientsData: TableRow[] = [];
-
   machinesData: TableRow[] = [];
 
   monthlyMachinesData: TableRow[] = [];

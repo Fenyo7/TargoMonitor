@@ -24,9 +24,9 @@ export class ClientTableComponent implements OnInit {
   contactData: any[] = [];
   selectedClientForContacts: string = '';
   filterKey: string | null = null;
-  filterColumnData = [];
 
-  @Input() clientData: TableRow[] = [];
+  originalClientData: TableRow[] = [];
+  clientData: TableRow[] = [];
   machineData: TableRow[] = [];
 
   clientColumns: TableColumn[] = [
@@ -54,7 +54,7 @@ export class ClientTableComponent implements OnInit {
   fetchClients(): void {
     this.clientService.getAllClients().subscribe({
       next: (clients) => {
-        this.clientData = clients.map(
+        this.originalClientData = clients.map(
           (client: {
             clientId: any;
             name: any;
@@ -73,6 +73,7 @@ export class ClientTableComponent implements OnInit {
             doNotify: client.doNotify ? true : false,
           })
         );
+        this.clientData = this.originalClientData;
       },
       error: (error) => console.error(error),
     });
@@ -115,12 +116,10 @@ export class ClientTableComponent implements OnInit {
 
   openFilterMenu(filterKey: string): void {
     this.filterKey = this.filterKey === filterKey ? null : filterKey;
-    this.filterColumnData = []; // Fill up with data of the selected column 
-    console.log('filter open for ' + this.filterKey);
   }
 
   applyFilters(filterCriteria: FilterOptions, filterKey: string): void {
-    let filteredData = [...this.clientData];
+    let filteredData = [...this.originalClientData];
   
     if (filterCriteria.contains) {
       filteredData = filteredData.filter(row =>
