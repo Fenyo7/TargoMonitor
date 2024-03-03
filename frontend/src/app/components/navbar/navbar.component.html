@@ -1,6 +1,6 @@
 <nav class="navbar">
   <div class="navbar-container">
-    <div class="nav-item">
+    <div class="nav-item" (appClickOutside)="clickOutMenu()">
       <a class="nav-link" (click)="toggleMenuDropdown()">
         <img src="../../../assets/icons/menu.svg" alt="Menu" />
       </a>
@@ -15,7 +15,7 @@
         <a class="dropdown-item" href="#">Adatbázis Beállítások</a>
       </div>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" (appClickOutside)="clickOutAccount()">
       <a class="nav-link" (click)="toggleAccountDropdown()">
         <img src="../../../assets/icons/user.svg" alt="Account" />
       </a>

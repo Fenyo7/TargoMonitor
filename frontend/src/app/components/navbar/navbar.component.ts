@@ -21,4 +21,12 @@ export class NavbarComponent {
     this.accountDropdownOpen = !this.accountDropdownOpen;
     this.menuDropdownOpen = false;
   }
+
+  clickOutAccount(): void {
+    this.accountDropdownOpen = false;
+  }
+
+  clickOutMenu(): void {
+    this.menuDropdownOpen = false;
+  }
 }
