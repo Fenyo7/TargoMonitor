@@ -30,7 +30,7 @@ namespace TargoMonitor.Data.Models
         public bool IsLifting { get; set; } // Emelőgép-e
 
         [Required]
-        public int? InventoryNumber { get; set; } // Leltári szám
+        public int InventoryNumber { get; set; } // Leltári szám
 
         [Required]
         public string Kind { get; set; } // Besorolás (Legördülős menü, kódként lesz eltárolva)

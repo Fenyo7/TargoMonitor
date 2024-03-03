@@ -39,25 +39,34 @@ public class MachineController : ControllerBase
             var machine = new Machine
             {
                 ClientId = addMachineDto.ClientId,
-                AddressCity = addMachineDto?.Place,
+                AddressCity = addMachineDto.AddressCity,
+                AddressStreet = addMachineDto.AddressStreet,
+                AddressNumber = addMachineDto.AddressNumber,
                 UsePlace = addMachineDto?.UsePlace,
+                isDangerous = addMachineDto.isDangerous,
                 IsLifting = addMachineDto.IsLifting,
-                InventoryNumber = addMachineDto?.InventoryNumber,
+                InventoryNumber = addMachineDto.InventoryNumber,
                 Kind = addMachineDto.Kind,
-                Name = addMachineDto?.Name,
-                Brand = addMachineDto?.Brand,
-                Type = addMachineDto?.Type,
-                FactoryNumber = addMachineDto?.FactoryNumber,
-                ManufactureYear = addMachineDto?.ManufactureYear,
+                Name = addMachineDto.Name,
+                Brand = addMachineDto.Brand,
+                Type = addMachineDto.Type,
+                FactoryNumber = addMachineDto.FactoryNumber,
+                ManufactureYear = addMachineDto.ManufactureYear,
                 CommissionDate = addMachineDto?.CommissionDate,
+                
                 // ### Adattábla szerinti adatok ###
 
-                Load = addMachineDto?.Load,
+                LicenseNumber = addMachineDto?.LicenseNumber,
+                AdapterName = addMachineDto?.AdapterName,
+                ControlMode = addMachineDto?.ControlMode,
                 LiftHeight = addMachineDto?.Load,
-                Span = addMachineDto?.Span,
-                Power = addMachineDto?.Power,
+                Console = addMachineDto?.Console,
                 Weight = addMachineDto?.Weight,
+                Power = addMachineDto?.Power,
                 Chain = addMachineDto?.Chain,
+                Load = addMachineDto?.Load,
+                Span = addMachineDto?.Span,
+                Rope = addMachineDto?.Rope,
                 Bend = addMachineDto?.Bend
             };
 
