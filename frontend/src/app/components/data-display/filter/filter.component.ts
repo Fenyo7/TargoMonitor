@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 export interface FilterOptions {
@@ -9,10 +9,14 @@ export interface FilterOptions {
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+  styleUrls: ['./filter.component.scss'],
 })
-export class FilterComponent {
-  @Input() columnKey: string = "";
+export class FilterComponent implements OnChanges {
+  @Input() columnKey: string = '';
+  @Input() existingFilter: FilterOptions = {
+    contains: null,
+    sort: 'none',
+  };
   @Output() onFilterChange = new EventEmitter<FilterOptions>();
   @Output() onClearFilter = new EventEmitter<FilterOptions>();
 
@@ -20,9 +24,18 @@ export class FilterComponent {
 
   constructor(private fb: FormBuilder) {
     this.filterForm = this.fb.group({
-      contains: [''],
-      sort: ['none']
+      contains: '',
+      sort: 'none',
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['existingFilter'] && this.existingFilter) {
+      this.filterForm.setValue({
+        contains: this.existingFilter.contains || '',
+        sort: this.existingFilter.sort || 'none'
+      });
+    }
   }
 
   updateFilter(): void {
@@ -30,10 +43,10 @@ export class FilterComponent {
   }
 
   clearFilter(): void {
-    this.onFilterChange.emit({ sort: 'none', contains: null});
+    this.onFilterChange.emit({ sort: 'none', contains: null });
     this.filterForm = this.fb.group({
-      contains: [''],
-      sort: ['none']
+      contains: '',
+      sort: ['none'],
     });
   }
 }

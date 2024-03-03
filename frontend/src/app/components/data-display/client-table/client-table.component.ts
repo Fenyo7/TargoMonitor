@@ -29,6 +29,10 @@ export class ClientTableComponent implements OnInit {
   clientData: TableRow[] = [];
   machineData: TableRow[] = [];
   activeFilters: { [key: string]: FilterOptions } = {};
+  existingFilter: FilterOptions = {
+    contains: null,
+    sort: 'none'
+  }
 
   clientColumns: TableColumn[] = [
     { key: 'clientId', label: 'ClientId', type: 'hidden' },
@@ -122,7 +126,7 @@ export class ClientTableComponent implements OnInit {
 
   toggleFilterMenu(filterKey: string, event: MouseEvent): void {
     this.filterKey = this.filterKey === filterKey ? null : filterKey;
-    const existingFilter = this.activeFilters[filterKey];
+    this.existingFilter = this.activeFilters[filterKey];
     event.stopPropagation();
   }
 

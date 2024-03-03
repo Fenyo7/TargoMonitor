@@ -116,6 +116,7 @@
   <app-filter
     *ngIf="filterKey"
     [columnKey]="filterKey"
+    [existingFilter]="existingFilter"
     (onFilterChange)="applyFilter($event)"
     (onClearFilter)="clearFilter(filterKey)"
   ></app-filter>
