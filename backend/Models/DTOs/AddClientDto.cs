@@ -15,5 +15,8 @@ namespace TargoMonitor.Data.Dtos
 
         [Required]
         public bool DoNotify { get; set; }
+
+        [Required]
+        public string BillingEmail { get; set; }
     }
 }
