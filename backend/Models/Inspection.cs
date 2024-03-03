@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TargoMonitor.Data.Models
@@ -6,12 +7,17 @@ namespace TargoMonitor.Data.Models
     {
         public int InspectionId { get; set; }
 
+        [Required]
         [ForeignKey("Machine")]
         public int MachineId { get; set; }
         public virtual Machine Machine { get; set; } // Navigation Property to Machine
-        public required string Type { get; set; } // Vizsgálat típusa (IBF, Fővizsgálat, Szerk)
-        public required DateTime Date { get; set; } // Időpont
-        public string Notes { get; set; } // Megjegyzés
+
+        [Required]
+        public string Type { get; set; } // Vizsgálat típusa (IBF, Fővizsgálat, Szerk)
+
+        [Required]
+        public DateTime Date { get; set; } // Időpont
         public string HoursOfOperation { get; set; } // Üzemóra
+        public string Notes { get; set; } // Megjegyzés
     }
 }
