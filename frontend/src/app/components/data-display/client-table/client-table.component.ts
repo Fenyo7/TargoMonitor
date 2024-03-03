@@ -24,6 +24,7 @@ export class ClientTableComponent implements OnInit {
   contactData: any[] = [];
   selectedClientForContacts: string = '';
   filterKey: string | null = null;
+  filterName: string | null = null;
 
   originalClientData: TableRow[] = [];
   clientData: TableRow[] = [];
@@ -127,6 +128,13 @@ export class ClientTableComponent implements OnInit {
   toggleFilterMenu(filterKey: string, event: MouseEvent): void {
     this.filterKey = this.filterKey === filterKey ? null : filterKey;
     this.existingFilter = this.activeFilters[filterKey];
+    if(this.filterKey) {
+      this.clientColumns.forEach(col => {
+        if (col.key === this.filterKey) {
+          this.filterName = col.label;
+        }
+      });
+    }
     event.stopPropagation();
   }
 

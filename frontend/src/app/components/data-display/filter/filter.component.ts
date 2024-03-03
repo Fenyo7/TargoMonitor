@@ -13,6 +13,7 @@ export interface FilterOptions {
 })
 export class FilterComponent implements OnChanges {
   @Input() columnKey: string = '';
+  @Input() columnName: string | null = '';
   @Input() existingFilter: FilterOptions = {
     contains: null,
     sort: 'none',
@@ -48,5 +49,16 @@ export class FilterComponent implements OnChanges {
       contains: '',
       sort: ['none'],
     });
+  }
+
+  toggleSort(direction: 'asc' | 'desc'): void {
+    const currentDirection = this.filterForm.get('sort')?.value;
+
+    let newDirection = 'none';
+    if(currentDirection !== direction) {
+      newDirection = direction;
+    }
+
+    this.filterForm.get('sort')?.setValue(newDirection);
   }
 }

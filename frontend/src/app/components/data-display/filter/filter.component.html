@@ -1,22 +1,35 @@
-<h2>{{columnKey}} szűrése</h2>
+<h2>{{ columnName }} oszlop szűrése</h2>
 <form [formGroup]="filterForm">
   <div>
     <label for="contains">Tartalmazza: </label>
     <input id="contains" type="text" formControlName="contains" />
   </div>
 
-  <div>
-    <label>Rendezés</label>
-    <div>
-      <label>
-        <input type="radio" formControlName="sort" value="none" /> Nincs
-      </label>
-      <label>
-        <input type="radio" formControlName="sort" value="asc" /> Növekvő
-      </label>
-      <label>
-        <input type="radio" formControlName="sort" value="desc" /> Csökkenő
-      </label>
+  <div class="sort-options">
+    <label>Rendezés:</label>
+    <div class="sort-icons">
+      <img
+      [src]="
+        filterForm.get('sort')?.value === 'asc'
+          ? '../../../assets/icons/arrow-down-circle-active.svg'
+          : '../../../assets/icons/arrow-down-circle.svg'
+      "
+      alt="Descending"
+      class="action-icon"
+      (click)="toggleSort('asc')"
+      title="Rendezés növekvő sorrendben A-Z 0-9"
+      />
+      <img
+      [src]="
+        filterForm.get('sort')?.value === 'desc'
+          ? '../../../assets/icons/arrow-up-circle-active.svg'
+          : '../../../assets/icons/arrow-up-circle.svg'
+      "
+      alt="Ascending"
+      class="action-icon"
+      (click)="toggleSort('desc')"
+      title="Rendezés csökkenő sorrendben Z-A 9-0"
+    />
     </div>
   </div>
 

@@ -50,3 +50,13 @@ form {
 h1 {
   margin-left: 30px;
 }
+
+.action-icon {
+  width: 48px;
+  transition: opacity 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
