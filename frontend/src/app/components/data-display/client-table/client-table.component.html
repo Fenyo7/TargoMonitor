@@ -14,7 +14,7 @@
                   alt="Filter"
                   class="icon-interactable"
                   title="Szűrő hozzáadása"
-                  (click)="openFilterMenu(col.key)"
+                  (click)="toggleFilterMenu(col.key, $event)"
                 />
               </div>
             </div>
@@ -105,14 +105,14 @@
   </table>
 </div>
 
-<mat-card class="contacts" *ngIf="contactRowId != null">
+<mat-card class="contacts" *ngIf="contactRowId != null" (appClickOutside)="closeContact()">
   <app-contact-display
     [contactData]="contactData"
     [clientName]="selectedClientForContacts"
   ></app-contact-display>
 </mat-card>
 
-<mat-card class="filter" *ngIf="filterKey != null">
+<mat-card class="filter" *ngIf="filterKey != null" (appClickOutside)="closeFilter()">
   <app-filter
     *ngIf="filterKey"
     [columnKey]="filterKey"

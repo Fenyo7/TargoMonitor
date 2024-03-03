@@ -107,6 +107,11 @@ export class ClientTableComponent implements OnInit {
     }
   }
 
+  closeContact(): void {
+    this.contactRowId = null;
+    this.contactData = [];
+  }
+
   editRow(row: TableRow): void {
     console.log(`Edit ${row['name']}`);
   }
@@ -115,9 +120,16 @@ export class ClientTableComponent implements OnInit {
     console.log(`Add machine to ${row['name']}, id: ${row['clientId']}`);
   }
 
-  openFilterMenu(filterKey: string): void {
+  toggleFilterMenu(filterKey: string, event: MouseEvent): void {
     this.filterKey = this.filterKey === filterKey ? null : filterKey;
     const existingFilter = this.activeFilters[filterKey];
+    event.stopPropagation();
+  }
+
+  closeFilter(): void {
+    if(this.filterKey !== null) {
+      this.filterKey = null;
+    }
   }
 
   clearFilter(filterKey: string): void {
