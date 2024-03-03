@@ -4,4 +4,5 @@ export interface Client {
     address: string;
     hasContract: boolean;
     doNotify: boolean;
+    billingEmail: string;
 }

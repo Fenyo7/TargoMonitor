@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { addClientDTO } from 'src/app/models/DTOs/addClient.dto';
 import { ClientService } from 'src/app/services/client.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class AddClientComponent implements OnInit {
     this.clientForm = this.fb.group({
       name: ['', Validators.required],
       address: ['', Validators.required],
+      billingEmail: ['', Validators.required]
     });
   }
 
@@ -27,7 +29,7 @@ export class AddClientComponent implements OnInit {
 
   onSubmit() {
     if (this.clientForm.valid) {
-      const clientData = {
+      const clientData: addClientDTO = {
         ...this.clientForm.value,
         hasContract: this.hasContract,
         doNotify: this.doNotify,

@@ -3,4 +3,5 @@ export interface addClientDTO {
   address: string;
   hasContract: boolean;
   doNotify: boolean;
+  billingEmail: string;
 }
