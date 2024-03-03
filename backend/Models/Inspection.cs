@@ -12,5 +12,6 @@ namespace TargoMonitor.Data.Models
         public required string Type { get; set; } // Vizsgálat típusa (IBF, Fővizsgálat, Szerk)
         public required DateTime Date { get; set; } // Időpont
         public string Notes { get; set; } // Megjegyzés
+        public string HoursOfOperation { get; set; } // Üzemóra
     }
 }

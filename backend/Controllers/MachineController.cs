@@ -39,7 +39,7 @@ public class MachineController : ControllerBase
             var machine = new Machine
             {
                 ClientId = addMachineDto.ClientId,
-                Place = addMachineDto?.Place,
+                AddressCity = addMachineDto?.Place,
                 UsePlace = addMachineDto?.UsePlace,
                 IsLifting = addMachineDto.IsLifting,
                 InventoryNumber = addMachineDto?.InventoryNumber,

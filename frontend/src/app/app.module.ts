@@ -23,6 +23,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AddContactComponent } from './components/data-add/add-contact/add-contact.component';
 import { ContactDisplayComponent } from './components/data-display/contact-display/contact-display.component';
 import { FilterComponent } from './components/data-display/filter/filter.component';
+import { ClickOutsideDirective } from './click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FilterComponent } from './components/data-display/filter/filter.compone
     MachineTableComponent,
     AddContactComponent,
     ContactDisplayComponent,
-    FilterComponent
+    FilterComponent,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,
