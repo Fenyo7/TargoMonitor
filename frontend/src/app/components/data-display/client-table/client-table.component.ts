@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
 import { ContactService } from 'src/app/services/contact.service';
 import { FilterOptions } from '../filter/filter.component';
+import { empty } from 'rxjs';
 
 export interface TableColumn {
   key: string;
@@ -18,7 +19,7 @@ export interface TableRow {
   templateUrl: './client-table.component.html',
   styleUrls: ['./client-table.component.scss'],
 })
-export class ClientTableComponent implements OnInit {
+export class ClientTableComponent {
   expandedRowId: number | null = null;
   contactRowId: number | null = null;
   contactData: any[] = [];
@@ -27,7 +28,7 @@ export class ClientTableComponent implements OnInit {
   filterName: string | null = null;
 
   originalClientData: TableRow[] = [];
-  clientData: TableRow[] = [];
+  @Input() clientData: TableRow[] = [];
   machineData: TableRow[] = [];
   activeFilters: { [key: string]: FilterOptions } = {};
   existingFilter: FilterOptions = {
@@ -48,42 +49,7 @@ export class ClientTableComponent implements OnInit {
     { key: 'actions', label: 'Akciógombok', type: 'actions' },
   ];
 
-  constructor(
-    private clientService: ClientService,
-    private contactService: ContactService
-  ) {}
-
-  ngOnInit(): void {
-    this.fetchClients();
-  }
-
-  fetchClients(): void {
-    this.clientService.getAllClients().subscribe({
-      next: (clients) => {
-        this.originalClientData = clients.map(
-          (client: {
-            clientId: any;
-            name: any;
-            address: any;
-            primaryContact: { name: any; phone: any; email: any };
-            hasContract: any;
-            doNotify: any;
-          }) => ({
-            clientId: client.clientId,
-            name: client.name,
-            address: client.address,
-            primaryContact: client.primaryContact?.name || '',
-            contactPhone: client.primaryContact?.phone || '',
-            contactEmail: client.primaryContact?.email || '',
-            hasContract: client.hasContract ? true : false,
-            doNotify: client.doNotify ? true : false,
-          })
-        );
-        this.clientData = this.originalClientData;
-      },
-      error: (error) => console.error(error),
-    });
-  }
+  constructor(private contactService: ContactService) {}
 
   toggleRow(rowId: number): void {
     this.expandedRowId = this.expandedRowId === rowId ? null : rowId;
@@ -126,6 +92,10 @@ export class ClientTableComponent implements OnInit {
   }
 
   toggleFilterMenu(filterKey: string, event: MouseEvent): void {
+    if (Object.keys(this.activeFilters).length === 0) {
+      this.originalClientData = this.clientData;
+    }
+
     this.filterKey = this.filterKey === filterKey ? null : filterKey;
     this.existingFilter = this.activeFilters[filterKey];
     if (this.filterKey) {
@@ -154,7 +124,7 @@ export class ClientTableComponent implements OnInit {
       if (filterCriteria.contains || filterCriteria.sort !== 'none') {
         this.activeFilters[this.filterKey] = filterCriteria;
       } else {
-        delete this.activeFilters[this.filterKey]; // Remove filter if criteria are essentially 'empty'
+        delete this.activeFilters[this.filterKey];
       }
       this.applyAllFilters();
     }
