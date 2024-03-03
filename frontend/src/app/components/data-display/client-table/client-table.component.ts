@@ -32,8 +32,8 @@ export class ClientTableComponent implements OnInit {
   activeFilters: { [key: string]: FilterOptions } = {};
   existingFilter: FilterOptions = {
     contains: null,
-    sort: 'none'
-  }
+    sort: 'none',
+  };
 
   clientColumns: TableColumn[] = [
     { key: 'clientId', label: 'ClientId', type: 'hidden' },
@@ -128,8 +128,8 @@ export class ClientTableComponent implements OnInit {
   toggleFilterMenu(filterKey: string, event: MouseEvent): void {
     this.filterKey = this.filterKey === filterKey ? null : filterKey;
     this.existingFilter = this.activeFilters[filterKey];
-    if(this.filterKey) {
-      this.clientColumns.forEach(col => {
+    if (this.filterKey) {
+      this.clientColumns.forEach((col) => {
         if (col.key === this.filterKey) {
           this.filterName = col.label;
         }
@@ -139,7 +139,7 @@ export class ClientTableComponent implements OnInit {
   }
 
   closeFilter(): void {
-    if(this.filterKey !== null) {
+    if (this.filterKey !== null) {
       this.filterKey = null;
     }
   }
@@ -147,7 +147,7 @@ export class ClientTableComponent implements OnInit {
   clearFilter(filterKey: string): void {
     delete this.activeFilters[filterKey];
     this.applyAllFilters();
-  }  
+  }
 
   applyFilter(filterCriteria: FilterOptions): void {
     if (this.filterKey) {
@@ -173,8 +173,35 @@ export class ClientTableComponent implements OnInit {
             .includes(filter.contains?.toLowerCase())
         );
       }
-      // Add more conditions based on other types of filters like 'sort'
     });
+
+    const sortKey = Object.keys(this.activeFilters).find(
+      (key) =>
+        this.activeFilters[key].sort === 'asc' ||
+        this.activeFilters[key].sort === 'desc'
+    );
+
+    if (sortKey) {
+      const sortCriteria = this.activeFilters[sortKey].sort;
+      filteredData.sort((a, b) => {
+        let valA = a[sortKey],
+          valB = b[sortKey];
+
+        if (!isNaN(parseFloat(valA)) && !isNaN(parseFloat(valB))) {
+          valA = parseFloat(valA);
+          valB = parseFloat(valB);
+        } else {
+          valA = valA?.toString().toLowerCase();
+          valB = valB?.toString().toLowerCase();
+        }
+
+        if (sortCriteria === 'asc') {
+          return valA > valB ? 1 : valA < valB ? -1 : 0;
+        } else {
+          return valA < valB ? 1 : valA > valB ? -1 : 0;
+        }
+      });
+    }
 
     this.clientData = filteredData;
   }
