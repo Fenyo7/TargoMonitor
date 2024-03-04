@@ -12,14 +12,14 @@ h1 {
 }
 
 .left-side, .right-side {
-  padding-right: 40px;
   flex: 1;
   max-height: 65vh;
   overflow-x: hidden;
 }
 
 .left-side {
-  margin-right: 120px;
+  padding-right: 40px;
+  margin-right: 60px;
   overflow-y: auto;
 }
 
@@ -34,7 +34,7 @@ h1 {
   }
 
   input[type="text"], select {
-    width: 100%;
+    width: 80%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -68,6 +68,7 @@ h1 {
     cursor: pointer;
     width: 24px;
     height: 24px;
+    margin-right: 5vw;
   }
 }
 

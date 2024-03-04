@@ -120,7 +120,7 @@
           <div [ngSwitch]="typeFormControl.value">
 
             <div *ngSwitchCase="'Daru'">
-              <label>Daru típusa</label>
+              <label>Daru fajtája</label>
               <select [formControl]="daruControl">
                 <option *ngFor="let option of daruOptions" [value]="option">
                   {{option}}
@@ -187,7 +187,7 @@
             </div>
 
             <div *ngSwitchCase="'Önjáró daruk és rakodódaruk'">
-              <label>Önjáró daru vagy rakodódaru típusa</label>
+              <label>Önjáró daru vagy rakodódaru fajtája</label>
               <select [formControl]="onjaroControl">
                 <option *ngFor="let option of onjaroOptions" [value]="option">
                   {{option}}
@@ -226,7 +226,7 @@
               </select>
 
               <div *ngIf="targoncaControl.value == 'Vezetőüléses'">
-                <label>Targonca típusa</label>
+                <label>Targonca fajtája</label>
                 <select [formControl]="vezetoulesControl">
                   <option *ngFor="let option of vezetoulesOptions" [value]="option">
                     {{option}}
@@ -253,7 +253,7 @@
                 </option>
               </select>
               
-              <label>Mozgó munkaállvány típusa</label>
+              <label>Mozgó munkaállvány fajtája</label>
               <select [formControl]="mozgomunkaControl">
                 <option *ngFor="let option of mozgomunkaOptions" [value]="option">
                   {{option}}
@@ -277,7 +277,7 @@
             </div>
 
             <div *ngSwitchCase="'Járműre szerelt emelőgép'">
-              <label>Emelőgép típusa</label>
+              <label>Emelőgép fajtája</label>
               <select [formControl]="jarmureszereltControl">
                 <option *ngFor="let option of jarmureszereltOptions" [value]="option">
                   {{option}}
@@ -301,7 +301,7 @@
             </div>
 
             <div *ngSwitchCase="'Emelőasztal'">
-              <label>Emelőasztal típusa</label>
+              <label>Emelőasztal fajtája</label>
               <select [formControl]="emeloasztalControl">
                 <option *ngFor="let option of emeloasztalOptions" [value]="option">
                   {{option}}
@@ -346,7 +346,7 @@
                 </option>
               </select>
 
-              <label>Járműemelő típusa</label>
+              <label>Járműemelő fajtája</label>
               <select [formControl]="jarmuemeloControl">
                 <option *ngFor="let option of jarmuemeloOptions" [value]="option">
                   {{option}}
@@ -354,6 +354,7 @@
               </select>
 
               <div *ngIf="jarmuemeloControl.value == 'Kézi'">
+                <label>Megnevezése</label>
                 <select [formControl]="kezijarmuemeloControl">
                   <option *ngFor="let option of kezijarmuemeloOptions" [value]="option">
                     {{option}}
@@ -373,7 +374,7 @@
             </div>
 
             <div *ngSwitchCase="'Kézi emelőeszköz'">
-              <label>Kézi emelőeszköz típusa</label>
+              <label>Kézi emelőeszköz fajtája</label>
               <select [formControl]="keziemeloControl">
                 <option *ngFor="let option of keziemeloOptions" [value]="option">
                   {{option}}

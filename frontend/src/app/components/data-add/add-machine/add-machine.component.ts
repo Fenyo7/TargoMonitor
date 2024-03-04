@@ -233,6 +233,10 @@ export class AddMachineComponent implements OnInit {
     this[field] = !this[field];
   }
 
+  generateCode() {
+    
+  }
+
   onSubmit() {
     if(this.machineForm.valid) {
       const selectedClient = this.machineForm.value.client as Client;
