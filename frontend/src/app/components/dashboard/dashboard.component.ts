@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit{
             primaryContact: { name: any; phone: any; email: any };
             hasContract: any;
             doNotify: any;
+            billingEmail: any;
           }) => ({
             clientId: client.clientId,
             name: client.name,
@@ -43,6 +44,7 @@ export class DashboardComponent implements OnInit{
             primaryContact: client.primaryContact?.name || '',
             contactPhone: client.primaryContact?.phone || '',
             contactEmail: client.primaryContact?.email || '',
+            billingEmail: client.billingEmail || '',
             hasContract: client.hasContract ? true : false,
             doNotify: client.doNotify ? true : false,
           })

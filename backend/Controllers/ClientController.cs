@@ -83,6 +83,7 @@ public class ClientController : ControllerBase
             client.Address,
             client.HasContract,
             client.DoNotify,
+            client.BillingEmail,
             PrimaryContact = client.Contacts.Where(contact => contact.IsPrimary).Select(contact => new
             {
                 contact.Name,
