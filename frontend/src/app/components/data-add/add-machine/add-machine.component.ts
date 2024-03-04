@@ -15,6 +15,7 @@ import { ClientService } from 'src/app/services/client.service';
 })
 export class AddMachineComponent implements OnInit {
   machineForm!: FormGroup;
+
   typeFormControl = new FormControl('');
 
   daruControl = new FormControl('');
@@ -32,7 +33,6 @@ export class AddMachineComponent implements OnInit {
   jarmuemelomeghajtControl = new FormControl('');
   kezijarmuemeloControl = new FormControl('');
   keziemeloControl = new FormControl('');
-
 
   clients$!: Observable<Client[]>;
   filteredClients$!: Observable<Client[]>;
@@ -167,12 +167,14 @@ export class AddMachineComponent implements OnInit {
       addressCity: ['', Validators.required],
       addressStreet: ['', Validators.required],
       addressNumber: ['', Validators.required],
+      usePlace: [''],
       inventoryNumber: ['', Validators.required],
       brand: ['', Validators.required],
       type: ['', Validators.required],
       factoryNumber: ['', Validators.required],
-      manufactureYear: ['', Validators.required],
+      manufactureYear: [''],
       commissionDate: ['', Validators.required],
+      note: [''],
       client: [''],
     });
 
