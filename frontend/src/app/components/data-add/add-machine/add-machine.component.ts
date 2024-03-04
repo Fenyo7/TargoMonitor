@@ -46,7 +46,7 @@ export class AddMachineComponent implements OnInit {
     'Targonca',
     'Körülkerített emelőterű emelő',
     'Toronydaru',
-    'Mozgó munkaállvány',
+    'Mozgó munkaállvány / Kosaras személyemelő',
     'Járműre szerelt emelőgép',
     'Járműemelő',
     'Emelőasztal',
@@ -117,6 +117,9 @@ export class AddMachineComponent implements OnInit {
     'Emelőhátfal',
     'Konténeremelő / multilift',
     'Billencs (nem emelőgép)',
+    'Járműre szerelt szerelőkosár',
+    'Trailer',
+    'Hulladékszállító jármű',
     'Egyéb'
   ];
 
@@ -135,6 +138,7 @@ export class AddMachineComponent implements OnInit {
     'Négyoszlopos',
     'Padlóemelő',
     'Aknaperememelő',
+    'Szintkiegyenlítő',
     'Kézi',
     'Egyéb'
   ];
@@ -154,6 +158,7 @@ export class AddMachineComponent implements OnInit {
   keziemeloOptions = [
     'Kézi magasemelésű targonca',
     'Kézi csörlő',
+    'Emelőasztal',
     'Egyéb'
   ];
 

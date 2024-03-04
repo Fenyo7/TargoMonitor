@@ -1,50 +1,89 @@
+// Base styling for the page
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+// Styling for the form container
 .form-container {
-  display: flex; /* This enables flex layout */
-  justify-content: space-between; /* This separates the left and right sides */
-  width: 100%; /* Full width to contain both sides */
-}
-
-.left-side,
-.right-side {
   display: flex;
-  flex-direction: column;
-  width: 48%; /* Adjust this value as needed to control the width of each side */
-  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
 }
 
-/* Adjustments to ensure form fields use available space */
-input,
-select {
-  width: 100%; /* Make input and select elements take the full width of their parent container */
+.left-side, .right-side {
+  padding-right: 40px;
+  flex: 1;
+  max-height: 65vh;
+  overflow-x: hidden;
 }
 
-button {
-  width: auto;
-  padding: 10px;
-  margin-top: 20px;
-  align-self: center; /* Center the button within its container */
+.left-side {
+  margin-right: 120px;
+  overflow-y: auto;
 }
 
-/* Adjust the overall form styling as needed */
-form {
-  max-width: none; /* Remove max-width to allow form to expand with its container */
-  margin: auto;
-  padding: 20px; /* Add some padding around the form */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for better visual separation */
+// Styling for form fields
+.form-field {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+  }
+
+  input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  select {
+    margin-bottom: 10px;
+  }
+
+  // Custom styles for autocomplete components
+  mat-autocomplete {
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+  }
+
+  mat-option {
+    padding: 10px;
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
 }
 
-/* Additional styling for labels, inputs, and other elements as needed */
-label,
-.icon {
-  margin-bottom: 5px; /* Adjust spacing around labels and icons */
+// Toggle field specific styling
+.toggle-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+  }
 }
 
-.icon {
-  width: 24px;
+// Submit button styling
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
 }
 
-/* Ensure icons fit well next to inputs/toggles */
-.icon {
-  cursor: pointer; /* Makes it clear icons are clickable */
-  margin-left: 5px; /* Space out from the label or input */
-}
+// Add any additional styles or modifications below
