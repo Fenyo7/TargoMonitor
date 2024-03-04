@@ -176,6 +176,22 @@ export class AddMachineComponent implements OnInit {
       commissionDate: ['', Validators.required],
       note: [''],
       client: [''],
+
+      // Adattábla szerinti adatok
+
+      licenseNumber: [''],
+      adapterName: [''],
+      controlMode: [''],
+      vehicleType: [''],
+      liftHeight: [''],
+      console: [''],
+      weight: [''],
+      power: [''],
+      chain: [''],
+      load: [''],
+      span: [''],
+      rope: [''],
+      bend: ['']
     });
 
     this.clients$ = this.clientService.getAllClients();
