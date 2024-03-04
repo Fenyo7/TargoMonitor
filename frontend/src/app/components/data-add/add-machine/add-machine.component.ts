@@ -8,10 +8,6 @@ import {
 import { Observable, combineLatest, map, startWith } from 'rxjs';
 import { Client } from 'src/app/models/client.model';
 import { ClientService } from 'src/app/services/client.service';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-
 @Component({
   selector: 'app-add-machine',
   templateUrl: './add-machine.component.html',
@@ -178,9 +174,6 @@ export class AddMachineComponent implements OnInit {
       manufactureYear: ['', Validators.required],
       commissionDate: ['', Validators.required],
       client: [''],
-
-      machineType: [''],
-      specificInputs: this.fb.group({}),
     });
 
     this.clients$ = this.clientService.getAllClients();
