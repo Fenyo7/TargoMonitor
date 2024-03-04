@@ -22,6 +22,7 @@ export interface addMachineDTO {
   controlMode?: string;
   vehicleType?: string;
   liftHeight?: string;
+  ropeDiam?: string;
   console?: string;
   weight?: string;
   power?: string;

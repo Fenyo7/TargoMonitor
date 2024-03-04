@@ -59,6 +59,7 @@ namespace TargoMonitor.Data.Models
         public string ControlMode { get; set; } // Vezérlés módja : talajról, rádió, egyéb
         public string VehicleType { get; set; } // Jármű típusa (mire szerelték az emelőgépet)
         public string LiftHeight { get; set; } // Emelési magasság (mm)
+        public string RopeDiam { get; set; } // Kötél átmérője
         public string Console { get; set; } // Konzol kinyúlás
         public string Weight { get; set; } // Önsúly (kg)
         public string Power { get; set; } // Teljesítmény (kW)

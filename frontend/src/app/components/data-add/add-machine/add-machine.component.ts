@@ -33,6 +33,7 @@ export class AddMachineComponent implements OnInit {
   jarmuemelomeghajtControl = new FormControl('');
   kezijarmuemeloControl = new FormControl('');
   keziemeloControl = new FormControl('');
+  vezerlesControl = new FormControl('');
 
   clients$!: Observable<Client[]>;
   filteredClients$!: Observable<Client[]>;
@@ -156,6 +157,11 @@ export class AddMachineComponent implements OnInit {
     'Egyéb'
   ];
 
+  vezerlesOptions = [
+    'Talajról vezérelt',
+    'Rádió távvezérlés'
+  ];
+
   constructor(
     private fb: FormBuilder,
     // private machineService: MachineService,
@@ -184,6 +190,7 @@ export class AddMachineComponent implements OnInit {
       controlMode: [''],
       vehicleType: [''],
       liftHeight: [''],
+      ropeDiam: [''],
       console: [''],
       weight: [''],
       power: [''],

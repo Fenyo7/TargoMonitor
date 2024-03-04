@@ -132,6 +132,56 @@
                   {{option}}
                 </option>
               </select>
+
+              <div class="form-field">
+                <label for="load">Teherbírás</label>
+                <input type="text" id="load" formControlName="load" />
+              </div>
+
+              <div class="form-field">
+                <label for="liftHeight">Emelési magasság</label>
+                <input type="text" id="liftHeight" formControlName="liftHeight" />
+              </div>
+
+              <div class="form-field">
+                <label for="console">Konzolkinyúlás</label>
+                <input type="text" id="console" formControlName="console" />
+              </div>
+
+              <div class="form-field">
+                <label for="span">Fesztáv</label>
+                <input type="text" id="span" formControlName="span" />
+              </div>
+
+              <div class="form-field">
+                <label for="bend">Megengedett lehajlás mértéke</label>
+                <input type="text" id="bend" formControlName="bend" />
+              </div>
+
+              <select [formControl]="vezerlesControl">
+                <option *ngFor="let option of vezerlesOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+
+              <div *ngIf="darulancControl.value == 'Sodronyköteles'">
+                <div class="form-field">
+                  <label for="rope">Kötél típusa</label>
+                  <input type="text" id="rope" formControlName="rope" />
+                </div>
+
+                <div class="form-field">
+                  <label for="ropeDiam">Kötél átmérője</label>
+                  <input type="text" id="ropeDiam" formControlName="ropeDiam" />
+                </div>
+              </div>
+
+              <div *ngIf="darulancControl.value == 'Láncos'">
+                <div class="form-field">
+                  <label for="chain">Lánc típusa</label>
+                  <input type="text" id="chain" formControlName="chain" />
+                </div>
+              </div>
             </div>
 
             <div *ngSwitchCase="'Önjáró daruk és rakodódaruk'">
@@ -140,6 +190,21 @@
                   {{option}}
                 </option>
               </select>
+
+              <div class="form-field">
+                <label for="load">Teherbírás</label>
+                <input type="text" id="load" formControlName="load" />
+              </div>
+
+              <div class="form-field">
+                <label for="liftHeight">Emelési magasság</label>
+                <input type="text" id="liftHeight" formControlName="liftHeight" />
+              </div>
+
+              <div class="form-field">
+                <label for="console">Kinyúlás</label>
+                <input type="text" id="console" formControlName="console" />
+              </div>
             </div>
 
             <div *ngSwitchCase="'Targonca'">
@@ -163,6 +228,15 @@
                 </select>
               </div>
 
+              <div class="form-field">
+                <label for="load">Teherbírás</label>
+                <input type="text" id="load" formControlName="load" />
+              </div>
+
+              <div class="form-field">
+                <label for="liftHeight">Emelési magasság</label>
+                <input type="text" id="liftHeight" formControlName="liftHeight" />
+              </div>
             </div>
 
             <div *ngSwitchCase="'Mozgó munkaállvány'">
@@ -177,6 +251,21 @@
                   {{option}}
                 </option>
               </select>
+
+              <div class="form-field">
+                <label for="load">Teherbírás</label>
+                <input type="text" id="load" formControlName="load" />
+              </div>
+
+              <div class="form-field">
+                <label for="liftHeight">Emelési magasság</label>
+                <input type="text" id="liftHeight" formControlName="liftHeight" />
+              </div>
+
+              <div class="form-field">
+                <label for="console">Kinyúlás</label>
+                <input type="text" id="console" formControlName="console" />
+              </div>
             </div>
 
             <div *ngSwitchCase="'Járműre szerelt emelőgép'">
@@ -185,6 +274,21 @@
                   {{option}}
                 </option>
               </select>
+
+              <div class="form-field">
+                <label for="load">Teherbírás</label>
+                <input type="text" id="load" formControlName="load" />
+              </div>
+
+              <div class="form-field">
+                <label for="licenseNumber">Rendszám</label>
+                <input type="text" id="licenseNumber" formControlName="licenseNumber" />
+              </div>
+
+              <div class="form-field">
+                <label for="type">Jármű típusa</label>
+                <input type="text" id="type" formControlName="type" />
+              </div>
             </div>
 
             <div *ngSwitchCase="'Emelőasztal'">
@@ -193,6 +297,16 @@
                   {{option}}
                 </option>
               </select>
+
+              <div class="form-field">
+                <label for="load">Teherbírás</label>
+                <input type="text" id="load" formControlName="load" />
+              </div>
+
+              <div class="form-field">
+                <label for="liftHeight">Emelési magasság</label>
+                <input type="text" id="liftHeight" formControlName="liftHeight" />
+              </div>
             </div>
 
             <div *ngSwitchCase="'Adapter'">
@@ -201,6 +315,16 @@
                   {{option}}
                 </option>
               </select>
+
+              <div class="form-field">
+                <label for="adapterName">Adapter megnevezése</label>
+                <input type="text" id="adapterName" formControlName="adapterName" />
+              </div>
+
+              <div class="form-field">
+                <label for="load">Teherbírás</label>
+                <input type="text" id="load" formControlName="load" />
+              </div>
             </div>
 
             <div *ngSwitchCase="'Járműemelő'">
@@ -224,6 +348,15 @@
                 </select>
               </div>
 
+              <div class="form-field">
+                <label for="load">Teherbírás</label>
+                <input type="text" id="load" formControlName="load" />
+              </div>
+
+              <div class="form-field">
+                <label for="liftHeight">Emelési magasság</label>
+                <input type="text" id="liftHeight" formControlName="liftHeight" />
+              </div>
             </div>
 
             <div *ngSwitchCase="'Kézi emelőeszköz'">
@@ -232,6 +365,57 @@
                   {{option}}
                 </option>
               </select>
+
+              <div class="form-field">
+                <label for="load">Teherbírás</label>
+                <input type="text" id="load" formControlName="load" />
+              </div>
+
+              <div class="form-field">
+                <label for="liftHeight">Emelési magasság</label>
+                <input type="text" id="liftHeight" formControlName="liftHeight" />
+              </div>
+            </div>
+
+            <div *ngSwitchCase="'Rakodógép (nem emelőgép)'">
+              <div class="form-field">
+                <label for="power">Teljesítmény</label>
+                <input type="text" id="power" formControlName="power" />
+              </div>
+
+              <div class="form-field">
+                <label for="weight">Önsúly</label>
+                <input type="text" id="weight" formControlName="weight" />
+              </div>
+
+              <div class="form-field">
+                <label for="licenseNumber">Rendszám</label>
+                <input type="text" id="licenseNumber" formControlName="licenseNumber" />
+              </div>
+            </div>
+
+            <div *ngSwitchCase="'Kotrógép (nem emelőgép)'">
+              <div class="form-field">
+                <label for="power">Teljesítmény</label>
+                <input type="text" id="power" formControlName="power" />
+              </div>
+
+              <div class="form-field">
+                <label for="weight">Önsúly</label>
+                <input type="text" id="weight" formControlName="weight" />
+              </div>
+
+              <div class="form-field">
+                <label for="licenseNumber">Rendszám</label>
+                <input type="text" id="licenseNumber" formControlName="licenseNumber" />
+              </div>
+            </div>
+
+            <div *ngSwitchCase="'Kézi béka'">
+              <div class="form-field">
+                <label for="load">Teherbírás</label>
+                <input type="text" id="load" formControlName="load" />
+              </div>
             </div>
 
             <div *ngSwitchDefault>Válasszon gép típust.</div>
