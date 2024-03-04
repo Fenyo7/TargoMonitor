@@ -1,0 +1,50 @@
+.form-container {
+  display: flex; /* This enables flex layout */
+  justify-content: space-between; /* This separates the left and right sides */
+  width: 100%; /* Full width to contain both sides */
+}
+
+.left-side,
+.right-side {
+  display: flex;
+  flex-direction: column;
+  width: 48%; /* Adjust this value as needed to control the width of each side */
+  align-items: flex-start;
+}
+
+/* Adjustments to ensure form fields use available space */
+input,
+select {
+  width: 100%; /* Make input and select elements take the full width of their parent container */
+}
+
+button {
+  width: auto;
+  padding: 10px;
+  margin-top: 20px;
+  align-self: center; /* Center the button within its container */
+}
+
+/* Adjust the overall form styling as needed */
+form {
+  max-width: none; /* Remove max-width to allow form to expand with its container */
+  margin: auto;
+  padding: 20px; /* Add some padding around the form */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for better visual separation */
+}
+
+/* Additional styling for labels, inputs, and other elements as needed */
+label,
+.icon {
+  margin-bottom: 5px; /* Adjust spacing around labels and icons */
+}
+
+.icon {
+  width: 24px;
+}
+
+/* Ensure icons fit well next to inputs/toggles */
+.icon {
+  cursor: pointer; /* Makes it clear icons are clickable */
+  margin-left: 5px; /* Space out from the label or input */
+}

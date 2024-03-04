@@ -1,1 +1,240 @@
-<p>add-machine works!</p>
+<h1>Gép hozzáadása</h1>
+<form [formGroup]="machineForm" (ngSubmit)="onSubmit()">
+  <div class="form-container">
+    <div class="left-side">
+      <div class="form-field">
+        <label>Partnercég</label>
+        <input
+          type="text"
+          id="client"
+          formControlName="client"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          [displayWith]="displayClientName"
+        >
+          <mat-option
+            *ngFor="let client of filteredClients$ | async"
+            [value]="client"
+          >
+            {{ client.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+
+      <div class="form-field">
+        <label for="addressCity">Telephely város</label>
+        <input type="text" id="addressCity" formControlName="addressCity" />
+      </div>
+
+      <div class="form-field">
+        <label for="addressStreet">Telephely utca</label>
+        <input type="text" id="addressStreet" formControlName="addressStreet" />
+      </div>
+
+      <div class="form-field">
+        <label for="addressNumber">Telephely házszám</label>
+        <input type="text" id="addressNumber" formControlName="addressNumber" />
+      </div>
+
+      <div class="form-field">
+        <label for="inventoryNumber">Leltári szám</label>
+        <input
+          type="text"
+          id="inventoryNumber"
+          formControlName="inventoryNumber"
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="brand">Gyártmány</label>
+        <input type="text" id="brand" formControlName="brand" />
+      </div>
+
+      <div class="form-field">
+        <label for="type">Típus</label>
+        <input type="text" id="type" formControlName="type" />
+      </div>
+
+      <div class="form-field">
+        <label for="factoryNumber">Gyári szám</label>
+        <input type="text" id="factoryNumber" formControlName="factoryNumber" />
+      </div>
+
+      <div class="form-field">
+        <label for="manufactureYear">Gyártás éve</label>
+        <input
+          type="text"
+          id="manufactureYear"
+          formControlName="manufactureYear"
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="commissionDate">Üzembe helyezés időpontja</label>
+        <input
+          type="text"
+          id="commissionDate"
+          formControlName="commissionDate"
+        />
+      </div>
+    </div>
+    <div class="right-side">
+      <div class="right-side">
+        <div class="form-field">
+
+          <div class="form-field toggle-field">
+            <label for="hasContract">Veszélyes gép?</label>
+            <img
+              class="icon"
+              src="../../../assets/icons/{{
+                isDangerous ? 'check-circle' : 'blocked'
+              }}.svg"
+              (click)="onToggle('isDangerous')"
+            />
+          </div>
+
+          <div class="form-field toggle-field">
+            <label for="hasContract">Emelőgép?</label>
+            <img
+              class="icon"
+              src="../../../assets/icons/{{
+                isLifting ? 'check-circle' : 'blocked'
+              }}.svg"
+              (click)="onToggle('isLifting')"
+            />
+          </div>
+
+          <label>Gép kiválasztása</label>
+          <select [formControl]="typeFormControl">
+            <option *ngFor="let option of typeOptions" [value]="option">
+              {{option}}
+            </option>
+          </select>
+
+          <div [ngSwitch]="typeFormControl.value">
+
+            <div *ngSwitchCase="'Daru'">
+              <select [formControl]="daruControl">
+                <option *ngFor="let option of daruOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+
+              <select [formControl]="darulancControl">
+                <option *ngFor="let option of darulancOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+
+            <div *ngSwitchCase="'Önjáró daruk és rakodódaruk'">
+              <select [formControl]="onjaroControl">
+                <option *ngFor="let option of onjaroOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+
+            <div *ngSwitchCase="'Targonca'">
+              <select [formControl]="targoncameghajtControl">
+                <option *ngFor="let option of targoncameghajtOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+
+              <select [formControl]="targoncaControl">
+                <option *ngFor="let option of targoncaOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+
+              <div *ngIf="targoncaControl.value == 'Vezetőüléses'">
+                <select [formControl]="vezetoulesControl">
+                  <option *ngFor="let option of vezetoulesOptions" [value]="option">
+                    {{option}}
+                  </option>
+                </select>
+              </div>
+
+            </div>
+
+            <div *ngSwitchCase="'Mozgó munkaállvány'">
+              <select [formControl]="mozgomeghajtControl">
+                <option *ngFor="let option of mozgomeghajtOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+
+              <select [formControl]="mozgomunkaControl">
+                <option *ngFor="let option of mozgomunkaOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+
+            <div *ngSwitchCase="'Járműre szerelt emelőgép'">
+              <select [formControl]="jarmureszereltControl">
+                <option *ngFor="let option of jarmureszereltOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+
+            <div *ngSwitchCase="'Emelőasztal'">
+              <select [formControl]="emeloasztalControl">
+                <option *ngFor="let option of emeloasztalOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+
+            <div *ngSwitchCase="'Adapter'">
+              <select [formControl]="adapterControl">
+                <option *ngFor="let option of adapterOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+
+            <div *ngSwitchCase="'Járműemelő'">
+              <select [formControl]="jarmuemelomeghajtControl">
+                <option *ngFor="let option of jarmuemelomeghajtOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+
+              <select [formControl]="jarmuemeloControl">
+                <option *ngFor="let option of jarmuemeloOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+
+              <div *ngIf="jarmuemeloControl.value == 'Kézi'">
+                <select [formControl]="kezijarmuemeloControl">
+                  <option *ngFor="let option of kezijarmuemeloOptions" [value]="option">
+                    {{option}}
+                  </option>
+                </select>
+              </div>
+
+            </div>
+
+            <div *ngSwitchCase="'Kézi emelőeszköz'">
+              <select [formControl]="keziemeloControl">
+                <option *ngFor="let option of keziemeloOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+
+            <div *ngSwitchDefault>Válasszon gép típust.</div>
+          </div>
+
+        </div>
+      </div>
+      <button type="submit">Gép hozzáadása</button>
+    </div>
+  </div>
+</form>
