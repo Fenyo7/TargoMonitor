@@ -464,6 +464,8 @@ export class AddMachineComponent implements OnInit {
         ...this.machineForm.value,
         ...this.dataTableForm.value,
         commissionDate: new Date(Date.now()),
+        isDangerous: this.isDangerous,
+        isLifting: this.isLifting
       };
       console.log(machineData);
       this.machineService.addMachine(machineData).subscribe({
