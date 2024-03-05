@@ -9,6 +9,7 @@ export interface addMachineDTO {
   inventoryNumber?: number;
   kind: string;
   name: string;
+  brand?: string;
   type?: string;
   factoryNumber?: string;
   manufactureYear?: string;

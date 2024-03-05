@@ -161,14 +161,13 @@ export class AddMachineComponent implements OnInit {
     this.machineForm = this.fb.group({
       addressCity: ['', Validators.required],
       addressStreet: ['', Validators.required],
-      addressNumber: ['', Validators.required],
       usePlace: [''],
-      inventoryNumber: ['', Validators.required],
-      brand: ['', Validators.required],
-      type: ['', Validators.required],
-      factoryNumber: ['', Validators.required],
+      inventoryNumber: [''],
+      brand: [''],
+      type: [''],
+      factoryNumber: [''],
       manufactureYear: [''],
-      commissionDate: ['', Validators.required],
+      commissionDate: [''],
       note: [''],
       client: [''],
 
@@ -216,6 +215,17 @@ export class AddMachineComponent implements OnInit {
 
     if(this.isLifting) this.isDangerous = true;
   }
+
+  private generateCodePortion(control: FormControl, options: string[]): string | null {
+    const value = control.value;
+    if (!value) return null;
+  
+    const index = options.indexOf(value);
+    if (index === -1) return null;
+  
+    return index < 10 ? `0${index}` : `${index}`;
+  }
+  
 
   generateCode(): string | null {
     let code: string = '';
