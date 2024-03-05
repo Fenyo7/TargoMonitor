@@ -19,17 +19,16 @@ namespace TargoMonitor.Data.Models
         [Required]
         public string AddressStreet { get; set; } // Telephely (Utca)
 
-        [Required]
-        public string AddressNumber { get; set; } // Telephely (Házszám)
         public string UsePlace { get; set; } // Üzemelés helye (Raktár pl.)
 
         [Required]
-        public bool isDangerous { get; set; } // Veszélyes gép-e
+        public bool IsDangerous { get; set; } // Veszélyes gép-e
 
         [Required]
         public bool IsLifting { get; set; } // Emelőgép-e
 
-        [Required]
+        public int InspectGroupNumber { get; set; } // Vizsgálati csoportszám
+
         public int InventoryNumber { get; set; } // Leltári szám
 
         [Required]
@@ -41,13 +40,10 @@ namespace TargoMonitor.Data.Models
         [Required]
         public string Brand { get; set; } // Gyártmány
 
-        [Required]
         public string Type { get; set; } // Típus
 
-        [Required]
         public string FactoryNumber { get; set; } // Gyári szám
 
-        [Required]
         public string ManufactureYear { get; set; } // Gyártási év
         public DateTime? CommissionDate { get; set; } // Üzembe helyezés időponja
         public string Note { get; set; } // Megjegyzés
