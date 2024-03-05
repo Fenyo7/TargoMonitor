@@ -17,6 +17,7 @@ import { MachineService } from 'src/app/services/machine.service';
 })
 export class AddMachineComponent implements OnInit {
   machineForm!: FormGroup;
+  dataTableForm!: FormGroup;
   inspectGroupNumberControl = new FormControl('');
 
   typeFormControl = new FormControl('');
@@ -43,13 +44,7 @@ export class AddMachineComponent implements OnInit {
   isLifting: boolean = false;
   isDangerous: boolean = false;
 
-  inspectGroupNumberOptions = [
-    1,
-    2,
-    3,
-    4,
-    5
-  ]
+  inspectGroupNumberOptions = [1, 2, 3, 4, 5];
 
   typeOptions = [
     'Egyéb',
@@ -170,9 +165,9 @@ export class AddMachineComponent implements OnInit {
       commissionDate: [''],
       note: [''],
       client: [''],
+    });
 
-      // Adattábla szerinti adatok
-
+    this.dataTableForm = this.fb.group({
       licenseNumber: [''],
       adapterName: [''],
       controlMode: [''],
@@ -204,6 +199,10 @@ export class AddMachineComponent implements OnInit {
         )
       )
     );
+
+    this.typeFormControl.valueChanges.subscribe((_) => {
+      this.typeChange();
+    });
   }
 
   displayClientName(client?: Client): string {
@@ -213,19 +212,40 @@ export class AddMachineComponent implements OnInit {
   onToggle(field: 'isDangerous' | 'isLifting') {
     this[field] = !this[field];
 
-    if(this.isLifting) this.isDangerous = true;
+    if (this.isLifting) this.isDangerous = true;
   }
 
-  private generateCodePortion(control: FormControl, options: string[]): string | null {
+  typeChange(): void {
+    this.dataTableForm = this.fb.group({
+      licenseNumber: [''],
+      adapterName: [''],
+      controlMode: [''],
+      vehicleType: [''],
+      liftHeight: [''],
+      ropeDiam: [''],
+      console: [''],
+      weight: [''],
+      power: [''],
+      chain: [''],
+      load: [''],
+      span: [''],
+      rope: [''],
+      bend: [''],
+    });
+  }
+
+  private generateCodePortion(
+    control: FormControl,
+    options: string[]
+  ): string | null {
     const value = control.value;
     if (!value) return null;
-  
+
     const index = options.indexOf(value);
     if (index === -1) return null;
-  
+
     return index < 10 ? `0${index}` : `${index}`;
   }
-  
 
   generateCode(): string | null {
     let code: string = '';
@@ -409,9 +429,7 @@ export class AddMachineComponent implements OnInit {
         // Adapter
         let adapcerCode = 0;
         if (this.adapterControl.value) {
-          adapcerCode = this.adapterOptions.indexOf(
-            this.adapterControl.value
-          );
+          adapcerCode = this.adapterOptions.indexOf(this.adapterControl.value);
           if (adapcerCode / 10 < 1) {
             code += `0${adapcerCode}.`;
           } else {
@@ -425,22 +443,34 @@ export class AddMachineComponent implements OnInit {
     return code;
   }
 
+  generateName(code: string): string {
+    return `${code}`;
+  }
+
   onSubmit() {
     const code = this.generateCode();
+    let name = '';
+    if (code) {
+      name = this.generateName(code);
+    }
 
-    /*
-    if(this.machineForm.valid) {
+    if (this.machineForm.valid) {
       const selectedClient = this.machineForm.value.client as Client;
+      console.log(this.machineForm.value);
 
       const machineData: addMachineDTO = {
         clientId: selectedClient.clientId,
+        kind: code,
+        name: name,
         ...this.machineForm.value,
-        commissionDate: new Date(Date.now())
-      }
+        ...this.dataTableForm.value,
+        commissionDate: new Date(Date.now()),
+      };
+      console.log(machineData);
       this.machineService.addMachine(machineData).subscribe({
         next: (response) => console.log(response),
         error: (error) => console.log(error),
       });
-    }*/
+    }
   }
 }
