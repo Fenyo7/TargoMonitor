@@ -53,11 +53,13 @@ public class MachineController : ControllerBase
                 FactoryNumber = addMachineDto.FactoryNumber,
                 ManufactureYear = addMachineDto.ManufactureYear,
                 CommissionDate = addMachineDto?.CommissionDate,
+                Note = addMachineDto?.Note,
                 
                 // ### Adattábla szerinti adatok ###
 
                 LicenseNumber = addMachineDto?.LicenseNumber,
                 AdapterName = addMachineDto?.AdapterName,
+                VehicleType = addMachineDto?.VehicleType,
                 ControlMode = addMachineDto?.ControlMode,
                 LiftHeight = addMachineDto?.LiftHeight,
                 RopeDiam = addMachineDto?.RopeDiam,

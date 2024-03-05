@@ -456,7 +456,6 @@ export class AddMachineComponent implements OnInit {
 
     if (this.machineForm.valid) {
       const selectedClient = this.machineForm.value.client as Client;
-      console.log(this.machineForm.value);
 
       const machineData: addMachineDTO = {
         clientId: selectedClient.clientId,
