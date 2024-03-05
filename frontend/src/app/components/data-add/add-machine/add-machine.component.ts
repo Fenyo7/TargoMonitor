@@ -17,6 +17,7 @@ import { MachineService } from 'src/app/services/machine.service';
 })
 export class AddMachineComponent implements OnInit {
   machineForm!: FormGroup;
+  inspectGroupNumberControl = new FormControl('');
 
   typeFormControl = new FormControl('');
 
@@ -41,6 +42,14 @@ export class AddMachineComponent implements OnInit {
   filteredClients$!: Observable<Client[]>;
   isLifting: boolean = false;
   isDangerous: boolean = false;
+
+  inspectGroupNumberOptions = [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
 
   typeOptions = [
     'Egyéb',
@@ -204,6 +213,8 @@ export class AddMachineComponent implements OnInit {
 
   onToggle(field: 'isDangerous' | 'isLifting') {
     this[field] = !this[field];
+
+    if(this.isLifting) this.isDangerous = true;
   }
 
   generateCode(): string | null {
