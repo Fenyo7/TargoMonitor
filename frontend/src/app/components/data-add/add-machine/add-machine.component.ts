@@ -58,6 +58,7 @@ export class AddMachineComponent implements OnInit {
     'Kotrógép (nem emelőgép)',
     'Kézi béka',
     'Függesztő eszköz',
+    'Szintkiegyenlítő (rámpa)',
     'Adapter',
     'Bak',
   ];
@@ -125,7 +126,6 @@ export class AddMachineComponent implements OnInit {
     'Négyoszlopos',
     'Padlóemelő',
     'Aknaperememelő',
-    'Szintkiegyenlítő',
     'Kézi',
   ];
 
