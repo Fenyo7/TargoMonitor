@@ -72,12 +72,12 @@
       </div>
 
       <div class="form-field">
-        <label for="commissionDate">Üzembe helyezés időpontja</label>
-        <input
-          type="text"
-          id="commissionDate"
-          formControlName="commissionDate"
-        />
+        <mat-form-field appearance="fill">
+          <mat-label>Üzembe helyezés időpontja</mat-label>
+          <input matInput [matDatepicker]="pickerCommissionDate" formControlName="commissionDate">
+          <mat-datepicker-toggle matSuffix [for]="pickerCommissionDate"></mat-datepicker-toggle>
+          <mat-datepicker #pickerCommissionDate></mat-datepicker>
+        </mat-form-field>
       </div>
 
       <div class="form-field">

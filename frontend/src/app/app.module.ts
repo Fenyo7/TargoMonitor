@@ -24,6 +24,10 @@ import { AddContactComponent } from './components/data-add/add-contact/add-conta
 import { ContactDisplayComponent } from './components/data-display/contact-display/contact-display.component';
 import { FilterComponent } from './components/data-display/filter/filter.component';
 import { ClickOutsideDirective } from './click-outside.directive';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,7 @@ import { ClickOutsideDirective } from './click-outside.directive';
     AddContactComponent,
     ContactDisplayComponent,
     FilterComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,
@@ -52,8 +56,14 @@ import { ClickOutsideDirective } from './click-outside.directive';
     HttpClientModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    DatePipe,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

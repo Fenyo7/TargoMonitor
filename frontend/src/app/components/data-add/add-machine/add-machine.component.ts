@@ -10,6 +10,7 @@ import { addMachineDTO } from 'src/app/models/DTOs/addMachine.dto';
 import { Client } from 'src/app/models/client.model';
 import { ClientService } from 'src/app/services/client.service';
 import { MachineService } from 'src/app/services/machine.service';
+
 @Component({
   selector: 'app-add-machine',
   templateUrl: './add-machine.component.html',
@@ -149,7 +150,7 @@ export class AddMachineComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private machineService: MachineService,
-    private clientService: ClientService
+    private clientService: ClientService,
   ) {}
 
   ngOnInit() {
@@ -161,8 +162,8 @@ export class AddMachineComponent implements OnInit {
       brand: [''],
       type: [''],
       factoryNumber: [''],
-      manufactureYear: [''],
-      commissionDate: [''],
+      manufactureYear: new FormControl(),
+      commissionDate: new FormControl(),
       note: [''],
       client: [''],
     });
@@ -465,7 +466,7 @@ export class AddMachineComponent implements OnInit {
         ...this.dataTableForm.value,
         commissionDate: new Date(Date.now()),
         isDangerous: this.isDangerous,
-        isLifting: this.isLifting
+        isLifting: this.isLifting,
       };
       console.log(machineData);
       this.machineService.addMachine(machineData).subscribe({
