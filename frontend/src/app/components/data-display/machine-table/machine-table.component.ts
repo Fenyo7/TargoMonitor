@@ -31,9 +31,9 @@ export class MachineTableComponent {
     {key: 'brand', label: 'Gyártmány', type: 'text'},
     {key: 'type', label: 'Típus', type: 'text'},
     {key: 'lastInspect', label: 'Utolsó vizsgálat', type: 'date'},
-    {key: 'lastInspectType', label: '- jellege', type: 'text'},
+    {key: 'lastInspectType', label: 'vizsgálat jellege', type: 'text'},
     {key: 'nextInspect', label: 'Következő vizsgálat', type: 'date'},
-    {key: 'nextInspectType', label: '- jellege', type: 'text'},
+    {key: 'nextInspectType', label: 'vizsgálat jellege', type: 'text'},
     {key: 'nextIBF', label: 'Következő IBF', type: 'date'},
     
   ];
