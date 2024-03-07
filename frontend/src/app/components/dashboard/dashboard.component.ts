@@ -1,25 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { TableColumn, TableRow } from '../data-display/client-table/client-table.component';
+import {
+  TableColumn,
+  TableRow,
+} from '../data-display/client-table/client-table.component';
 import { ClientService } from 'src/app/services/client.service';
+import { MachineService } from 'src/app/services/machine.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit {
   selectedTab = 1;
   currentDate = new Date();
 
   clientData: TableRow[] = [];
 
-  machinesData: TableRow[] = [];
+  machineData: TableRow[] = [];
 
   monthlyMachinesData: TableRow[] = [];
 
   constructor(
-    private clientService: ClientService
-    ) {}
+    private clientService: ClientService,
+    private machineService: MachineService
+  ) {}
 
   ngOnInit(): void {
     this.selectTab(1);
@@ -54,18 +59,101 @@ export class DashboardComponent implements OnInit{
     });
   }
 
+  fetchMachines(): void {
+    this.machineService.getAllMachines().subscribe({
+      next: (machines) => {
+        this.machineData = machines.map(
+          (machine: {
+            clientId: any;
+            client: { name: any };
+            machineId: any;
+            addressCity: any;
+            addressStreet: any;
+            usePlace: any;
+            isDangerous: any;
+            isLifting: any;
+            inventoryNumber: any;
+            factoryNumber: any;
+            kind: any;
+            name: any;
+            brand: any;
+            type: any;
+            manufactureYear: any;
+            commissionDate: any;
+            note: any;
+
+            licenseNumber?: string;
+            adapterName?: string;
+            controlMode?: string;
+            vehicleType?: string;
+            liftHeight?: string;
+            ropeDiam?: string;
+            console?: string;
+            weight?: string;
+            power?: string;
+            chain?: string;
+            load?: string;
+            span?: string;
+            rope?: string;
+            bend?: string;
+          }) => ({
+            clientId: machine.clientId,
+            machineId: machine.machineId,
+            addressCity: machine.addressCity,
+            addressStreet: machine.addressStreet,
+            usePlace: machine.usePlace,
+            isDangerous: machine.isDangerous,
+            isLifting: machine.isLifting,
+            inventoryNumber: machine.inventoryNumber,
+            factoryNumber: machine.factoryNumber,
+            kind: machine.kind,
+            name: machine.name,
+            brand: machine.brand,
+            type: machine.type,
+            manufactureYear: machine.manufactureYear,
+            commissionDate: machine.commissionDate,
+            note: machine.note,
+
+            licenseNumber:  machine.note,
+            adapterName:  machine.note,
+            controlMode: machine.note,
+            vehicleType:  machine.note,
+            liftHeight:  machine.note,
+            ropeDiam:  machine.note,
+            console: machine.note,
+            weight:  machine.note,
+            power: machine.note,
+            chain:  machine.note,
+            load:  machine.note,
+            span: machine.note,
+            rope:  machine.note,
+            bend:  machine.note,
+          })
+        );
+      },
+      error: (error) => console.error(error),
+    });
+  }
+
   selectTab(tabIndex: number): void {
     this.selectedTab = tabIndex;
-    
-    if(tabIndex === 1) {
+
+    if (tabIndex === 1) {
       this.fetchClients();
+    }
+
+    if (tabIndex === 2) {
+      this.fetchMachines();
     }
   }
 
   get formattedDate(): string {
-    const options: Intl.DateTimeFormatOptions = { month: 'long', year: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = {
+      month: 'long',
+      year: 'numeric',
+    };
     return this.currentDate.toLocaleDateString('hu-HU', options).toUpperCase();
-  }  
+  }
 
   previousMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() - 1);

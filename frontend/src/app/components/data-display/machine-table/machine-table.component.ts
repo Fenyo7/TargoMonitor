@@ -10,15 +10,22 @@ export class MachineTableComponent {
   @Input() machineData: TableRow[] = [];
   
   machineColumns: TableColumn[] = [
-    {key: 'place', label: 'Telephely', type: 'text'},
+    {key: 'clientId', label: 'clientId', type: 'hidden'},
+    {key: 'machineId', label: 'machineId', type: 'hidden'},
+    {key: 'clientName', label: 'Partner', type: 'text'},
+    {key: 'addressCity', label: 'Tepelhely városa', type: 'text'},
+    {key: 'addressStreet', label: 'Utca, házszám', type: 'text'},
     {key: 'usePlace', label: 'Üzemeltetés helye', type: 'text'},
-    {key: 'inventoryNum', label: 'Leltári Szám', type: 'text'},
     {key: 'name', label: 'Név', type: 'text'},
+    {key: 'inventoryNumber', label: 'Leltári szám', type: 'text'},
+    {key: 'factoryNum', label: 'Gyári szám', type: 'text'},
     {key: 'brand', label: 'Gyártmány', type: 'text'},
     {key: 'type', label: 'Típus', type: 'text'},
-    {key: 'factoryNum', label: 'Gyári szám', type: 'text'},
-    {key: 'manufactureYear', label: 'Gyártás éve', type: 'text'},
-    {key: 'commissionDate', label: 'Üzembehelyezés ideje', type: 'text'},
-    {key: 'isLifting', label: 'Emelőgép?', type: 'bool'},
+    {key: 'lastInspect', label: 'Utolsó vizsgálat', type: 'date'},
+    {key: 'lastInspectType', label: '- jellege', type: 'text'},
+    {key: 'nextInspect', label: 'Következő vizsgálat', type: 'date'},
+    {key: 'nextInspectType', label: '- jellege', type: 'text'},
+    {key: 'nextIBF', label: 'Következő IBF', type: 'date'},
+    
   ];
 }

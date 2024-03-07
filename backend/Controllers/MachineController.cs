@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TargoMonitor.Data;
 using TargoMonitor.Data.Dtos;
+using TargoMonitor.Data.DTOs;
 using TargoMonitor.Data.Models;
 
 [Authorize]
@@ -104,12 +105,46 @@ public class MachineController : ControllerBase
             return BadRequest("Client does not exist or does not belong to the user.");
         }
 
-        var machines = await _context.Machines
+        var machinesDto = await _context.Machines
             .Include(m => m.Client)
             .Where(m => m.Client.UserId == userId)
+            .Select(m => new MachineDto
+            {
+                MachineId = m.MachineId,
+                ClientId = m.ClientId,
+                AddressCity = m.AddressCity,
+                AddressStreet = m.AddressStreet,
+                UsePlace = m.UsePlace,
+                IsDangerous = m.IsDangerous,
+                IsLifting = m.IsLifting,
+                InspectGroupNumber = m.InspectGroupNumber,
+                InventoryNumber = m.InventoryNumber,
+                Kind = m.Kind,
+                Name = m.Name,
+                Brand = m.Brand,
+                Type = m.Type,
+                FactoryNumber = m.FactoryNumber,
+                ManufactureYear = m.ManufactureYear,
+                CommissionDate = m.CommissionDate,
+                Note = m.Note,
+                LicenseNumber = m.LicenseNumber,
+                AdapterName = m.AdapterName,
+                ControlMode = m.ControlMode,
+                VehicleType = m.VehicleType,
+                LiftHeight = m.LiftHeight,
+                RopeDiam = m.RopeDiam,
+                Console = m.Console,
+                Weight = m.Weight,
+                Power = m.Power,
+                Chain = m.Chain,
+                Load = m.Load,
+                Span = m.Span,
+                Rope = m.Rope,
+                Bend = m.Bend,
+            })
             .ToListAsync();
 
-        return Ok(machines);
+        return Ok(machinesDto);
     }
 
     [HttpGet("{id}")]
