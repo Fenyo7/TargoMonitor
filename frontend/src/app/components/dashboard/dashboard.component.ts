@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
         this.machineData = machines.map(
           (machine: {
             clientId: any;
-            client: { name: any };
+            clientName: any;
             machineId: any;
             addressCity: any;
             addressStreet: any;
@@ -98,6 +98,7 @@ export class DashboardComponent implements OnInit {
             bend?: string;
           }) => ({
             clientId: machine.clientId,
+            clientName: machine.clientName,
             machineId: machine.machineId,
             addressCity: machine.addressCity,
             addressStreet: machine.addressStreet,

@@ -4,6 +4,7 @@ namespace TargoMonitor.Data.DTOs
     {
         public int MachineId { get; set; }
         public int ClientId { get; set; } // Include if you need to reference back to the Client
+        public string ClientName { get; set; }
 
         public string AddressCity { get; set; } // Telephely (Város)
         public string AddressStreet { get; set; } // Telephely (Utca)

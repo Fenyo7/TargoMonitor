@@ -112,6 +112,7 @@ public class MachineController : ControllerBase
             {
                 MachineId = m.MachineId,
                 ClientId = m.ClientId,
+                ClientName = m.Client.Name,
                 AddressCity = m.AddressCity,
                 AddressStreet = m.AddressStreet,
                 UsePlace = m.UsePlace,
