@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TableColumn, TableRow } from '../client-table/client-table.component';
+import { FilterOptions } from '../filter/filter.component';
 
 @Component({
   selector: 'app-machine-table',
@@ -8,6 +9,14 @@ import { TableColumn, TableRow } from '../client-table/client-table.component';
 })
 export class MachineTableComponent {
   @Input() machineData: TableRow[] = [];
+  originalMachineData: TableRow[] = [];
+  activeFilters: { [key: string]: FilterOptions } = {};
+  filterKey: string | null = null;
+  filterName: string | null = null;
+  existingFilter: FilterOptions = {
+    contains: null,
+    sort: 'none',
+  };
   
   machineColumns: TableColumn[] = [
     {key: 'clientId', label: 'clientId', type: 'hidden'},
@@ -28,4 +37,21 @@ export class MachineTableComponent {
     {key: 'nextIBF', label: 'Következő IBF', type: 'date'},
     
   ];
+
+  toggleFilterMenu(filterKey: string, event: MouseEvent): void {
+    if (Object.keys(this.activeFilters).length === 0) {
+      this.originalMachineData = this.machineData;
+    }
+
+    this.filterKey = this.filterKey === filterKey ? null : filterKey;
+    this.existingFilter = this.activeFilters[filterKey];
+    if (this.filterKey) {
+      this.machineColumns.forEach((col) => {
+        if (col.key === this.filterKey) {
+          this.filterName = col.label;
+        }
+      });
+    }
+    event.stopPropagation();
+  }
 }

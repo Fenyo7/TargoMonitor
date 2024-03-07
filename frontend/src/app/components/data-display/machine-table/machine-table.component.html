@@ -1,41 +1,65 @@
 <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th *ngFor="let col of machineColumns">{{ col.label }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of machineData">
-          <td *ngFor="let col of machineColumns">
+  <table>
+    <thead>
+      <tr>
+        <ng-container *ngFor="let col of machineColumns">
+          <th *ngIf="col.type !== 'hidden'" class="table-header">
+            <div class="header-content">
+              {{ col.label }}
+              <div
+                class="icon-cell"
+                *ngIf="col.type !== 'actions' && col.type !== 'bool'"
+              >
+                <img
+                  src="../../../assets/icons/filter{{
+                    activeFilters[col.key] ? '-active' : ''
+                  }}.svg"
+                  alt="Filter"
+                  class="icon-interactable"
+                  (click)="toggleFilterMenu(col.key, $event)"
+                />
+              </div>
+            </div>
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of machineData">
+        <ng-container *ngFor="let col of machineColumns">
+          <td *ngIf="col.type !== 'hidden'">
             <ng-container [ngSwitch]="col.type">
-                <ng-container [ngSwitch]="col.type">
+              <!-- Bool type handling -->
+              <ng-container *ngSwitchCase="'bool'">
+                <div class="icon-cell">
+                  <img
+                    *ngIf="row[col.key]"
+                    src="../../../assets/icons/check-circle.svg"
+                    alt="True"
+                    class="icon"
+                  />
+                  <img
+                    *ngIf="!row[col.key]"
+                    src="../../../assets/icons/blocked.svg"
+                    alt="False"
+                    class="icon"
+                  />
+                </div>
+              </ng-container>
 
-                    <ng-container *ngSwitchCase="'bool'">
-                      <div class="icon-cell">
-                        <img
-                          *ngIf="row[col.key]"
-                          src="../../../assets/icons/check-circle.svg"
-                          alt="True"
-                          class="icon"
-                        />
-                        <img
-                          *ngIf="!row[col.key]"
-                          src="../../../assets/icons/blocked.svg"
-                          alt="False"
-                          class="icon"
-                        />
-                      </div>
-                    </ng-container>
-                    
-                    <ng-container *ngSwitchDefault>
-                      {{ row[col.key] }}
-                    </ng-container>
-                  </ng-container>
+              <!-- Actions type handling -->
+              <ng-container *ngSwitchCase="'actions'">
+                <!-- Include your action buttons here, similar to the client table -->
+              </ng-container>
+
+              <!-- Default case for other types -->
+              <ng-container *ngSwitchDefault>
+                {{ row[col.key] }}
+              </ng-container>
             </ng-container>
           </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
