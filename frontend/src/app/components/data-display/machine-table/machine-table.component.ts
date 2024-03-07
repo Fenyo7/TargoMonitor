@@ -54,4 +54,72 @@ export class MachineTableComponent {
     }
     event.stopPropagation();
   }
+
+  closeFilter(): void {
+    if (this.filterKey !== null) {
+      this.filterKey = null;
+    }
+  }
+
+  clearFilter(filterKey: string): void {
+    delete this.activeFilters[filterKey];
+    this.applyAllFilters();
+  }
+
+  applyFilter(filterCriteria: FilterOptions): void {
+    if (this.filterKey) {
+      if (filterCriteria.contains || filterCriteria.sort !== 'none') {
+        this.activeFilters[this.filterKey] = filterCriteria;
+      } else {
+        delete this.activeFilters[this.filterKey];
+      }
+      this.applyAllFilters();
+    }
+  }
+
+  applyAllFilters(): void {
+    let filteredData = [...this.originalMachineData];
+
+    Object.keys(this.activeFilters).forEach((key) => {
+      const filter = this.activeFilters[key];
+      if (filter.contains) {
+        filteredData = filteredData.filter((row) =>
+          row[key]
+            ?.toString()
+            .toLowerCase()
+            .includes(filter.contains?.toLowerCase())
+        );
+      }
+    });
+
+    const sortKey = Object.keys(this.activeFilters).find(
+      (key) =>
+        this.activeFilters[key].sort === 'asc' ||
+        this.activeFilters[key].sort === 'desc'
+    );
+
+    if (sortKey) {
+      const sortCriteria = this.activeFilters[sortKey].sort;
+      filteredData.sort((a, b) => {
+        let valA = a[sortKey],
+          valB = b[sortKey];
+
+        if (!isNaN(parseFloat(valA)) && !isNaN(parseFloat(valB))) {
+          valA = parseFloat(valA);
+          valB = parseFloat(valB);
+        } else {
+          valA = valA?.toString().toLowerCase();
+          valB = valB?.toString().toLowerCase();
+        }
+
+        if (sortCriteria === 'asc') {
+          return valA > valB ? 1 : valA < valB ? -1 : 0;
+        } else {
+          return valA < valB ? 1 : valA > valB ? -1 : 0;
+        }
+      });
+    }
+
+    this.machineData = filteredData;
+  }
 }

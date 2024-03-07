@@ -63,3 +63,14 @@
     </tbody>
   </table>
 </div>
+
+<mat-card class="filter" *ngIf="filterKey != null" (appClickOutside)="closeFilter()">
+  <app-filter
+    *ngIf="filterKey"
+    [columnKey]="filterKey"
+    [columnName]="filterName"
+    [existingFilter]="existingFilter"
+    (onFilterChange)="applyFilter($event)"
+    (onClearFilter)="clearFilter(filterKey)"
+  ></app-filter>
+</mat-card>
