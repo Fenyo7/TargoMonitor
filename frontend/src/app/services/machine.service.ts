@@ -17,6 +17,10 @@ export class MachineService {
   }
 
   getAllMachines(): Observable<any> {
-    return this.http.get(this.baseUrl)
+    return this.http.get(this.baseUrl);
+  }
+
+  getMachinesByClientId(clientId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/ByClient/${clientId}`);
   }
 }

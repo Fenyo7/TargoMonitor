@@ -55,7 +55,6 @@ public class MachineController : ControllerBase
                 ManufactureYear = addMachineDto.ManufactureYear,
                 CommissionDate = addMachineDto?.CommissionDate,
                 Note = addMachineDto?.Note,
-                
                 // ### Adattábla szerinti adatok ###
 
                 LicenseNumber = addMachineDto?.LicenseNumber,
@@ -108,41 +107,44 @@ public class MachineController : ControllerBase
         var machinesDto = await _context.Machines
             .Include(m => m.Client)
             .Where(m => m.Client.UserId == userId)
-            .Select(m => new MachineDto
-            {
-                MachineId = m.MachineId,
-                ClientId = m.ClientId,
-                ClientName = m.Client.Name,
-                AddressCity = m.AddressCity,
-                AddressStreet = m.AddressStreet,
-                UsePlace = m.UsePlace,
-                IsDangerous = m.IsDangerous,
-                IsLifting = m.IsLifting,
-                InspectGroupNumber = m.InspectGroupNumber,
-                InventoryNumber = m.InventoryNumber,
-                Kind = m.Kind,
-                Name = m.Name,
-                Brand = m.Brand,
-                Type = m.Type,
-                FactoryNumber = m.FactoryNumber,
-                ManufactureYear = m.ManufactureYear,
-                CommissionDate = m.CommissionDate,
-                Note = m.Note,
-                LicenseNumber = m.LicenseNumber,
-                AdapterName = m.AdapterName,
-                ControlMode = m.ControlMode,
-                VehicleType = m.VehicleType,
-                LiftHeight = m.LiftHeight,
-                RopeDiam = m.RopeDiam,
-                Console = m.Console,
-                Weight = m.Weight,
-                Power = m.Power,
-                Chain = m.Chain,
-                Load = m.Load,
-                Span = m.Span,
-                Rope = m.Rope,
-                Bend = m.Bend,
-            })
+            .Select(
+                m =>
+                    new MachineDto
+                    {
+                        MachineId = m.MachineId,
+                        ClientId = m.ClientId,
+                        ClientName = m.Client.Name,
+                        AddressCity = m.AddressCity,
+                        AddressStreet = m.AddressStreet,
+                        UsePlace = m.UsePlace,
+                        IsDangerous = m.IsDangerous,
+                        IsLifting = m.IsLifting,
+                        InspectGroupNumber = m.InspectGroupNumber,
+                        InventoryNumber = m.InventoryNumber,
+                        Kind = m.Kind,
+                        Name = m.Name,
+                        Brand = m.Brand,
+                        Type = m.Type,
+                        FactoryNumber = m.FactoryNumber,
+                        ManufactureYear = m.ManufactureYear,
+                        CommissionDate = m.CommissionDate,
+                        Note = m.Note,
+                        LicenseNumber = m.LicenseNumber,
+                        AdapterName = m.AdapterName,
+                        ControlMode = m.ControlMode,
+                        VehicleType = m.VehicleType,
+                        LiftHeight = m.LiftHeight,
+                        RopeDiam = m.RopeDiam,
+                        Console = m.Console,
+                        Weight = m.Weight,
+                        Power = m.Power,
+                        Chain = m.Chain,
+                        Load = m.Load,
+                        Span = m.Span,
+                        Rope = m.Rope,
+                        Bend = m.Bend,
+                    }
+            )
             .ToListAsync();
 
         return Ok(machinesDto);
@@ -172,5 +174,73 @@ public class MachineController : ControllerBase
         }
 
         return Ok(machine);
+    }
+
+    [HttpGet("ByClient/{clientId}")]
+    public async Task<IActionResult> GetMachinesByClientId(int clientId)
+    {
+        string userIdFromToken = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userIdFromToken == null)
+        {
+            return Unauthorized("Invalid user ID");
+        }
+
+        if (!int.TryParse(userIdFromToken, out int userId))
+        {
+            return BadRequest("User ID is not in the correct format.");
+        }
+
+        var clientExists = await _context.Clients.AnyAsync(
+            c => c.ClientId == clientId && c.UserId == userId
+        );
+        if (!clientExists)
+        {
+            return BadRequest("Client does not exist or does not belong to the user.");
+        }
+
+        var machinesDto = await _context.Machines
+            .Include(m => m.Client)
+            .Where(m => m.ClientId == clientId && m.Client.UserId == userId)
+            .Select(
+                m =>
+                    new MachineDto
+                    {
+                        MachineId = m.MachineId,
+                        ClientId = m.ClientId,
+                        ClientName = m.Client.Name,
+                        AddressCity = m.AddressCity,
+                        AddressStreet = m.AddressStreet,
+                        UsePlace = m.UsePlace,
+                        IsDangerous = m.IsDangerous,
+                        IsLifting = m.IsLifting,
+                        InspectGroupNumber = m.InspectGroupNumber,
+                        InventoryNumber = m.InventoryNumber,
+                        Kind = m.Kind,
+                        Name = m.Name,
+                        Brand = m.Brand,
+                        Type = m.Type,
+                        FactoryNumber = m.FactoryNumber,
+                        ManufactureYear = m.ManufactureYear,
+                        CommissionDate = m.CommissionDate,
+                        Note = m.Note,
+                        LicenseNumber = m.LicenseNumber,
+                        AdapterName = m.AdapterName,
+                        ControlMode = m.ControlMode,
+                        VehicleType = m.VehicleType,
+                        LiftHeight = m.LiftHeight,
+                        RopeDiam = m.RopeDiam,
+                        Console = m.Console,
+                        Weight = m.Weight,
+                        Power = m.Power,
+                        Chain = m.Chain,
+                        Load = m.Load,
+                        Span = m.Span,
+                        Rope = m.Rope,
+                        Bend = m.Bend,
+                    }
+            )
+            .ToListAsync();
+
+        return Ok(machinesDto);
     }
 }
