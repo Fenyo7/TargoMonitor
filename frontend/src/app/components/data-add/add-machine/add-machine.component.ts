@@ -45,6 +45,8 @@ export class AddMachineComponent implements OnInit {
   isLifting: boolean = false;
   isDangerous: boolean = false;
 
+  name: string = '';
+
   inspectGroupNumberOptions = [1, 2, 3, 4, 5];
 
   typeOptions = [
@@ -249,6 +251,7 @@ export class AddMachineComponent implements OnInit {
   }
 
   generateCode(): string | null {
+    this.name = 'Ismerelten gép';
     let code: string = '';
     let typeCode = 0;
     if (this.typeFormControl.value) {
@@ -259,6 +262,8 @@ export class AddMachineComponent implements OnInit {
         code += typeCode + '.';
       }
     } else return null;
+
+    this.name = this.typeOptions[typeCode];
 
     switch (typeCode) {
       case 1: {
@@ -284,6 +289,8 @@ export class AddMachineComponent implements OnInit {
             code += darulancCode + '.';
           }
         } else return null;
+
+        this.name = `${this.darulancOptions[darulancCode]} ${this.daruOptions[daruCode]}`;
         break;
       }
       case 2: {
@@ -297,6 +304,7 @@ export class AddMachineComponent implements OnInit {
             code += onjaroCode + '.';
           }
         } else return null;
+        this.name = this.onjaroOptions[onjaroCode];
         break;
       }
       case 3: {
@@ -337,7 +345,11 @@ export class AddMachineComponent implements OnInit {
               code += vezetoulesCode + '.';
             }
           } else return null;
+          this.name = `${this.vezetoulesOptions[vezetoulesCode]} ${this.targoncameghajtOptions[targoncameghajtCode]} Targonca`;
+        } else {
+          this.name = `${this.targoncaOptions[targoncaCode]} ${this.targoncameghajtOptions[targoncameghajtCode]} Targonca`;
         }
+        
         break;
       }
       case 7: {
@@ -353,6 +365,11 @@ export class AddMachineComponent implements OnInit {
             code += jarmureszereltCode + '.';
           }
         } else return null;
+        if(jarmureszereltCode === 0) {
+          this.name = "Egyéb járműre szerelt emelőgép"
+        } else {
+          this.name = this.jarmureszereltOptions[jarmureszereltCode];
+        }
         break;
       }
       case 8: {
@@ -382,7 +399,7 @@ export class AddMachineComponent implements OnInit {
         } else return null;
 
         let keziemeloCode = 0;
-        if (jarmuemeloCode === 6) {
+        if (jarmuemeloCode === 5) {
           if (this.kezijarmuemeloControl.value) {
             keziemeloCode = this.kezijarmuemeloOptions.indexOf(
               this.kezijarmuemeloControl.value
@@ -393,6 +410,14 @@ export class AddMachineComponent implements OnInit {
               code += keziemeloCode + '.';
             }
           } else return null;
+
+          this.name = `${this.jarmuemelomeghajtOptions[jarmuemelomeghajtCode]} ${this.kezijarmuemeloOptions[keziemeloCode]}`;
+        } else {
+          if(jarmuemeloCode <= 2) {
+            this.name = `${this.jarmuemelomeghajtOptions[jarmuemelomeghajtCode]} ${this.jarmuemeloOptions[jarmuemeloCode]} Járműemelő`;
+          } else {
+            this.name = `${this.jarmuemelomeghajtOptions[jarmuemelomeghajtCode]} ${this.jarmuemeloOptions[jarmuemeloCode]}`;
+          }
         }
         break;
       }
@@ -409,6 +434,7 @@ export class AddMachineComponent implements OnInit {
             code += emeloasztalCode + '.';
           }
         } else return null;
+        this.name = `${this.emeloasztalOptions[emeloasztalCode]} Emelőasztal`;
         break;
       }
       case 10: {
@@ -424,44 +450,43 @@ export class AddMachineComponent implements OnInit {
             code += keziemeloCode + '.';
           }
         } else return null;
+        if(keziemeloCode === 0) {
+          this.name = 'Egyéb kézi emelőeszköz';
+        } else if (keziemeloCode === 3) {
+          this.name = 'Kézi emelőasztal';
+        } else {
+          this.name = `${this.keziemeloOptions[keziemeloCode]}`;
+        }
         break;
       }
-      case 15: {
+      case 16: {
         // Adapter
         let adapcerCode = 0;
         if (this.adapterControl.value) {
           adapcerCode = this.adapterOptions.indexOf(this.adapterControl.value);
           if (adapcerCode / 10 < 1) {
-            code += `0${adapcerCode}.`;
+            code += `0${adapcerCode}`;
           } else {
-            code += adapcerCode + '.';
+            code += adapcerCode;
           }
         } else return null;
+        this.name = `${this.adapterOptions[adapcerCode]} használt Adapter`;
         break;
       }
     }
-
     return code;
-  }
-
-  generateName(code: string): string {
-    return `${code}`;
   }
 
   onSubmit() {
     const code = this.generateCode();
-    let name = '';
-    if (code) {
-      name = this.generateName(code);
-    }
-
+    
     if (this.machineForm.valid) {
       const selectedClient = this.machineForm.value.client as Client;
 
       const machineData: addMachineDTO = {
         clientId: selectedClient.clientId,
         kind: code,
-        name: name,
+        name: this.name,
         ...this.machineForm.value,
         ...this.dataTableForm.value,
         commissionDate: new Date(Date.now()),
