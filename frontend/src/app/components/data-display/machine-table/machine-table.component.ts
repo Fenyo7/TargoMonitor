@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TableColumn, TableRow } from '../client-table/client-table.component';
 import { FilterOptions } from '../filter/filter.component';
-import { MachineService } from 'src/app/services/machine.service';
 
 @Component({
   selector: 'app-machine-table',
@@ -40,8 +39,6 @@ export class MachineTableComponent {
     { key: 'nextIBF', label: 'Következő IBF', type: 'date' },
     { key: 'actions', label: 'Akciógombok', type: 'actions' },
   ];
-
-  constructor(private machineService: MachineService) {}
 
   toggleFilterMenu(filterKey: string, event: MouseEvent): void {
     if (Object.keys(this.activeFilters).length === 0) {

@@ -1,1 +1,44 @@
-<p>machine-details-display works! {{machineData}}</p>
+<div class="card-container">
+    <mat-card>
+        <h2>Általános adatok</h2>
+        <p>Gép megnevezése: {{ machine.name }}</p>
+        <p>Partner: {{ machine.clientName }}</p>
+        <p>Telephely: {{ machine.addressCity }}</p>
+        <p>Utca, házszám: {{ machine.addressStreet }}</p>
+        <p *ngIf="machine.usePlace != ''">Üzemelés helye: {{ machine.usePlace }}</p>
+        <p>{{ machine.isDangerous ? "Veszélyes gép" : "Nem veszélyes gép" }}</p>
+        <p>{{ machine.isLifting ? "Emelőgép" : "Nem emelőgép" }}</p>
+        <p *ngIf="machine.inventoryNumber != ''">
+          Leltári szám: {{ machine.inventoryNumber }}
+        </p>
+        <p *ngIf="machine.factoryNumber != ''">
+          Gyári szám: {{ machine.factoryNumber }}
+        </p>
+        <p>Gyártmány: {{ machine.brand }}</p>
+        <p *ngIf="machine.type != ''">Típus: {{ machine.type }}</p>
+        <p *ngIf="machine.manufactureYear != ''">
+          Gyártási év: {{ machine.manufactureYear }}
+        </p>
+        <p *ngIf="machine.commissionDate != null">
+          Üzembe helyezés időpontja: {{ machine.commissionDate }}
+        </p>
+        <p *ngIf="machine.note != ''">Megjegyzés: {{ machine.note }}</p>
+      </mat-card>
+      <mat-card>
+        <h2>Specifikus adatok</h2>
+        <p *ngIf="machine.licenseNumber != ''">Rendszám: {{machine.licenseNumber}}</p>
+        <p *ngIf="machine.adapterName != ''">Adapter megnevezése: {{machine.adapterName}}</p>
+        <p *ngIf="machine.controlMode != ''">Vezérlés módja: {{machine.controlMode}}</p>
+        <p *ngIf="machine.vehicleType != ''">Jármű típusa: {{machine.vehicleType}}</p>
+        <p *ngIf="machine.liftHeight != ''">Emelési magasság: {{machine.liftHeight}}</p>
+        <p *ngIf="machine.ropeDiam != ''">Kötél átmérője: {{machine.ropeDiam}}</p>
+        <p *ngIf="machine.console != ''">Konzolkinyúlás: {{machine.console}}</p>
+        <p *ngIf="machine.weight != ''">Önsúly: {{machine.weight}}</p>
+        <p *ngIf="machine.power != ''">Teljesítmény: {{machine.power}}</p>
+        <p *ngIf="machine.chain != ''">Lánc típusa: {{machine.chain}}</p>
+        <p *ngIf="machine.load != ''">Teherbírás: {{machine.load}}</p>
+        <p *ngIf="machine.span != ''">Fesztáv: {{machine.span}}</p>
+        <p *ngIf="machine.rope != ''">Kötél típusa: {{machine.rope}}</p>
+        <p *ngIf="machine.bend != ''">Megengedett lehajlás: {{machine.bend}}</p>
+      </mat-card>
+</div>

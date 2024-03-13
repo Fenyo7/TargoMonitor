@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./machine-details-display.component.scss']
 })
 export class MachineDetailsDisplayComponent {
-  @Input() machineData: any = null;
+  @Input() machine: any = null;
 }
