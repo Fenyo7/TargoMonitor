@@ -28,6 +28,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
+import { MachineDetailsDisplayComponent } from './components/data-display/machine-details-display/machine-details-display.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { DatePipe } from '@angular/common';
     ContactDisplayComponent,
     FilterComponent,
     ClickOutsideDirective,
+    MachineDetailsDisplayComponent,
   ],
   imports: [
     BrowserModule,

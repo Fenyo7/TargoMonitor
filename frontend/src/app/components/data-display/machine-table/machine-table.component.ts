@@ -19,8 +19,7 @@ export class MachineTableComponent {
     sort: 'none',
   };
   detailsRowId: number | null = null;
-  detailedData = [];
-  selectedMachineForDetails: any = null;
+  detailedData: any = null;
 
   machineColumns: TableColumn[] = [
     { key: 'clientId', label: 'clientId', type: 'hidden' },
@@ -64,13 +63,17 @@ export class MachineTableComponent {
   toggleDetails(row: TableRow): void {
     if (this.detailsRowId === row['machineId']) {
       this.detailsRowId = null;
-      this.detailedData = [];
+      this.detailedData = null;
     } else {
       this.detailsRowId = row['machineId'];
-      this.selectedMachineForDetails = row;
-
-      console.log(this.selectedMachineForDetails);
+      this.detailedData = row;
     }
+    console.log(this.detailedData);
+  }
+
+  closeDetails(): void {
+    this.detailsRowId = null;
+    this.detailedData = null;
   }
 
   closeFilter(): void {

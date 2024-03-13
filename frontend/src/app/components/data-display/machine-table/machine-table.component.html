@@ -82,3 +82,9 @@
     (onClearFilter)="clearFilter(filterKey)"
   ></app-filter>
 </mat-card>
+
+<mat-card class="machine-details" *ngIf="detailsRowId != null" (appClickOutside)="closeDetails()">
+  <app-machine-details-display 
+  [machineData]="detailedData"
+  ></app-machine-details-display>
+</mat-card>
