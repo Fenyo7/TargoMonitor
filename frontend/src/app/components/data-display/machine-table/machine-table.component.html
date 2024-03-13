@@ -49,7 +49,15 @@
 
               <!-- Actions type handling -->
               <ng-container *ngSwitchCase="'actions'">
-                <!-- Include your action buttons here, similar to the client table -->
+                <div class="icon-cell">
+                  <img
+                    src="../../../assets/icons/book{{ detailsRowId == row['machineId'] ? '-open' : '-2' }}.svg"
+                    alt="Contacts"
+                    class="icon-interactable"
+                    title="Gép részletes megjelenítése"
+                    (click)="toggleDetails(row); $event.stopPropagation()"
+                  />
+                </div>
               </ng-container>
 
               <!-- Default case for other types -->
