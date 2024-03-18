@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { registerDTO } from '../models/DTOs/register.dto';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';

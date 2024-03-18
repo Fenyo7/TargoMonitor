@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { addMachineDTO } from '../models/DTOs/addMachine.dto';
 import { Observable } from 'rxjs';
 
