@@ -257,9 +257,9 @@ export class AddMachineComponent implements OnInit {
     if (this.typeFormControl.value) {
       typeCode = this.typeOptions.indexOf(this.typeFormControl.value);
       if (typeCode / 10 < 1) {
-        code += `0${typeCode}.`;
+        code += `0${typeCode}`;
       } else {
-        code += typeCode + '.';
+        code += typeCode;
       }
     } else return null;
 
@@ -272,9 +272,9 @@ export class AddMachineComponent implements OnInit {
         if (this.daruControl.value) {
           daruCode = this.daruOptions.indexOf(this.daruControl.value);
           if (daruCode / 10 < 1) {
-            code += `0${daruCode}.`;
+            code += `.0${daruCode}`;
           } else {
-            code += daruCode + '.';
+            code += '.' + daruCode;
           }
         } else return null;
 
@@ -284,9 +284,9 @@ export class AddMachineComponent implements OnInit {
             this.darulancControl.value
           );
           if (darulancCode / 10 < 1) {
-            code += `0${darulancCode}.`;
+            code += `.0${darulancCode}`;
           } else {
-            code += darulancCode + '.';
+            code += '.' + darulancCode;
           }
         } else return null;
 
@@ -299,9 +299,9 @@ export class AddMachineComponent implements OnInit {
         if (this.onjaroControl.value) {
           onjaroCode = this.onjaroOptions.indexOf(this.onjaroControl.value);
           if (onjaroCode / 10 < 1) {
-            code += `0${onjaroCode}.`;
+            code += `.0${onjaroCode}`;
           } else {
-            code += onjaroCode + '.';
+            code += '.' + onjaroCode;
           }
         } else return null;
         this.name = this.onjaroOptions[onjaroCode];
@@ -315,9 +315,9 @@ export class AddMachineComponent implements OnInit {
             this.targoncameghajtControl.value
           );
           if (targoncameghajtCode / 10 < 1) {
-            code += `0${targoncameghajtCode}.`;
+            code += `.0${targoncameghajtCode}`;
           } else {
-            code += targoncameghajtCode + '.';
+            code += '.' + targoncameghajtCode;
           }
         } else return null;
 
@@ -327,9 +327,9 @@ export class AddMachineComponent implements OnInit {
             this.targoncaControl.value
           );
           if (targoncaCode / 10 < 1) {
-            code += `0${targoncaCode}.`;
+            code += `.0${targoncaCode}`;
           } else {
-            code += targoncaCode + '.';
+            code += '.' + targoncaCode;
           }
         } else return null;
 
@@ -340,9 +340,9 @@ export class AddMachineComponent implements OnInit {
               this.vezetoulesControl.value
             );
             if (vezetoulesCode / 10 < 1) {
-              code += `0${vezetoulesCode}.`;
+              code += `.0${vezetoulesCode}`;
             } else {
-              code += vezetoulesCode + '.';
+              code += '.' + vezetoulesCode;
             }
           } else return null;
           this.name = `${this.vezetoulesOptions[vezetoulesCode]} ${this.targoncameghajtOptions[targoncameghajtCode]} Targonca`;
@@ -360,9 +360,9 @@ export class AddMachineComponent implements OnInit {
             this.jarmureszereltControl.value
           );
           if (jarmureszereltCode / 10 < 1) {
-            code += `0${jarmureszereltCode}.`;
+            code += `.0${jarmureszereltCode}`;
           } else {
-            code += jarmureszereltCode + '.';
+            code += '.' + jarmureszereltCode;
           }
         } else return null;
         if(jarmureszereltCode === 0) {
@@ -380,9 +380,9 @@ export class AddMachineComponent implements OnInit {
             this.jarmuemelomeghajtControl.value
           );
           if (jarmuemelomeghajtCode / 10 < 1) {
-            code += `0${jarmuemelomeghajtCode}.`;
+            code += `.0${jarmuemelomeghajtCode}`;
           } else {
-            code += jarmuemelomeghajtCode + '.';
+            code += '.' + jarmuemelomeghajtCode;
           }
         } else return null;
 
@@ -392,9 +392,9 @@ export class AddMachineComponent implements OnInit {
             this.jarmuemeloControl.value
           );
           if (jarmuemeloCode / 10 < 1) {
-            code += `0${jarmuemeloCode}.`;
+            code += `.0${jarmuemeloCode}`;
           } else {
-            code += jarmuemeloCode + '.';
+            code += '.' + jarmuemeloCode;
           }
         } else return null;
 
@@ -405,9 +405,9 @@ export class AddMachineComponent implements OnInit {
               this.kezijarmuemeloControl.value
             );
             if (keziemeloCode / 10 < 1) {
-              code += `0${keziemeloCode}.`;
+              code += `.0${keziemeloCode}`;
             } else {
-              code += keziemeloCode + '.';
+              code += '.' + keziemeloCode;
             }
           } else return null;
 
@@ -429,9 +429,9 @@ export class AddMachineComponent implements OnInit {
             this.emeloasztalControl.value
           );
           if (emeloasztalCode / 10 < 1) {
-            code += `0${emeloasztalCode}.`;
+            code += `.0${emeloasztalCode}`;
           } else {
-            code += emeloasztalCode + '.';
+            code += '.' + emeloasztalCode;
           }
         } else return null;
         this.name = `${this.emeloasztalOptions[emeloasztalCode]} Emelőasztal`;
@@ -445,9 +445,9 @@ export class AddMachineComponent implements OnInit {
             this.keziemeloControl.value
           );
           if (keziemeloCode / 10 < 1) {
-            code += `0${keziemeloCode}.`;
+            code += `.0${keziemeloCode}`;
           } else {
-            code += keziemeloCode + '.';
+            code += '.' + keziemeloCode;
           }
         } else return null;
         if(keziemeloCode === 0) {
@@ -465,9 +465,9 @@ export class AddMachineComponent implements OnInit {
         if (this.adapterControl.value) {
           adapcerCode = this.adapterOptions.indexOf(this.adapterControl.value);
           if (adapcerCode / 10 < 1) {
-            code += `0${adapcerCode}`;
+            code += `.0${adapcerCode}`;
           } else {
-            code += adapcerCode;
+            code += '.' + adapcerCode;
           }
         } else return null;
         this.name = `${this.adapterOptions[adapcerCode]} használt Adapter`;
@@ -475,7 +475,7 @@ export class AddMachineComponent implements OnInit {
       }
     }
     return code;
-  }
+  }  
 
   onSubmit() {
     const code = this.generateCode();
