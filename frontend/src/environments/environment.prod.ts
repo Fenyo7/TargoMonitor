@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'targomonitor-backend.azurewebsites.net/api',
+  apiUrl: 'https://targomonitor-backend.azurewebsites.net/api',
 };
