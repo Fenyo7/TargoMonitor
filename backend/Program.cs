@@ -78,7 +78,7 @@ if (app.Environment.IsDevelopment())
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5007";
 builder.WebHost.UseUrls($"http://*:{port}");
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseCors("AllowAllOrigins");
 
