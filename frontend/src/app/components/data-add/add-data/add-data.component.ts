@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-data.component.scss']
 })
 export class AddDataComponent {
+  selectedTab: number = 1;
+
+  selectTab(tab: number): void {
+    this.selectedTab = tab;
+  }
 }

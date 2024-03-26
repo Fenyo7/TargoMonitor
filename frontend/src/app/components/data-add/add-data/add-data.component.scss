@@ -1,13 +1,12 @@
-.add-data {
+.data-entry-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin-top: 0px;
 
   mat-card {
-    width: 60vw;
+    width: 80vw;
     height: 80vh;
-    margin: 20px auto;
     background-color: #f7f7f7;
     border: 1px solid rgb(150, 150, 150);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -40,6 +39,35 @@
   }
 }
 
+.tabs-container {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 10vh;
+  padding-left: 11vw;
+}
+
+.tab {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 3px;
+  &:hover {
+    background-color: #7eb5d4;
+    color: white;
+  }
+}
+
+.selected {
+  background-color: #4c8baf;
+  color: white;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -58,8 +86,4 @@ form {
 .add-data mat-card input,
 .add-data mat-card button {
   color: white;
-}
-
-body {
-  padding-top: 70px;
 }

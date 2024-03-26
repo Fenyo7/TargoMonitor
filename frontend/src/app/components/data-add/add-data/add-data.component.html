@@ -1,18 +1,45 @@
 <app-navbar></app-navbar>
-<div class="add-data">
-  <!-- <mat-card>
-    <mat-card-content>
+
+<div class="tabs-container">
+  <button
+    class="tab"
+    [ngClass]="{ selected: selectedTab == 1 }"
+    (click)="selectTab(1)"
+  >
+    Partner hozzáadása
+  </button>
+  <button
+    class="tab"
+    [ngClass]="{ selected: selectedTab == 2 }"
+    (click)="selectTab(2)"
+  >
+    Partner kapcsolattartó hozzáadása
+  </button>
+  <button
+    class="tab"
+    [ngClass]="{ selected: selectedTab == 3 }"
+    (click)="selectTab(3)"
+  >
+  Gép hozzáadása
+  </button>
+</div>
+
+<div class="data-entry-container" [ngSwitch]="selectedTab">
+  <div *ngSwitchCase="1">
+    <mat-card>
       <app-add-client></app-add-client>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-content>
+    </mat-card>
+  </div>
+
+  <div *ngSwitchCase="2">
+    <mat-card>
       <app-add-contact></app-add-contact>
-    </mat-card-content>
-  </mat-card> -->
-  <mat-card>
-    <mat-card-content>
+    </mat-card>
+  </div>
+  
+  <div *ngSwitchCase="3">
+    <mat-card>
       <app-add-machine></app-add-machine>
-    </mat-card-content>
-  </mat-card>
+    </mat-card>
+  </div>
 </div>
