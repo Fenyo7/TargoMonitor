@@ -54,6 +54,7 @@ public class MachineController : ControllerBase
                 FactoryNumber = addMachineDto.FactoryNumber,
                 ManufactureYear = addMachineDto.ManufactureYear,
                 CommissionDate = addMachineDto?.CommissionDate,
+                LastMainInsDate = addMachineDto?.LastMainInsDate,
                 Note = addMachineDto?.Note,
                 // ### Adattábla szerinti adatok ###
 
@@ -128,6 +129,7 @@ public class MachineController : ControllerBase
                         FactoryNumber = m.FactoryNumber,
                         ManufactureYear = m.ManufactureYear,
                         CommissionDate = m.CommissionDate,
+                        LastMainInsDate = m.LastMainInsDate,
                         Note = m.Note,
                         LicenseNumber = m.LicenseNumber,
                         AdapterName = m.AdapterName,
@@ -222,6 +224,7 @@ public class MachineController : ControllerBase
                         FactoryNumber = m.FactoryNumber,
                         ManufactureYear = m.ManufactureYear,
                         CommissionDate = m.CommissionDate,
+                        LastMainInsDate = m.LastMainInsDate,
                         Note = m.Note,
                         LicenseNumber = m.LicenseNumber,
                         AdapterName = m.AdapterName,

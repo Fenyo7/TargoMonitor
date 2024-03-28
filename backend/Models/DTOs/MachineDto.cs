@@ -25,6 +25,7 @@ namespace TargoMonitor.Data.DTOs
 
         public string ManufactureYear { get; set; } // Gyártási év
         public DateTime? CommissionDate { get; set; } // Üzembe helyezés időponja
+        public DateTime? LastMainInsDate { get; internal set; }
         public string Note { get; set; } // Megjegyzés
 
         // ### Adattábla szerinti adatok ###

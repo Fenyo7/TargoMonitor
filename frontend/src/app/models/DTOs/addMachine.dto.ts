@@ -14,6 +14,7 @@ export interface addMachineDTO {
   factoryNumber?: string;
   manufactureYear?: string;
   commissionDate?: Date;
+  lastMainInsDate?: Date;
   note?: string;
 
   // ### Adattábla szerinti adatok ###

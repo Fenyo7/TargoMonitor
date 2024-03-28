@@ -164,8 +164,9 @@ export class AddMachineComponent implements OnInit {
       brand: [''],
       type: [''],
       factoryNumber: [''],
-      manufactureYear: new FormControl(),
+      manufactureYear: [''],
       commissionDate: new FormControl(),
+      lastMainInsDate: new FormControl(),
       note: [''],
       client: [''],
     });
@@ -489,7 +490,8 @@ export class AddMachineComponent implements OnInit {
         name: this.name,
         ...this.machineForm.value,
         ...this.dataTableForm.value,
-        commissionDate: new Date(Date.now()),
+        commissionDate: this.machineForm.controls['commissionDate'].value,
+        lastMainInsDate: this.machineForm.controls['lastMainInsDate'].value,
         isDangerous: this.isDangerous,
         isLifting: this.isLifting,
       };

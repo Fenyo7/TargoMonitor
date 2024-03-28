@@ -80,6 +80,7 @@ export class DashboardComponent implements OnInit {
             type: any;
             manufactureYear: any;
             commissionDate: any;
+            lastMainInsDate: any;
             note: any;
 
             licenseNumber?: string;
@@ -113,6 +114,7 @@ export class DashboardComponent implements OnInit {
             type: machine.type,
             manufactureYear: machine.manufactureYear,
             commissionDate: machine.commissionDate,
+            lastInspect: machine.lastMainInsDate,
             note: machine.note,
 
             licenseNumber:  machine.licenseNumber,

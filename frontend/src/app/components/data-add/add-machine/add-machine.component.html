@@ -81,6 +81,15 @@
       </div>
 
       <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Utolsó Fővizsgálat időpontja</mat-label>
+          <input matInput [matDatepicker]="pickerLastMainInsDate" formControlName="lastMainInsDate">
+          <mat-datepicker-toggle matSuffix [for]="pickerLastMainInsDate"></mat-datepicker-toggle>
+          <mat-datepicker #pickerLastMainInsDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
         <label for="note">Megjegyzés</label>
         <input type="text" id="note" formControlName="note" />
       </div>
